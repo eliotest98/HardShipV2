@@ -1,4 +1,4 @@
-/src/it/ship/servlet/gestioneSistema/DriverManagerConnectionPool.java
+src/it/ship/servlets/gestioneSistema/DriverManagerConnectionPool.java
 /target/
 /.classpath
 /*.project
