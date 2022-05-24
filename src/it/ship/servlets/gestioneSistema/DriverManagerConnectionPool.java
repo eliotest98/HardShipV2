@@ -19,7 +19,7 @@ public class DriverManagerConnectionPool {
 		}
 	}
 
-	private static synchronized Connection createDBConnection() throws SQLException {
+	public static synchronized Connection createDBConnection() throws SQLException {
 		Connection newConnection = null;
 		String url = "jdbc:mysql://127.0.0.1:3306/hardship";
 		String user = "root";

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import it.ship.beans.Album;
 import it.ship.beans.Brano;
+import it.ship.servlets.gestioneSistema.DriverManagerConnectionPool;
 
 /**
  * Servlet implementation class NavBar
@@ -24,22 +25,14 @@ public class RegistrazioneUtente extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1530301059480826772L;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
 		Connection conn = null;
-		String driver = "com.mysql.jdbc.Driver";
-		Statement st;
 		try {
-			Class.forName(driver).newInstance();
-			String url = "jdbc:mysql://127.0.0.1:1080/hardship";
-			String usr = "root";
-			String pss = "Alberini1995";
-			System.out.println("Provo a connettere");
-			conn = DriverManager.getConnection(url, usr, pss);
+			conn = DriverManagerConnectionPool.createDBConnection();
 			System.out.println("Connected!");
-			String nome = request.getParameter("frist_name");
+			String nome = request.getParameter("first_name");
 			String cognome = request.getParameter("last_name");
 			String user = request.getParameter("user");
 			String pass = request.getParameter("password");
@@ -63,9 +56,7 @@ public class RegistrazioneUtente extends HttpServlet {
 				System.out.println("GG");
 			}
 
-			RequestDispatcher view = request.getRequestDispatcher("/pages/home.jsp");
-			view.forward(request, response);
-
+			response.sendRedirect("/pages/home.jsp?cod=1");
 			conn.close();
 
 			System.out.println("Disconnected!");
