@@ -37,7 +37,7 @@ public class RegistrazioneUtente extends HttpServlet {
 			String usr = "root";
 			String pss = "alcatel1995";
 			System.out.println("Provo a connettere");
-			DriverManager.setLoginTimeout(1500);
+			DriverManager.setLoginTimeout(15000);
 	
 			conn = DriverManager.getConnection(url, usr, pss);
 			System.out.println("Connected!");
