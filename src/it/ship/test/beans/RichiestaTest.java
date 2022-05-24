@@ -1,4 +1,4 @@
-package it.ship.test;
+package it.ship.test.beans;
 
 import static org.junit.Assert.*;
 
