@@ -24,7 +24,7 @@ public class RegistrazioneUtente extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1530301059480826772L;
 
-	public void doPost(HttpServletRequest request, HttpServletResponse response)
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
@@ -33,12 +33,10 @@ public class RegistrazioneUtente extends HttpServlet {
 		Statement st;
 		try {
 			Class.forName(driver).newInstance();
-			String url = "jdbc:mysql://127.0.0.1:3306/hardship?autoReconnect=true&useSSL=false";
+			String url = "jdbc:mysql://127.0.0.1:1080/hardship";
 			String usr = "root";
-			String pss = "alcatel1995";
+			String pss = "Alberini1995";
 			System.out.println("Provo a connettere");
-			DriverManager.setLoginTimeout(15000);
-	
 			conn = DriverManager.getConnection(url, usr, pss);
 			System.out.println("Connected!");
 			String nome = request.getParameter("frist_name");
