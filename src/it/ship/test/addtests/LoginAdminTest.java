@@ -1,4 +1,4 @@
-package it.ship.test;
+package it.ship.test.addtests;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.doReturn;
