@@ -97,8 +97,7 @@ public class Acquista extends HttpServlet {
 			session.setAttribute("sc", cart);
 			session.setAttribute("articoli", articoli);
 			response.setCharacterEncoding("UTF-8");
-			RequestDispatcher view = request.getRequestDispatcher("/pages/home.jsp");
-			view.forward(request, response);
+			response.sendRedirect("/pages/home.jsp?cod=1");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -108,7 +107,7 @@ public class Acquista extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

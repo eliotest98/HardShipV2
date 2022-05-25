@@ -1,30 +1,36 @@
-package it.ship.test;
+package it.ship.test.addtests;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
 import java.io.IOException;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.Statement;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import it.ship.servlets.gestioneSistema.DriverManagerConnectionPool;
-import it.ship.servlets.gestioneUtente.RegistrazioneUtente;
 
-class RegistrazioneEnteTest {
+import it.ship.servlets.gestioneSistema.DriverManagerConnectionPool;
+import it.ship.servlets.gestioneSistema.InserisciFeedback;
+
+class InserisciFeedbackTest {
 
 	HttpServletRequest requestMock = mock(HttpServletRequest.class);
 	HttpServletResponse responseMock = mock(HttpServletResponse.class);
 	HttpSession sessionMock = mock(HttpSession.class);
-	RegistrazioneUtente registrazioneUtente = mock(RegistrazioneUtente.class);
+	InserisciFeedback inserisciFeedback = mock(InserisciFeedback.class);
 	RequestDispatcher dispatcherMock = mock(RequestDispatcher.class);
-	RegistrazioneUtente regUtenteTest = new RegistrazioneUtente();
-
+	InserisciFeedback inserisciFeedbackTest = new InserisciFeedback();
+	
 	/*
 	 * Prima di ogni test simula la sessione dell'utente.
 	 */
@@ -32,7 +38,7 @@ class RegistrazioneEnteTest {
 	public void setUp() {
 		when(requestMock.getSession()).thenReturn(sessionMock);
 	}
-
+	
 	/*
 	 * Dopo ogni test elimino l'utente appena creato.
 	 */
@@ -41,25 +47,21 @@ class RegistrazioneEnteTest {
 		try {
 			Connection conn = DriverManagerConnectionPool.getConnection();
 			Statement stmtSelect = conn.createStatement();
-			stmtSelect.executeUpdate("DELETE FROM cliente WHERE CodiceFiscale='ZCXZVJ86E03L710J';");
+			stmtSelect.executeUpdate("DELETE FROM feedback WHERE Titolo='Parla';");
 			conn.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
+	
 	@Test
-	void testTrue() throws ServletException, IOException {
-		when(requestMock.getParameter("first_name")).thenReturn("Mario");
-		when(requestMock.getParameter("last_name")).thenReturn("Rossi");
-		when(requestMock.getParameter("user")).thenReturn("mario");
-		when(requestMock.getParameter("password")).thenReturn("passwordTest");
-		when(requestMock.getParameter("CF")).thenReturn("ZCXZVJ86E03L710J");
-		when(requestMock.getParameter("data")).thenReturn("2022-01-15");
-		when(requestMock.getParameter("email")).thenReturn("mariorossi@test.com");
-		regUtenteTest.doPost(requestMock, responseMock);
-		verify(responseMock).sendRedirect("/pages/home.jsp?cod=1");
-
+	void insertFeedback() throws ServletException, IOException {
+		when(requestMock.getParameter("testo")).thenReturn("Parla Parla");
+		when(requestMock.getParameter("id")).thenReturn("1");
+		when(requestMock.getParameter("user")).thenReturn("1");
+		when(requestMock.getParameter("titolo")).thenReturn("Parla");
+		inserisciFeedbackTest.doPost(requestMock, responseMock);
+		verify(responseMock).sendRedirect("/DettagliAlbum");
 	}
 
 }
