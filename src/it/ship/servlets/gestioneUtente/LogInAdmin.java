@@ -42,7 +42,7 @@ public class LogInAdmin extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 
@@ -76,8 +76,7 @@ public class LogInAdmin extends HttpServlet {
 				if(admin){
 				session.setAttribute("Amministratore", c);
 				session.setMaxInactiveInterval(30*60);}
-				RequestDispatcher view = request.getRequestDispatcher("/pages/menager.jsp");
-				view.forward(request, response);
+				response.sendRedirect("/pages/menager.jsp");
 				conn.close();
 				System.out.println("Disconnected!");
 			} catch (Exception e) {

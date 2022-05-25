@@ -42,7 +42,7 @@ public class LogIn extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 
@@ -96,15 +96,13 @@ public class LogIn extends HttpServlet {
 					session.setAttribute("sc", sc);
 					String sessione = "on";
 					request.setAttribute("sessione", sessione);
-					RequestDispatcher view = request.getRequestDispatcher("/pages/home.jsp");
-					view.forward(request, response);
+					response.sendRedirect("/pages/home.jsp");
 				}
 			}	
 			String on = "off";
 			request.setAttribute("on", on);
+			response.sendRedirect("/pages/home.jsp");			
 			conn.close();
-			RequestDispatcher view = request.getRequestDispatcher("/pages/home.jsp");
-			view.forward(request, response);			
 			System.out.println("Disconnected!");
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -1,47 +1,57 @@
 package it.ship.test;
 
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import it.ship.servlets.gestioneUtente.RegistrazioneUtente;
+import org.mockito.Mockito;
 
-class RegistrazioneEnteTest {
+import it.ship.beans.Cliente;
+import it.ship.servlets.gestioneUtente.LogIn;
+
+class LoginTest {
 
 	HttpServletRequest requestMock = mock(HttpServletRequest.class);
 	HttpServletResponse responseMock = mock(HttpServletResponse.class);
 	HttpSession sessionMock = mock(HttpSession.class);
-	RegistrazioneUtente registrazioneUtente = mock(RegistrazioneUtente.class);
+	LogIn logIn = new LogIn();
 	RequestDispatcher dispatcherMock = mock(RequestDispatcher.class);
-	RegistrazioneUtente regUtenteTest = new RegistrazioneUtente();
+	PrintWriter mockedOut = mock(PrintWriter.class);
+	ServletContext mockedServletContext  = mock(ServletContext.class);
 
+
+	
 	/*
 	 * Prima di ogni test simula la sessione dell'utente.
 	 */
 	@BeforeEach
 	public void setUp() {
 		when(requestMock.getSession()).thenReturn(sessionMock);
+	
+		
 	}
 
 	@Test
 	void testTrue() throws ServletException, IOException {
-		when(requestMock.getParameter("first_name")).thenReturn("Mario");
-		when(requestMock.getParameter("last_name")).thenReturn("Rossi");
+		doReturn(mockedServletContext).when(requestMock).getServletContext();
 		when(requestMock.getParameter("user")).thenReturn("mario");
-		when(requestMock.getParameter("password")).thenReturn("passwordTest");
-		when(requestMock.getParameter("CF")).thenReturn("ZCXZVJ86E03L710J");
-		when(requestMock.getParameter("data")).thenReturn("2022-01-15");
-		when(requestMock.getParameter("email")).thenReturn("mariorossi@test.com");
-		regUtenteTest.doPost(requestMock, responseMock);
-		System.out.println(requestMock.getContextPath());
-		verify(responseMock).sendRedirect("/pages/home.jsp?cod=1");
+		when(requestMock.getParameter("pass")).thenReturn("passwordTest");
+		logIn.doPost(requestMock, responseMock);
+		verify(responseMock,times(2)).sendRedirect("/pages/home.jsp");
 
 	}
 
