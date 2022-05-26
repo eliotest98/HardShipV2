@@ -69,7 +69,7 @@ class RichiestaAlbumTest {
 
 
 		richiestaAlbumTest.doPost(requestMock, responseMock);
-		verify(responseMock).sendRedirect("/pages/home.jsp?cod=1");
+		verify(responseMock).sendRedirect("pages/home.jsp?cod=1");
 	}
 
 

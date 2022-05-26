@@ -72,7 +72,7 @@ public class RichiestaAlbum extends HttpServlet {
 			e.printStackTrace();
 		}
 		request.getSession().setAttribute("cliente", cli);
-		response.sendRedirect("/pages/home.jsp?cod=1");
+		response.sendRedirect("pages/home.jsp?cod=1");
 	}
 
 }

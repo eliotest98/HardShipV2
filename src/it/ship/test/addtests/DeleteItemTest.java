@@ -1,5 +1,6 @@
 package it.ship.test.addtests;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -46,10 +47,8 @@ class DeleteItemTest {
 		when(requestMock.getSession()).thenReturn(sessionMock);
 		when(requestMock.getSession().getAttribute("cliente")).thenReturn(new Cliente(1, "Mario", "Rossi", "15-01-2022",
 				"mario", "passwordTest", "ZCXZVJ86E03L710J", "mariorossi@test.com"));
-		shoppingCart.addItem(
-				new Album(1, "Pop", "Parla", "Parla", 14, "25-05-2022", "Bho", "Nuovo Album"), 20, 
-				new Artista(1,"Ciccio"),
-				new Etichetta(1,"Bho",4));
+		shoppingCart.addItem(new Album(1, "Pop", "Parla", "Parla", 14, "25-05-2022", "Bho", "Nuovo Album"), 20,
+				new Artista(1, "Ciccio"), new Etichetta(1, "Bho", 4));
 		when(requestMock.getSession().getAttribute("sc")).thenReturn(shoppingCart);
 		ArrayList<Integer> articoli = new ArrayList<>();
 		articoli.add(1);
@@ -101,7 +100,7 @@ class DeleteItemTest {
 		when(requestMock.getParameter("formato")).thenReturn("Bho");
 		when(requestMock.getParameter("n")).thenReturn("0");
 		deleteItemTest.doPost(requestMock, responseMock);
-		assert(responseMock.getStatus() == HttpServletResponse.SC_NO_CONTENT);
+		verify(responseMock).setStatus(204);
 	}
-	
+
 }

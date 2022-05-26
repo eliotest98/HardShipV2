@@ -92,7 +92,7 @@ public class VisualizzaAlbum extends HttpServlet {
 			}
 			request.setAttribute("piList", pid_list);
 			request.setAttribute("ricerca", pid);
-			response.sendRedirect("/pages/searchview.jsp?cod=1");
+			response.sendRedirect("pages/searchview.jsp?cod=1");
 			conn.close();
 			System.out.println("Disconnected!");
 		} catch (Exception e) {

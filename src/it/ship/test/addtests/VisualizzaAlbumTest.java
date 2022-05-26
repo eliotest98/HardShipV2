@@ -73,7 +73,7 @@ class VisualizzaAlbumTest {
 
 
 		visualizzaAlbumTest.doPost(requestMock, responseMock);
-		verify(responseMock).sendRedirect("/pages/searchview.jsp?cod=1");
+		verify(responseMock).sendRedirect("pages/searchview.jsp?cod=1");
 	}
 	
 	@Test
@@ -85,7 +85,7 @@ class VisualizzaAlbumTest {
 
 
 		visualizzaAlbumTest.doPost(requestMock, responseMock);
-		verify(responseMock).sendRedirect("/pages/searchview.jsp?cod=1");
+		verify(responseMock).sendRedirect("pages/searchview.jsp?cod=1");
 	}
 	
 	@Test
@@ -97,7 +97,7 @@ class VisualizzaAlbumTest {
 
 
 		visualizzaAlbumTest.doPost(requestMock, responseMock);
-		verify(responseMock).sendRedirect("/pages/searchview.jsp?cod=1");
+		verify(responseMock).sendRedirect("pages/searchview.jsp?cod=1");
 	}
 
 }
