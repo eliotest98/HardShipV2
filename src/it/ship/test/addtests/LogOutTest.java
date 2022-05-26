@@ -51,7 +51,7 @@ class LogOutTest {
 	    when(responseMock.getWriter()).thenReturn(mockedOut);
 
 		logOut.doPost(requestMock, responseMock);
-		verify(responseMock).sendRedirect("/pages/home.jsp");
+		verify(responseMock).sendRedirect("pages/home.jsp");
 
 	}
 

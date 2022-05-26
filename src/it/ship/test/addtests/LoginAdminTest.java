@@ -51,7 +51,7 @@ class LoginAdminTest {
 		when(requestMock.getParameter("user")).thenReturn("root");
 		when(requestMock.getParameter("pass")).thenReturn("root");
 		logInAdmin.doPost(requestMock, responseMock);
-		verify(responseMock).sendRedirect("/pages/menager.jsp");
+		verify(responseMock).sendRedirect("pages/menager.jsp");
 
 	}
 

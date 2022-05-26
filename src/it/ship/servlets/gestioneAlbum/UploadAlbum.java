@@ -212,7 +212,7 @@ public class UploadAlbum extends HttpServlet {
 			response.setStatus(HttpServletResponse.SC_NO_CONTENT);
 			request.setAttribute("AlbumRisultato", true);
 			request.getSession().setAttribute("Amministratore", x);
-			response.sendRedirect("/pages/menager.jsp?cod=1");
+			response.sendRedirect("pages/menager.jsp?cod=1");
 			conn.close();
 
 			System.out.println("Disconnected!");

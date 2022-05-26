@@ -56,7 +56,7 @@ public class RegistrazioneUtente extends HttpServlet {
 				System.out.println("GG");
 			}
 
-			response.sendRedirect("/pages/home.jsp?cod=1");
+			response.sendRedirect("pages/home.jsp?cod=1");
 			conn.close();
 
 			System.out.println("Disconnected!");

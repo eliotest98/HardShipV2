@@ -96,12 +96,12 @@ public class LogIn extends HttpServlet {
 					session.setAttribute("sc", sc);
 					String sessione = "on";
 					request.setAttribute("sessione", sessione);
-					response.sendRedirect("/pages/home.jsp");
+					response.sendRedirect("pages/home.jsp");
 				}
 			}	
 			String on = "off";
 			request.setAttribute("on", on);
-			response.sendRedirect("/pages/home.jsp");			
+			response.sendRedirect("pages/home.jsp");			
 			conn.close();
 			System.out.println("Disconnected!");
 		} catch (Exception e) {

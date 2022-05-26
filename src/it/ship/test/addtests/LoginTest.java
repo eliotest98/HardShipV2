@@ -76,7 +76,7 @@ class LoginTest {
 		when(requestMock.getParameter("user")).thenReturn("mario");
 		when(requestMock.getParameter("pass")).thenReturn("passwordTest");
 		logIn.doPost(requestMock, responseMock);
-		verify(responseMock,times(2)).sendRedirect("/pages/home.jsp");
+		verify(responseMock,times(2)).sendRedirect("pages/home.jsp");
 
 	}
 

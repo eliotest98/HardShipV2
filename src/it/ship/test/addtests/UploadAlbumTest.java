@@ -84,7 +84,7 @@ class UploadAlbumTest {
 
 
 		uploadAlbumTest.doPost(requestMock, responseMock);
-		verify(responseMock).sendRedirect("/pages/menager.jsp?cod=1");
+		verify(responseMock).sendRedirect("pages/menager.jsp?cod=1");
 	}
 
 }

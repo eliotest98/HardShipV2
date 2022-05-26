@@ -36,7 +36,7 @@ public class LogOut extends HttpServlet {
 		request.getSession().removeAttribute("cliente");
 		request.getSession().invalidate();
 		out.print("You are successfully logged out!");
-		response.sendRedirect("/pages/home.jsp");			
+		response.sendRedirect("pages/home.jsp");			
 		out.close();
 	}
 

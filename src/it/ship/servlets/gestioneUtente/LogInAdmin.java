@@ -76,7 +76,7 @@ public class LogInAdmin extends HttpServlet {
 				if(admin){
 				session.setAttribute("Amministratore", c);
 				session.setMaxInactiveInterval(30*60);}
-				response.sendRedirect("/pages/menager.jsp");
+				response.sendRedirect("pages/menager.jsp");
 				conn.close();
 				System.out.println("Disconnected!");
 			} catch (Exception e) {

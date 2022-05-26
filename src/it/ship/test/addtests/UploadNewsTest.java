@@ -59,7 +59,7 @@ class UploadNewsTest {
 		when(requestMock.getParameter("newscopertina")).thenReturn("Nuova Canzone");
 		when(requestMock.getParameter("newstext")).thenReturn("Canta");
 		uploadNewsTest.doPost(requestMock, responseMock);
-		verify(responseMock).sendRedirect("/pages/menager.jsp?cod=1");
+		verify(responseMock).sendRedirect("pages/menager.jsp?cod=1");
 	}
 
 }
