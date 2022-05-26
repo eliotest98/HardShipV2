@@ -92,8 +92,7 @@ public class VisualizzaAlbum extends HttpServlet {
 			}
 			request.setAttribute("piList", pid_list);
 			request.setAttribute("ricerca", pid);
-			RequestDispatcher view = request.getRequestDispatcher("/pages/searchview.jsp");
-			view.forward(request, response);
+			response.sendRedirect("/pages/searchview.jsp?cod=1");
 			conn.close();
 			System.out.println("Disconnected!");
 		} catch (Exception e) {
@@ -105,7 +104,7 @@ public class VisualizzaAlbum extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
