@@ -45,7 +45,7 @@ public class RichiestaAlbum extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html");
 		Connection conn = null;
@@ -72,8 +72,7 @@ public class RichiestaAlbum extends HttpServlet {
 			e.printStackTrace();
 		}
 		request.getSession().setAttribute("cliente", cli);
-		RequestDispatcher view = request.getRequestDispatcher("/pages/home.jsp");
-		view.forward(request, response);
+		response.sendRedirect("/pages/home.jsp?cod=1");
 	}
 
 }
