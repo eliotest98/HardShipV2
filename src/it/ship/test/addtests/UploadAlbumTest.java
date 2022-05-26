@@ -51,8 +51,8 @@ class UploadAlbumTest {
 			stmtSelect.executeUpdate("DELETE FROM digitale WHERE prezzo='1';");
 			stmtSelect.executeUpdate("DELETE FROM vinile WHERE prezzo='2';;");
 			stmtSelect.executeUpdate("DELETE FROM cd WHERE prezzo='3';");
-			stmtSelect.executeUpdate("DELETE FROM brano WHERE Titolo='branitestT';");
-
+			stmtSelect.executeUpdate("DELETE FROM brano WHERE Titolo='test3';");
+			stmtSelect.executeUpdate("DELETE FROM brano WHERE Titolo='test4';");
 			conn.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -84,7 +84,7 @@ class UploadAlbumTest {
 
 
 		uploadAlbumTest.doPost(requestMock, responseMock);
-		verify(responseMock).sendRedirect("/pages/menager.jsp?cod=1");
+		verify(responseMock).sendRedirect("pages/menager.jsp?cod=1");
 	}
 
 }

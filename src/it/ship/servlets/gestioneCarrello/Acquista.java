@@ -97,7 +97,7 @@ public class Acquista extends HttpServlet {
 			session.setAttribute("sc", cart);
 			session.setAttribute("articoli", articoli);
 			response.setCharacterEncoding("UTF-8");
-			response.sendRedirect("/pages/home.jsp?cod=1");
+			response.sendRedirect("pages/home.jsp?cod=1");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

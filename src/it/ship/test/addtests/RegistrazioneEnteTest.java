@@ -58,7 +58,7 @@ class RegistrazioneEnteTest {
 		when(requestMock.getParameter("data")).thenReturn("2022-01-15");
 		when(requestMock.getParameter("email")).thenReturn("mariorossi@test.com");
 		regUtenteTest.doPost(requestMock, responseMock);
-		verify(responseMock).sendRedirect("/pages/home.jsp?cod=1");
+		verify(responseMock).sendRedirect("pages/home.jsp?cod=1");
 
 	}
 

@@ -71,7 +71,7 @@ public class UploadNews extends HttpServlet {
 			ps.executeUpdate();
 			request.setAttribute("NewsRisultato", true);
 			request.getSession().setAttribute("Amministratore", x);
-			response.sendRedirect("/pages/menager.jsp?cod=1");
+			response.sendRedirect("pages/menager.jsp?cod=1");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
