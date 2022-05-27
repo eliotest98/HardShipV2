@@ -1,11 +1,11 @@
 # Hardship Rest API
 
 ### Guida 
-- Scaricare Maven 3.2: [https://maven.apache.org/download.cgi?Preferred=https%3A%2F%2Fdlcdn.apache.org%2F]
+- [Scaricare Maven 3.2](https://maven.apache.org/download.cgi?Preferred=https%3A%2F%2Fdlcdn.apache.org%2F)
 - JDK 1.8 or later
 - You can also import the code straight into your IDE:
-    -  Spring Tool Suite (STS)
-    -  IntelliJ IDEA
+    -  [Spring Tool Suite (STS)](https://spring.io/tools)
+    -  [IntelliJ IDEA](https://www.jetbrains.com/idea/download)
 - Installare la variabile d’ambiente 
     - export PATH=PATH_MAVEN/bin:$PATH
     - Per verificare che sia settanta correttamente bisogna lanciare il comando mvn --v 
