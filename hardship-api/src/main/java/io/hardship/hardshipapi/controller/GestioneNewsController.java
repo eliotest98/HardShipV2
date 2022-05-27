@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class GestioneNewsController {
 
     @Autowired
-    private GestioneUtenteService gestioneUtenteService;
+    public GestioneUtenteService gestioneUtenteService;
     @GetMapping("/news/{newsId}") //  https://localhost:port/api/v1/news/10
-    void getNews(@PathVariable Long id){
+    void getNews(@PathVariable Long newsId){
 
     }
 
