@@ -9,7 +9,7 @@
     
 - Installare la variabile d’ambiente per MAC
     - export PATH=PATH_MAVEN/bin:$PATH
-    - Per verificare che sia settanta correttamente bisogna lanciare il comando mvn --v 
+    - Per verificare che sia settata correttamente bisogna lanciare il comando mvn --v 
 - Una volta pullato il progetto basta fare il drag and drop della cartella del nuovo progetto su intellj o sul tool Spring Tool Suite
 
 #### Architettura 
