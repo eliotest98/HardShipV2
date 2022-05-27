@@ -45,7 +45,7 @@ public class InserisciFeedback extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html");
 		System.out.println("Sono Entrato");
@@ -77,8 +77,7 @@ public class InserisciFeedback extends HttpServlet {
 			request.setAttribute("param1", idAlbum);
 			System.out.println("Faccio il redirect");
 			conn.close();
-			RequestDispatcher view = request.getRequestDispatcher("/DettagliAlbum");
-			view.forward(request, response);			
+			response.sendRedirect("/DettagliAlbum");
 			System.out.println("Disconnected!");
 
 		} catch (Exception e) {

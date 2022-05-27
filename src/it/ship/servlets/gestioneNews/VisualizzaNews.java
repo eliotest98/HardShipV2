@@ -72,8 +72,7 @@ public class VisualizzaNews extends HttpServlet {
 				System.out.println("al :: " + b.toString());
 			}
 			request.setAttribute("news", b);
-			RequestDispatcher view = request.getRequestDispatcher("/pages/readmore.jsp");
-			view.forward(request, response);
+			response.sendRedirect("pages/readmore.jsp?cod=1");
 			conn.close();
 			System.out.println("Disconnected!");
 		} catch (Exception e) {
@@ -85,7 +84,7 @@ public class VisualizzaNews extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

@@ -44,7 +44,7 @@ public class UploadAlbum extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Statement st;
@@ -212,7 +212,7 @@ public class UploadAlbum extends HttpServlet {
 			response.setStatus(HttpServletResponse.SC_NO_CONTENT);
 			request.setAttribute("AlbumRisultato", true);
 			request.getSession().setAttribute("Amministratore", x);
-			request.getRequestDispatcher("/pages/menager.jsp").forward(request, response);
+			response.sendRedirect("pages/menager.jsp?cod=1");
 			conn.close();
 
 			System.out.println("Disconnected!");
