@@ -29,7 +29,7 @@ public class LiveSearch extends HttpServlet {
 	private static final long serialVersionUID = 1530301059480826772L;
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Connection conn = null;
 		String driver = "com.mysql.jdbc.Driver";
@@ -44,7 +44,7 @@ public class LiveSearch extends HttpServlet {
 			Class.forName(driver).newInstance();
 			conn = DriverManagerConnectionPool.getConnection();
 			System.out.println("Connected!");
-			String query = "select * from album where Titolo LIKE '" + pid + "%'";
+			String query = "select * from album where Titolo LIKE '%" + pid + "%'";
 			System.out.println("query " + query);
 			st = conn.createStatement();
 			ResultSet rs = st.executeQuery(query);
@@ -62,7 +62,7 @@ public class LiveSearch extends HttpServlet {
 				System.out.println(b.getTitolo());
 
 			}
-			query = "select * from etichetta where Nome LIKE '" + pid + "%'";
+			query = "select * from etichetta where Nome LIKE '%" + pid + "%'";
 			rs = st.executeQuery(query);
 			while (rs.next()) {
 				Etichetta e = new Etichetta();
@@ -72,7 +72,7 @@ public class LiveSearch extends HttpServlet {
 				etichette.add(e);
 				System.out.println(e.getNome());
 			}
-			query = "select * from artista where Nome LIKE '" + pid + "%'";
+			query = "select * from artista where Nome LIKE '%" + pid + "%'";
 			rs = st.executeQuery(query);
 			while (rs.next()) {
 				Artista b = new Artista();

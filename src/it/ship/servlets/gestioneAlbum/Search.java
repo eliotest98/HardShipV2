@@ -25,7 +25,7 @@ public class Search extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1530301059480826772L;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
@@ -70,8 +70,7 @@ public class Search extends HttpServlet {
 			}
 			request.setAttribute("piList", pid_list);
 			request.setAttribute("ricerca", pid);
-			RequestDispatcher view = request.getRequestDispatcher("/pages/searchview.jsp");
-			view.forward(request, response);
+			response.sendRedirect("pages/searchview.jsp?cod=1");
 			conn.close();
 			System.out.println("Disconnected!");
 		} catch (Exception e) {
