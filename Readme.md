@@ -6,7 +6,8 @@
 - You can also import the code straight into your IDE:
     -  [Spring Tool Suite (STS)](https://spring.io/tools)
     -  [IntelliJ IDEA](https://www.jetbrains.com/idea/download)
-- Installare la variabile d’ambiente 
+    
+- Installare la variabile d’ambiente per MAC
     - export PATH=PATH_MAVEN/bin:$PATH
     - Per verificare che sia settanta correttamente bisogna lanciare il comando mvn --v 
 - Una volta pullato il progetto basta fare il drag and drop della cartella del nuovo progetto su intellj o sul tool Spring Tool Suite
