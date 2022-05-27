@@ -1,9 +1,9 @@
 package io.hardship.hardshipapi.service;
 
 import io.hardship.hardshipapi.entity.Cliente;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
-@Repository
+@Service
 public interface GestioneUtenteService {
 
 

@@ -5,7 +5,6 @@ import io.hardship.hardshipapi.entity.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class GestioneUtenteServiceImpl implements GestioneUtenteService {
-
     @Autowired
     GestioneUtenteDao gestioneUtenteDao;
 

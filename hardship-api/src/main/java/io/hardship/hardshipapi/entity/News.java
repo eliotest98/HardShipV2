@@ -2,7 +2,6 @@ package io.hardship.hardshipapi.entity;
 
 import javax.persistence.*;
 
-@No
 @Entity
 @Table(name = "news")
 public class News {
