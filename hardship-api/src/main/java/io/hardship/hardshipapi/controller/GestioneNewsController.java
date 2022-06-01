@@ -1,24 +1,48 @@
 package io.hardship.hardshipapi.controller;
 
-import io.hardship.hardshipapi.service.GestioneUtenteService;
+import io.hardship.hardshipapi.entity.News;
+import io.hardship.hardshipapi.service.GestioneNewsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.rmi.ServerException;
+import java.util.List;
+import java.util.Optional;
 
 @RestController // @RestController è l’annotazione di Spring Boot che serve per dichiarare che stiamo creando un Controller.
 @RequestMapping("/api/v1") // rappresenta la prima parte di path dopo https://localhost:port/api/v1
 public class GestioneNewsController {
 
     @Autowired
-    public GestioneUtenteService gestioneUtenteService;
-    @GetMapping("/news/{newsId}") //  https://localhost:port/api/v1/news/10
-    void getNews(@PathVariable Long newsId){
+    public GestioneNewsService gestioneNewsService;
 
+    @GetMapping("/news/{newsId}") //  https://localhost:port/api/v1/news/10
+    ResponseEntity<News> getNews(@PathVariable Long newsId) throws ServerException{
+        Optional<News> news = gestioneNewsService.getNews(newsId);
+        if (news.isPresent()) {
+            return new ResponseEntity<>(news.get(), HttpStatus.OK);
+        } else {
+            throw new ServerException("News not found");
+        }
     }
 
-    @GetMapping("/news/allnews")
-    void getAllNews(){}
+    @GetMapping("/news/allNews")
+    ResponseEntity<List<News>>  getAllNews() throws ServerException{
+        List<News> allNews = gestioneNewsService.getAllNews();
+        return new ResponseEntity<>(allNews, HttpStatus.OK);
+    }
+
+    @PostMapping("/news")
+    ResponseEntity<News> createNews(@RequestBody News item) throws ServerException {
+        Optional<News> news = gestioneNewsService.createNews(item);
+        if (news.isPresent()) {
+            return new ResponseEntity<>(news.get(), HttpStatus.CREATED);
+        } else {
+            throw new ServerException("News created");
+
+        }
+    }
 
 }
