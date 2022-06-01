@@ -18,4 +18,7 @@ public class GestioneNewsController {
 
     }
 
+    @GetMapping("/news/allnews")
+    void getAllNews(){}
+
 }
