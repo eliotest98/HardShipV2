@@ -1,5 +1,6 @@
 package io.hardship.hardshipapi.service;
 
+import io.hardship.hardshipapi.dao.GestioneFeedbackDao;
 import io.hardship.hardshipapi.dao.GestioneNewsDao;
 import io.hardship.hardshipapi.entity.Feedback;
 import io.hardship.hardshipapi.entity.request.FeedbackDTO;
@@ -13,7 +14,7 @@ import java.util.Optional;
 public class GestioneFeedbackServiceImpl implements GestioneFeedbackService{
 
     @Autowired
-    GestioneNewsDao gestioneNewsDao;
+    GestioneFeedbackDao gestioneFeedbackDao;
     @Override
     public Optional<Feedback> createFeedback(FeedbackDTO feedback) {
         return Optional.empty();
