@@ -15,10 +15,12 @@ public class GestioneNewsServiceImpl implements  GestioneNewsService{
      GestioneNewsDao gesioneNewsDao;
 
     @Override
-    public  Optional<News> getNews(Long id) {
+    public  Optional<News> getNews(Integer id) {
         Optional<News> result = gesioneNewsDao.findById(id);
         return result;
     }
+
+
 
     @Override
     public List<News> getAllNews() {

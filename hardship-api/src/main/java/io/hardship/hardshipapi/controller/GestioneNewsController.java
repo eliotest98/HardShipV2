@@ -19,7 +19,7 @@ public class GestioneNewsController {
     public GestioneNewsService gestioneNewsService;
 
     @GetMapping("/news/{newsId}") //  https://localhost:port/api/v1/news/10
-    ResponseEntity<News> getNews(@PathVariable Long newsId) throws ServerException{
+    ResponseEntity<News> getNews(@PathVariable Integer newsId) throws ServerException{
         Optional<News> news = gestioneNewsService.getNews(newsId);
         if (news.isPresent()) {
             return new ResponseEntity<>(news.get(), HttpStatus.OK);
@@ -40,7 +40,7 @@ public class GestioneNewsController {
         if (news.isPresent()) {
             return new ResponseEntity<>(news.get(), HttpStatus.CREATED);
         } else {
-            throw new ServerException("News created");
+            throw new ServerException("News not created");
 
         }
     }

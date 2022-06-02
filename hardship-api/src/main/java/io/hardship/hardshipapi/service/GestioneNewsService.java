@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface GestioneNewsService {
 
-    Optional<News> getNews(Long id);
+    Optional<News> getNews(Integer id);
     List<News> getAllNews();
     Optional<News> createNews(News news);
 }
