@@ -20,7 +20,7 @@ public class GestioneAlbumController {
     public GestioneAlbumService gestioneAlbumService;
 
     @PostMapping("/album")
-    ResponseEntity<Album> createNews(@RequestBody Album item) throws ServerException {
+    ResponseEntity<Album> createAlbum(@RequestBody Album item) throws ServerException {
         Optional<Album> album = gestioneAlbumService.createAlbum(item);
         if (album.isPresent()) {
             return new ResponseEntity<>(album.get(), HttpStatus.CREATED);

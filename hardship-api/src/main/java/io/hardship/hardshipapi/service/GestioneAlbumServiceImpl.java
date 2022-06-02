@@ -17,7 +17,7 @@ public class GestioneAlbumServiceImpl  implements  GestioneAlbumService {
     GestioneAlbumDao gestioneAlbumDao;
 
     @Override
-    public Optional<Album> getAlbum(Long id) {
+    public Optional<Album> getAlbum(Integer id) {
         return Optional.empty();
     }
 

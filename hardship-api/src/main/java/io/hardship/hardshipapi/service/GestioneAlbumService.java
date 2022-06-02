@@ -12,7 +12,7 @@ import java.util.Optional;
 
 public interface GestioneAlbumService  {
 
-    Optional<Album> getAlbum(Long id);
+    Optional<Album> getAlbum(Integer id);
     List<Album> getAllAlbum();
     Optional<Album> createAlbum(Album album);
     Optional<Richiesta> createRequestAlbum();
