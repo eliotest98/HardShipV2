@@ -1,16 +1,23 @@
 package io.hardship.hardshipapi.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Table(name = "cliente")
 public class Cliente implements Serializable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE)
     @Column(name = "ID", nullable = false)
-    private Long Id;
+    private Integer Id;
     @Column(name = "Nome", nullable = false)
     private String nome;
     @Column(name = "Cognome", nullable = false)
@@ -28,24 +35,11 @@ public class Cliente implements Serializable {
     @Column(name = "CodiceFiscale", nullable = false, length = 16)
     private String codiceFiscale;
 
-
-    public Cliente(){}
-    public Cliente(String nome, String cognome, String dataNascita, String username, String password, String codiceFiscale, String email) {
-        this.nome = nome;
-        this.cognome = cognome;
-        this.dataNascita = dataNascita;
-        this.username = username;
-        this.password = password;
-        this.codiceFiscale = codiceFiscale;
-        this.email = email;
-    }
-
-
-    public Long getId() {
+    public Integer getId() {
         return Id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         Id = id;
     }
 
