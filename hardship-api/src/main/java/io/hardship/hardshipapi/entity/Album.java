@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Table(name = "album")
 public class Album {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "ID", nullable = false)
     private Integer id;
 
@@ -47,6 +47,19 @@ public class Album {
 
     @Column(name = "ID_artista", nullable = false)
     private Integer idArtista;
+
+    public Album(String genere, String titolo, String copertina, Integer numeroBrani, String data, String embed, String dettagli, String usernameAdmin, Integer idEtichetta, Integer idArtista) {
+        this.genere = genere;
+        this.titolo = titolo;
+        this.copertina = copertina;
+        this.numeroBrani = numeroBrani;
+        this.data = data;
+        this.embed = embed;
+        this.dettagli = dettagli;
+        this.usernameAdmin = usernameAdmin;
+        this.idEtichetta = idEtichetta;
+        this.idArtista = idArtista;
+    }
 
     public Integer getId() {
         return id;

@@ -1,10 +1,17 @@
 package io.hardship.hardshipapi.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "digitale")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Digitale {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,35 +27,9 @@ public class Digitale {
     @Column(name = "ID_album")
     private Integer idAlbum;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public BigDecimal getPrezzo() {
-        return prezzo;
-    }
-
-    public void setPrezzo(BigDecimal prezzo) {
+    public Digitale(BigDecimal prezzo, Integer numeroCopie, Integer idAlbum) {
         this.prezzo = prezzo;
-    }
-
-    public Integer getNumeroCopie() {
-        return numeroCopie;
-    }
-
-    public void setNumeroCopie(Integer numeroCopie) {
         this.numeroCopie = numeroCopie;
-    }
-
-    public Integer getIdAlbum() {
-        return idAlbum;
-    }
-
-    public void setIdAlbum(Integer idAlbum) {
         this.idAlbum = idAlbum;
     }
 

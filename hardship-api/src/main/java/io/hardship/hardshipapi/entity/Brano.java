@@ -1,9 +1,18 @@
 package io.hardship.hardshipapi.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "brano")
+@AllArgsConstructor
+@NoArgsConstructor
+@Setter
+@Getter
 public class Brano {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,52 +34,11 @@ public class Brano {
     @Column(name = "ID_artista")
     private Integer idArtista;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getTitolo() {
-        return titolo;
-    }
-
-    public void setTitolo(String titolo) {
+    public Brano(String titolo, String anno, String durata, Integer idAlbum, Integer idArtista) {
         this.titolo = titolo;
-    }
-
-    public String getAnno() {
-        return anno;
-    }
-
-    public void setAnno(String anno) {
         this.anno = anno;
-    }
-
-    public String getDurata() {
-        return durata;
-    }
-
-    public void setDurata(String durata) {
         this.durata = durata;
-    }
-
-    public Integer getIdAlbum() {
-        return idAlbum;
-    }
-
-    public void setIdAlbum(Integer idAlbum) {
         this.idAlbum = idAlbum;
-    }
-
-    public Integer getIdArtista() {
-        return idArtista;
-    }
-
-    public void setIdArtista(Integer idArtista) {
         this.idArtista = idArtista;
     }
-
 }
