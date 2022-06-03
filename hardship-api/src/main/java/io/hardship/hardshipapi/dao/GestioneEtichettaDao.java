@@ -12,5 +12,5 @@ public interface GestioneEtichettaDao extends JpaRepository<Etichetta, Integer> 
 
     @Modifying
     @Query(value = "INSERT INTO etichetta (Nome) VALUES (:nome)",  nativeQuery = true)
-    Etichetta insertIntoEtichetta(@Param("nome") String nome);
+    Etichetta insertEtichetta(@Param("nome") String nome);
 }

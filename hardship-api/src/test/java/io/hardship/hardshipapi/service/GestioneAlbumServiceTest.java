@@ -53,13 +53,13 @@ public class GestioneAlbumServiceTest {
     }
 
     //Test Case for Saving a Album
-    /*@Test                              da null pointer per il createAlbum
+    @Test                             // da null pointer per il createAlbum
     void givenAlbumToAddShouldReturnAddedAlbum() throws Exception{
         //stubbing
         when(gestioneAlbumDao.save(any())).thenReturn(RECORD_1);
         gestioneAlbumService.createAlbum(RECORD_1);
         verify(gestioneAlbumDao,times(1)).save(any());
-    }*/
+    }
 
     //Test Case to Retrieve a Album by Id
     /*@Test               getAlbumDetail ritorna empty

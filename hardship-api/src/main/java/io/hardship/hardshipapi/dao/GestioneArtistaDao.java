@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository;
 public interface GestioneArtistaDao extends JpaRepository<Artista, Integer> {
     @Modifying
     @Query(value= "INSERT INTO artista(Nome) VALUES (:nome)", nativeQuery = true)
-    Artista insertIntoArtista(@Param("nome") String nome);
+    Artista insertArtista(@Param("nome") String nome);
 }
