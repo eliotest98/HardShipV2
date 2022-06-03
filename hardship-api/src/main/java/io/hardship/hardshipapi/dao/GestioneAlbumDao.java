@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 public interface GestioneAlbumDao extends JpaRepository<Album, Integer> {
 
 
-    @Query(value = "SELECT * FROM Album a WHERE a.ID LIKE %:pid%", nativeQuery = true)
+    @Query(value = "SELECT * FROM Album a WHERE a.ID = pid", nativeQuery = true)
     Album findAlbumByPidLike(@Param("pid") Integer pid);
 
 
