@@ -13,17 +13,8 @@ import org.springframework.stereotype.Repository;
 public interface GestioneAlbumDao extends JpaRepository<Album, Integer> {
 
 
-    @Query("SELECT * FROM Album a WHERE a.ID LIKE %:pid%")
+    @Query(value = "SELECT * FROM Album a WHERE a.ID LIKE %:pid%", nativeQuery = true)
     Album findAlbumByPidLike(@Param("pid") Integer pid);
-
-    @Query("INSERT IGNORE INTO artista (Nome) VALUES (:nome)")
-    Artista insertIntoArtista(@Param("nome") String nome);
-
-    @Query("INSERT IGNORE INTO etichetta (Nome) VALUES (:nome);")
-    Etichetta insertIntoEtichetta(@Param("nome") String nome);
-
-    @Query("insert into digitale VALUES(null,?,?,?)")
-    Digitale insertIntoDigitale();
 
 
 }

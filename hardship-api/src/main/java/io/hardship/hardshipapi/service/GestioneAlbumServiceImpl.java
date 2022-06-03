@@ -12,6 +12,13 @@ import java.util.Optional;
 @Service
 public class GestioneAlbumServiceImpl  implements  GestioneAlbumService {
 
+
+    @Autowired
+    GestioneArtistaDao gestioneArtistaDao;
+
+    @Autowired
+    GestioneEtichettaDao gestioneEtichettaDao;
+
     @Autowired
     GestioneAlbumDao gestioneAlbumDao;
 
@@ -40,8 +47,8 @@ public class GestioneAlbumServiceImpl  implements  GestioneAlbumService {
 
     @Override
     public Optional<Album> createAlbum(AlbumDTO album) {
-        Artista artista = gestioneAlbumDao.insertIntoArtista(album.getAutore());
-        Etichetta etichetta = gestioneAlbumDao.insertIntoEtichetta(album.getEtichetta());
+        Artista artista = gestioneArtistaDao.insertIntoArtista(album.getAutore());
+        Etichetta etichetta = gestioneEtichettaDao.insertIntoEtichetta(album.getEtichetta());
 
         Album createAlbum = new Album(album.getGenere(), album.getTitolo(), album.getFile(),  album.getNbrani(), album.getData(), "", album.getDettagli(), "root", artista.getId(), etichetta.getId() );
         Album resultAlbum = gestioneAlbumDao.save(createAlbum);
