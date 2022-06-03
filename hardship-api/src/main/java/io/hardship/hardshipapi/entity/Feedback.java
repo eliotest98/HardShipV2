@@ -1,9 +1,16 @@
 package io.hardship.hardshipapi.entity;
 
+import lombok.*;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "feedback")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Setter
+@Getter
 public class Feedback {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,52 +32,11 @@ public class Feedback {
     @Column(name = "ID_Cliente", nullable = false)
     private Integer idCliente;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getTitolo() {
-        return titolo;
-    }
-
-    public void setTitolo(String titolo) {
+    public Feedback(String titolo, String testo, String data, Integer idAlbum, Integer idCliente) {
         this.titolo = titolo;
-    }
-
-    public String getTesto() {
-        return testo;
-    }
-
-    public void setTesto(String testo) {
         this.testo = testo;
-    }
-
-    public String getData() {
-        return data;
-    }
-
-    public void setData(String data) {
         this.data = data;
-    }
-
-    public Integer getIdAlbum() {
-        return idAlbum;
-    }
-
-    public void setIdAlbum(Integer idAlbum) {
         this.idAlbum = idAlbum;
-    }
-
-    public Integer getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(Integer idCliente) {
         this.idCliente = idCliente;
     }
-
 }

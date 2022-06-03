@@ -7,6 +7,7 @@ import io.hardship.hardshipapi.entity.request.FeedbackDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,7 +18,9 @@ public class GestioneFeedbackServiceImpl implements GestioneFeedbackService{
     GestioneFeedbackDao gestioneFeedbackDao;
     @Override
     public Optional<Feedback> createFeedback(FeedbackDTO feedback) {
-        return Optional.empty();
+        Feedback createFeedback = new Feedback(feedback.getTitolo(),feedback.getTesto(), new Date().toString(),  feedback.getIdAlbum(), feedback.getUtente());
+        Feedback result = gestioneFeedbackDao.save(createFeedback);
+        return Optional.of(result);
     }
 
     @Override
