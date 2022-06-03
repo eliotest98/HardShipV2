@@ -2,7 +2,10 @@ package io.hardship.hardshipapi.controller;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.hardship.hardshipapi.controller.GestioneFeedbackController;
+import io.hardship.hardshipapi.entity.Feedback;
 import io.hardship.hardshipapi.entity.News;
+import io.hardship.hardshipapi.service.GestioneFeedbackService;
 import io.hardship.hardshipapi.service.GestioneNewsService;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.AfterEach;
@@ -36,7 +39,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @ExtendWith(MockitoExtension.class)
-public class GestioneNewsControllerTests {
+public class GestioneFeedbackControllerTests {
 
     @Autowired
     MockMvc mockMvc;
@@ -45,25 +48,24 @@ public class GestioneNewsControllerTests {
     ObjectMapper mapper;
 
     @MockBean
-    GestioneNewsService gestioneNewsService;
+    GestioneFeedbackService gestioneFeedbackService;
 
     @InjectMocks
-    private GestioneNewsController gestioneNewsController;
+    private GestioneFeedbackController gestioneFeedbackController;
 
     @Mock
-    private News RECORD_1;
-    private News RECORD_2;
-    private News RECORD_3;
+    private Feedback RECORD_1;
+    private Feedback RECORD_2;
+    private Feedback RECORD_3;
 
 
 
     @BeforeEach
     public void setup(){
-
-        RECORD_1 = new News(1, "contenuto1", "15-01-2022", "autore1","titolo1","copertina1","categoria1","pippo1");
-        RECORD_2 = new News(2, "contenuto2", "16-01-2022", "autore2","titolo2","copertina2","categoria2","pippo2");
-        RECORD_3 = new News(3, "contenuto3", "17-01-2022", "autore3","titolo3","copertina3","categoria3","pippo3");
-        mockMvc = MockMvcBuilders.standaloneSetup(gestioneNewsController).build();
+        RECORD_1 = new Feedback(1, "titolo1", "testo1","15-01-2022",1,1);
+        RECORD_2 = new Feedback(2, "titolo2", "testo2","16-01-2022",2,2);
+        RECORD_3 = new Feedback(3, "titolo3", "testo3","17-01-2022",3,3);
+        mockMvc = MockMvcBuilders.standaloneSetup(gestioneFeedbackController).build();
     }
     @AfterEach
     void tearDown() {
@@ -71,40 +73,29 @@ public class GestioneNewsControllerTests {
     }
 
     @Test
-    public void getAllNews_success() throws Exception {
-        List<News> records = new ArrayList<>(Arrays.asList(RECORD_1, RECORD_2, RECORD_3));
+    public void getAllFeedback_success() throws Exception {
+        List<Feedback> records = new ArrayList<>(Arrays.asList(RECORD_1, RECORD_2, RECORD_3));
 
-        when(gestioneNewsService.getAllNews()).thenReturn(records);
+        when(gestioneFeedbackService.getAllFeedback()).thenReturn(records);
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .get("/api/v1/news/allNews")
+                        .get("/api/v1/feedbacks")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(3)))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[2].contenuto", Matchers.is("contenuto3")));
+                .andExpect(MockMvcResultMatchers.jsonPath("$[2].titolo", Matchers.is("titolo3")));
     }
 
-    @Test
-    public void getNewsById_success() throws Exception {
-        when(gestioneNewsService.getNews(RECORD_1.getId())).thenReturn(Optional.of(RECORD_1));
-
-        mockMvc.perform(MockMvcRequestBuilders
-                        .get("/api/v1/news/1")
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$", notNullValue()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.contenuto", Matchers.is("contenuto1")));
-    }
 
 
     @Test
     public void createNews_success() throws Exception{
-        when(gestioneNewsService.createNews(any())).thenReturn(Optional.ofNullable(RECORD_1));
-        mockMvc.perform(post("/api/v1/news").
+        when(gestioneFeedbackService.createFeedback(any())).thenReturn(Optional.ofNullable(RECORD_1));
+        mockMvc.perform(post("/api/v1/feedback").
                         contentType(MediaType.APPLICATION_JSON).
                         content(asJsonString(RECORD_1))).
                 andExpect(status().isCreated());
-        verify(gestioneNewsService,times(1)).createNews(any());
+        verify(gestioneFeedbackService,times(1)).createFeedback(any());
     }
 
     public static String asJsonString(final Object obj){
@@ -118,3 +109,5 @@ public class GestioneNewsControllerTests {
 
 
 }
+
+
