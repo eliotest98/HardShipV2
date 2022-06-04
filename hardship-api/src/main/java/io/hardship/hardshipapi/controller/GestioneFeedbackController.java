@@ -6,7 +6,10 @@ import io.hardship.hardshipapi.service.GestioneFeedbackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.rmi.ServerException;
 import java.util.List;
@@ -19,7 +22,7 @@ public class GestioneFeedbackController {
     public GestioneFeedbackService gestioneFeedbackService;
 
     @PostMapping("/feedback")
-    ResponseEntity<Feedback> createFeedback(@RequestBody FeedbackDTO feedback) throws ServerException {
+    ResponseEntity<Feedback> createFeedback(FeedbackDTO feedback) throws ServerException {
         Optional<Feedback> result = gestioneFeedbackService.createFeedback(feedback);
         if (result.isPresent()) {
             return new ResponseEntity<>(result.get(), HttpStatus.CREATED);
