@@ -2,10 +2,8 @@ package io.hardship.hardshipapi.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.hardship.hardshipapi.entity.Album;
-import io.hardship.hardshipapi.entity.News;
 import io.hardship.hardshipapi.entity.Richiesta;
 import io.hardship.hardshipapi.service.GestioneAlbumService;
-import io.hardship.hardshipapi.service.GestioneNewsService;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

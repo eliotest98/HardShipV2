@@ -3,6 +3,7 @@ package io.hardship.hardshipapi.service;
 import io.hardship.hardshipapi.dao.*;
 import io.hardship.hardshipapi.entity.*;
 import io.hardship.hardshipapi.entity.request.AlbumDTO;
+import io.hardship.hardshipapi.entity.request.RichiestaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +34,9 @@ public class GestioneAlbumServiceImpl implements GestioneAlbumService {
 
     @Autowired
     GestioneBranoDao gestioneBranoDao;
+
+    @Autowired
+    GestioneRichiestaDao gestioneRichiestaDao;
 
     @Override
     public Optional<Album> getAlbum(Integer id) {
@@ -72,9 +76,10 @@ public class GestioneAlbumServiceImpl implements GestioneAlbumService {
     }
 
     @Override
-    public Optional<Richiesta> createRequestAlbum() {
-        Richiesta result = null;// = gestioneAlbumDao.save();
-        return Optional.of(result);
+    public Optional<Richiesta> createRequestAlbum(RichiestaDTO richiestaDTO) {
+        Richiesta newRequest = new Richiesta();
+        Richiesta result = gestioneRichiestaDao.save(newRequest);
+        return  Optional.of(result);
     }
 
     @Override

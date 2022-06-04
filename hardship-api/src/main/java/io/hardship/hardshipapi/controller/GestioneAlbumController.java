@@ -1,7 +1,9 @@
 package io.hardship.hardshipapi.controller;
 
 import io.hardship.hardshipapi.entity.Album;
+import io.hardship.hardshipapi.entity.Richiesta;
 import io.hardship.hardshipapi.entity.request.AlbumDTO;
+import io.hardship.hardshipapi.entity.request.RichiestaDTO;
 import io.hardship.hardshipapi.service.GestioneAlbumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,10 +41,21 @@ public class GestioneAlbumController {
         }
     }
 
-    @PostMapping("/albums")
+    @GetMapping("/albums")
     ResponseEntity<List<Album>> getAlbums(){
         List<Album> result = gestioneAlbumService.getAllAlbum();
         return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+
+    @PostMapping("")
+    ResponseEntity<Richiesta> createRequestAlbum(@RequestBody RichiestaDTO richiestaDTO) throws ServerException {
+        Optional<Richiesta> result = gestioneAlbumService.createRequestAlbum(richiestaDTO);
+        if (result.isPresent()) {
+            return new ResponseEntity<>(result.get(), HttpStatus.CREATED);
+        } else {
+            throw new ServerException("Request not created");
+        }
     }
 
 }
