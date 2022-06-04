@@ -51,28 +51,16 @@ public class GestioneAlbumServiceImpl implements GestioneAlbumService {
 
     @Override
     public Optional<Album> createAlbum(AlbumDTO album) {
-        Artista artista = gestioneArtistaDao.insertArtista(album.getAutore());
-        Etichetta etichetta = gestioneEtichettaDao.insertEtichetta(album.getEtichetta());
-
-        Album createAlbum = new Album(album.getGenere(), album.getTitolo(), album.getFile(), album.getNbrani(), album.getData(), "", album.getDettagli(), "root", artista.getId(), etichetta.getId());
-        Album resultAlbum = gestioneAlbumDao.insertAlbum(createAlbum.getGenere(), createAlbum.getTitolo(), createAlbum.getCopertina(), createAlbum.getNumeroBrani(), createAlbum.getData(), createAlbum.getEmbed(), createAlbum.getDettagli(), createAlbum.getUsernameAdmin(), createAlbum.getIdEtichetta(), createAlbum.getIdArtista());
-
-        Digitale createDigitale = new Digitale(album.getPdigitale(), album.getDigitale(), resultAlbum.getId());
-        Digitale resultDigitale = gestiononeDigitaleDao.insertDigitale(createDigitale.getPrezzo() + "", createDigitale.getNumeroCopie(), createDigitale.getIdAlbum());
-
-        Vinile createVinile = new Vinile(album.getPvinile(), album.getVinile(), resultAlbum.getId());
-        Vinile resultVinile = gestioneVinileDao.insertVinile(createVinile.getPrezzo() + "", createVinile.getNumeroCopie(), createVinile.getIdAlbum());
-
-        Cd createCD = new Cd(album.getPcd(), album.getCd(), resultAlbum.getId());
-        Cd resultCD = gestioneCDDao.insertCD(createCD.getPrezzo() + "", createCD.getNumeroCopie(), createCD.getIdAlbum());
-
+        Artista artista = gestioneArtistaDao.save(new Artista(album.getAutore()));
+        Etichetta etichetta = gestioneEtichettaDao.save(new Etichetta(album.getEtichetta(),1)); //TODO il feed che è?
+        Album album1 = gestioneAlbumDao.save(new Album(album.getGenere(), album.getTitolo(), album.getCopertina(), album.getNbrani(), album.getData(), album.getEmbed(), album.getDettagli(), album.getUsernameAdmin(), etichetta.getId(), artista.getId()));
+        Digitale digitale = gestiononeDigitaleDao.save(new Digitale(album.getPdigitale(), album.getNbrani(), album1.getId()));
+        Vinile vinile = gestioneVinileDao.save(new Vinile(album.getPvinile(), album.getNbrani(), album1.getId()));
+        Cd cd = gestioneCDDao.save(new Cd(album.getPcd(), album.getNbrani(), album1.getId()));
         for (int i = 0; i < album.getBrani().size() - 1; i++) {
-
-            Brano createBrano = new Brano(album.getBrani().get(i), album.getData(), album.getDurate().get(i), resultAlbum.getId(), artista.getId());
-            Brano resultBrano = gestioneBranoDao.insertAlbum(createBrano.getTitolo(), createBrano.getAnno(), createBrano.getDurata(), createBrano.getIdAlbum(), createBrano.getIdArtista());
-
+            Brano brano = gestioneBranoDao.save(new Brano(album.getBrani().get(i), "2022", album.getDurate().get(i), album1.getId(), artista.getId()));
         }
-        return Optional.of(resultAlbum);
+        return Optional.of(album1);
     }
 
     @Override

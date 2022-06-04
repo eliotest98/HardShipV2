@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface GestioneEtichettaDao extends JpaRepository<Etichetta, Integer> {
 
-    @Modifying
+    /*@Modifying
     @Query(value = "INSERT INTO etichetta (Nome) VALUES (:nome)",  nativeQuery = true)
-    Etichetta insertEtichetta(@Param("nome") String nome);
+    int insertEtichetta(@Param("nome") String nome);*/
 }

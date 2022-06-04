@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public interface GestioneCDDao  extends JpaRepository<Cd, Integer> {
 
-    @Modifying
+    /*@Modifying
     @Query(value= "INSERT INTO cd(Prezzo,numero_Copie,ID_album) VALUES (null,:Prezzo,:numero_Copie,:ID_album)", nativeQuery = true)
     Cd insertCD(@Param("Prezzo") String prezzo, @Param("numero_Copie") int numero_Copie, @Param("ID_album") int ID_album);
+    */
 }

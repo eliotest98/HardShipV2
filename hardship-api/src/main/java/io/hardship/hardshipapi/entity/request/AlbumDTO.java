@@ -19,6 +19,9 @@ public class AlbumDTO {
    private String data;
    private String dettagli;
    private String etichetta;
+   private String copertina;
+   private String embed;
+   private String usernameAdmin;
    private int nbrani;
    private int digitale;
    private int vinile;

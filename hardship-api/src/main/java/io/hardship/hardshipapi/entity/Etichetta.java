@@ -16,6 +16,11 @@ public class Etichetta {
     @Column(name = "Feed")
     private Integer feed;
 
+    public Etichetta(String nome, int feed) {
+        this.nome = nome;
+        this.feed = feed;
+    }
+
     public Integer getId() {
         return id;
     }
