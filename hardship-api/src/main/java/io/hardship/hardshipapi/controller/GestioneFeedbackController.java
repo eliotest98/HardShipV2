@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.rmi.ServerException;
+import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,7 +20,7 @@ public class GestioneFeedbackController {
     public GestioneFeedbackService gestioneFeedbackService;
 
     @PostMapping("/feedback")
-    ResponseEntity<Feedback> createFeedback(@RequestBody  FeedbackDTO feedback) throws ServerException {
+    ResponseEntity<Feedback> createFeedback(@RequestBody  FeedbackDTO feedback) throws ServerException, ParseException {
         Optional<Feedback> result = gestioneFeedbackService.createFeedback(feedback);
         if (result.isPresent()) {
             return new ResponseEntity<>(result.get(), HttpStatus.CREATED);
