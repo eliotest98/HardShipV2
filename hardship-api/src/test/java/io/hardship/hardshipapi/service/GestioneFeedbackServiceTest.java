@@ -55,7 +55,7 @@ public class GestioneFeedbackServiceTest {
 
     //Test Case for Saving a Feedback
     @Test
-    void givenNewsToAddShouldReturnAddedNews() throws Exception{
+    void givenFeedbackToAddShouldReturnAddedFeedback() throws Exception{
         //stubbing
         when(gestioneFeedbackDao.save(any())).thenReturn(RECORD_1);
         gestioneFeedbackService.createFeedback(feedback1);
