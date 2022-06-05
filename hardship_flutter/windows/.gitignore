@@ -1,15 +1,3 @@
-/target/
-/.classpath
-/*.project
-/.settings
-/*.springBeans
-/bin/
-/build/
-/*.checkstyle
-WebContent/WEB-INF/web.xml
-/*.idea
-
-#flutter 
 # Miscellaneous
 *.class
 *.lock
