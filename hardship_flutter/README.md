@@ -11,7 +11,7 @@ Parte frontend dell' applicativo hardship, ascolta, pubblica e guardagna con la 
 
 
 ## Architettura Flutter MVVM + Provider 
-Flutter non supporta alcuna architettura per lo sviluppo. Ció significa che abbiamo potuto scegliere quale architettura costruire. La scelta finale é stata quella dell’architettura MVVM perché così abbiamo potuto separare la business logic dall’interfaccia. I principali vantaggi che si ottengono scegliendo la seguente architettura sono i seguenti:
+Flutter non supporta alcuna architettura per lo sviluppo. Ció significa che abbiamo scelto quale architettura costruire. La scelta finale é stata quella dell’architettura MVVM perché così abbiamo separato la business logic dall’interfaccia. I principali vantaggi che si ottengono scegliendo la seguente architettura sono i seguenti:
 - La logica aziendale è separata dall'interfaccia utente
 - La vista è indipendente dalla classe ViewModel e legge solo lo stato da ViewModel
 - Il codice sarà facile da mantenere e aggiornare in termini di logica e interfaccia utente
