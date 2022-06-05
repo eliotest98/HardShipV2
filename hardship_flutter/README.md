@@ -2,7 +2,7 @@
 Parte frontend dell' applicativo hardship, ascolta, pubblica e guardagna con la tua musica indie
 
 ## Istruzioni
-- [Scaricare Flutter v3.0](https://maven.apache.org/download.cgi?Preferred=https%3A%2F%2Fdlcdn.apache.org%2F](https://docs.flutter.dev/get-started/install)
+- [Scaricare Flutter v3.0](https://docs.flutter.dev/get-started/install)
 - Impostare la variabile d'ambiente --> per macos export PATH="$PATH:`pwd`/flutter/bin"
 - Scaricare obbligatorio [Android studio](https://developer.android.com/studio?gclid=Cj0KCQjwqPGUBhDwARIsANNwjV6Y6gTbi00QSy7SiYMflP1o2UTqGrLdPLtn8vaU8z9GrBhQf3wjDyYaAqTkEALw_wcB&gclsrc=aw.ds) e [Vs code](https://code.visualstudio.com/) scelta dello sviluppatore
 - Importare i seguenti plugin Flutter e Dart
