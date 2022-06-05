@@ -48,17 +48,17 @@ public class Album {
     @Column(name = "ID_artista", nullable = false)
     private Integer idArtista;
 
-    public Album(String genere, String titolo, String copertina, Integer numeroBrani, String data, String embed, String dettagli, String usernameAdmin, Integer idEtichetta, Integer idArtista) {
+    public Album(String genere, String titolo, String copertina, int nbrani, String data, String embed, String dettagli, String usernameAdmin, Integer id, Integer id1) {
         this.genere = genere;
         this.titolo = titolo;
         this.copertina = copertina;
-        this.numeroBrani = numeroBrani;
+        this.numeroBrani = nbrani;
         this.data = data;
         this.embed = embed;
         this.dettagli = dettagli;
         this.usernameAdmin = usernameAdmin;
-        this.idEtichetta = idEtichetta;
-        this.idArtista = idArtista;
+        this.idEtichetta = id;
+        this.idArtista = id1;
     }
 
     public Integer getId() {

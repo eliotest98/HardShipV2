@@ -1,8 +1,17 @@
 package io.hardship.hardshipapi.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Setter
+@Getter
 @Table(name = "artista")
 public class Artista {
     @Id
@@ -12,6 +21,10 @@ public class Artista {
 
     @Column(name = "Nome", nullable = false, length = 25)
     private String nome;
+
+    public Artista(String nome) {
+        this.nome = nome;
+    }
 
     public Integer getId() {
         return id;
