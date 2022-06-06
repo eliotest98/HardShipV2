@@ -14,7 +14,6 @@ import java.util.Optional;
 
 public interface GestioneAlbumService  {
 
-    Optional<Album> getAlbum(Integer id);
     List<Album> getAllAlbum();
     Optional<Album> createAlbum(AlbumDTO album);
     Optional<Richiesta> createRequestAlbum(RichiestaDTO richiestaDTO);

@@ -2,6 +2,7 @@ package io.hardship.hardshipapi.service;
 
 import io.hardship.hardshipapi.dao.GestioneFeedbackDao;
 import io.hardship.hardshipapi.dao.GestioneNewsDao;
+import io.hardship.hardshipapi.entity.Album;
 import io.hardship.hardshipapi.entity.Feedback;
 import io.hardship.hardshipapi.entity.request.FeedbackDTO;
 import io.hardship.hardshipapi.utils.DateFormatter;
@@ -30,6 +31,7 @@ public class GestioneFeedbackServiceImpl implements GestioneFeedbackService{
 
     @Override
     public List<Feedback> getAllFeedback() {
-        return null;
+        List<Feedback> feedbackList = gestioneFeedbackDao.findAll();
+        return feedbackList;
     }
 }

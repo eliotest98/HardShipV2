@@ -38,22 +38,17 @@ public class GestioneAlbumServiceImpl implements GestioneAlbumService {
     GestioneRichiestaDao gestioneRichiestaDao;
 
     @Override
-    public Optional<Album> getAlbum(Integer id) {
-        return Optional.empty();
-    }
-
-    @Override
     public List<Album> getAllAlbum() {
-        List<Album> albumList = gestioneAlbumDao.getAllAlbum();
+        List<Album> albumList = gestioneAlbumDao.findAll();
         return albumList;
     }
 
     @Override
     public Optional<Album> createAlbum(AlbumDTO album) {
         System.out.println("1");
-        Artista artista = gestioneArtistaDao.save(new Artista(album.getAutore()));
+        Artista artista = gestioneArtistaDao.save(new Artista(1,album.getAutore()));
         System.out.println("2");
-        Etichetta etichetta = gestioneEtichettaDao.save(new Etichetta(album.getEtichetta(), 1)); //TODO il feed che è?
+        Etichetta etichetta = gestioneEtichettaDao.save(new Etichetta(1,album.getEtichetta(), 1)); //TODO il feed che è?
         System.out.println("3");
         Album album1 = gestioneAlbumDao.save(new Album(album.getGenere(), album.getTitolo(), album.getCopertina(), album.getNbrani(), album.getData(), album.getEmbed(), album.getDettagli(), album.getUsernameAdmin(), etichetta.getId(), artista.getId()));
         Digitale digitale = gestiononeDigitaleDao.save(new Digitale(album.getPdigitale(), album.getNbrani(), album1.getId()));
@@ -67,14 +62,13 @@ public class GestioneAlbumServiceImpl implements GestioneAlbumService {
 
     @Override
     public Optional<Richiesta> createRequestAlbum(RichiestaDTO richiestaDTO) {
-        Richiesta newRequest = new Richiesta(richiestaDTO.getTitolo(), richiestaDTO.getArtista(), richiestaDTO.getIdCliente());
-        Richiesta result = gestioneRichiestaDao.save(newRequest);
+        Richiesta result = gestioneRichiestaDao.save(new Richiesta(richiestaDTO.getTitolo(), richiestaDTO.getArtista(), richiestaDTO.getIdCliente()));
         return Optional.of(result);
     }
 
     @Override
     public Optional getAlbumDetail(Integer pid) {
-        Optional<Album> result = Optional.ofNullable(gestioneAlbumDao.findAlbumByPidLike(pid));
+        Optional<Album> result = gestioneAlbumDao.findById(pid);
         return result;
     }
 }
