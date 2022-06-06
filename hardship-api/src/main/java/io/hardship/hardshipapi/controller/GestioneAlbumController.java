@@ -31,6 +31,16 @@ public class GestioneAlbumController {
         }
     }
 
+    @DeleteMapping("/richiesta/delete/{pid}")
+    ResponseEntity<Void> deleteRichiesta(@PathVariable Integer pid) {
+        try {
+            gestioneAlbumService.deleteRichiestaById(pid);
+            return new ResponseEntity<Void>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @GetMapping("/album/detail/{pid}")
     ResponseEntity<Album> getDetailAlbum(@PathVariable Integer pid) throws ServerException {
         Optional<Album> result = gestioneAlbumService.getAlbumDetail(pid);

@@ -71,4 +71,11 @@ public class GestioneAlbumServiceImpl implements GestioneAlbumService {
         Optional<Album> result = gestioneAlbumDao.findById(pid);
         return result;
     }
+
+    @Override
+    public void deleteRichiestaById(Integer pid) {
+        gestioneRichiestaDao.deleteById(pid);
+    }
+
+
 }

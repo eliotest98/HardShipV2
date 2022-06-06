@@ -18,4 +18,5 @@ public interface GestioneAlbumService  {
     Optional<Album> createAlbum(AlbumDTO album);
     Optional<Richiesta> createRequestAlbum(RichiestaDTO richiestaDTO);
     Optional<Album> getAlbumDetail(Integer pid);
+    void deleteRichiestaById(Integer pid);
 }
