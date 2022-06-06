@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 import it.ship.servlets.gestioneSistema.DriverManagerConnectionPool;
 import it.ship.servlets.gestioneUtente.RegistrazioneUtente;
 
-class RegistrazioneEnteTest {
+class RegistrazioneUtenteTest {
 
 	HttpServletRequest requestMock = mock(HttpServletRequest.class);
 	HttpServletResponse responseMock = mock(HttpServletResponse.class);
@@ -49,7 +49,7 @@ class RegistrazioneEnteTest {
 	}
 
 	@Test
-	void testTrue() throws ServletException, IOException {
+	void register() throws ServletException, IOException {
 		when(requestMock.getParameter("first_name")).thenReturn("Mario");
 		when(requestMock.getParameter("last_name")).thenReturn("Rossi");
 		when(requestMock.getParameter("user")).thenReturn("mario");

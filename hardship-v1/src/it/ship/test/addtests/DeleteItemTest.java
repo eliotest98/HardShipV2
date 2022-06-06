@@ -95,7 +95,7 @@ class DeleteItemTest {
 	}
 
 	@Test
-	void acquisto() throws ServletException, IOException {
+	void deleteItem() throws ServletException, IOException {
 		when(requestMock.getParameter("id")).thenReturn("1");
 		when(requestMock.getParameter("formato")).thenReturn("Bho");
 		when(requestMock.getParameter("n")).thenReturn("0");

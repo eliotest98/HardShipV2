@@ -68,7 +68,7 @@ class HomeTest {
 	}
 
 	@Test
-	void testTrue() throws ServletException, IOException {
+	void homeVisualization() throws ServletException, IOException {
 		homeTest.doPost(requestMock, responseMock);
 	}
 

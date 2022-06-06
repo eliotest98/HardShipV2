@@ -81,7 +81,7 @@ class NavBarTest {
 	}
 	
 	@Test
-	void test() throws ServletException, IOException {
+	void navBarVisualization() throws ServletException, IOException {
 		when(requestMock.getParameter("method")).thenReturn("PayPal");
 		when(requestMock.getParameter("indirizzo")).thenReturn("Via Circumvallazione");
 		responseMock.setContentType("application/json");

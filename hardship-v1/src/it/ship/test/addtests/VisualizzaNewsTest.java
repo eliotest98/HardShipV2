@@ -71,7 +71,7 @@ class VisualizzaNewsTest {
 	}
 
 	@Test
-	void test() throws ServletException, IOException {
+	void visualizzaNews() throws ServletException, IOException {
 		when(requestMock.getParameter("news")).thenReturn(id+"");
 		visualizzaNewsTest.doPost(requestMock, responseMock);
 		verify(responseMock).sendRedirect("pages/readmore.jsp?cod=1");

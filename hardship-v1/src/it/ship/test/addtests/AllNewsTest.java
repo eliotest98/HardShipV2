@@ -103,7 +103,7 @@ class AllNewsTest {
 	}
 
 	@Test
-	void acquisto() throws ServletException, IOException {
+	void getAllNews() throws ServletException, IOException {
 		allNewsTest.doPost(requestMock, responseMock);
 		verify(responseMock).sendRedirect("pages/news.jsp?cod=1");
 	}

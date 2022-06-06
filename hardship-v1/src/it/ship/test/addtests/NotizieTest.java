@@ -70,7 +70,7 @@ class NotizieTest {
 	}
 	
 	@Test
-	void test() throws ServletException, IOException {
+	void newsVisualization() throws ServletException, IOException {
 		responseMock.setContentType("application/json");
 		responseMock.setCharacterEncoding("UTF-8");
 		notizieTest.doGet(requestMock, responseMock);

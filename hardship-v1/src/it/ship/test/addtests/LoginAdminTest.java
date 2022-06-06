@@ -46,7 +46,7 @@ class LoginAdminTest {
 	}
 
 	@Test
-	void testTrue() throws ServletException, IOException {
+	void loginAdmin() throws ServletException, IOException {
 		doReturn(mockedServletContext).when(requestMock).getServletContext();
 		when(requestMock.getParameter("user")).thenReturn("root");
 		when(requestMock.getParameter("pass")).thenReturn("root");

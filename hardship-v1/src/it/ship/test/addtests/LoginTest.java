@@ -70,7 +70,7 @@ class LoginTest {
 	}
 
 	@Test
-	void testTrue() throws ServletException, IOException {
+	void login() throws ServletException, IOException {
 
 		doReturn(mockedServletContext).when(requestMock).getServletContext();
 		when(requestMock.getParameter("user")).thenReturn("mario");

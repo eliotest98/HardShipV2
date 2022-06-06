@@ -65,7 +65,7 @@ class VisualizzaAlbumTest {
 	}
 	
 	@Test
-	void visualizzaAlbum() throws ServletException, IOException {
+	void visualizzaAlbumPerArtista() throws ServletException, IOException {
 		
 		when(requestMock.getParameter("param1")).thenReturn("Artista");
 		when(requestMock.getParameter("param2")).thenReturn("test");
@@ -77,7 +77,7 @@ class VisualizzaAlbumTest {
 	}
 	
 	@Test
-	void visualizzaAlbum2() throws ServletException, IOException {
+	void visualizzaAlbumPerGenere() throws ServletException, IOException {
 		
 		when(requestMock.getParameter("param1")).thenReturn("Genere");
 		when(requestMock.getParameter("param2")).thenReturn("test");
@@ -89,7 +89,7 @@ class VisualizzaAlbumTest {
 	}
 	
 	@Test
-	void visualizzaAlbum3() throws ServletException, IOException {
+	void visualizzaAlbumPerEtichetta() throws ServletException, IOException {
 		
 		when(requestMock.getParameter("param1")).thenReturn("Etichetta");
 		when(requestMock.getParameter("param2")).thenReturn("test");

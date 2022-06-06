@@ -46,7 +46,7 @@ class LogOutTest {
 	}
 
 	@Test
-	void testTrue() throws ServletException, IOException {
+	void logout() throws ServletException, IOException {
 		doReturn(mockedServletContext).when(requestMock).getServletContext();
 	    when(responseMock.getWriter()).thenReturn(mockedOut);
 
