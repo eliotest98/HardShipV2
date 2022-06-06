@@ -26,6 +26,12 @@ public class Richiesta {
     @Column(name = "ID_Cliente")
     private Integer idCliente;
 
+    public Richiesta(String titolo, String artista, int idCliente) {
+        this.artista = artista;
+        this.nomeAlbum = titolo;
+        this.idCliente = idCliente;
+    }
+
     public Integer getId() {
         return id;
     }

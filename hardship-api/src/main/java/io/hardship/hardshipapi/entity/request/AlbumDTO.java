@@ -26,6 +26,7 @@ public class AlbumDTO {
    private int digitale;
    private int vinile;
    private int cd;
+   private int feed;
    private BigDecimal pdigitale;
    private BigDecimal pvinile;
    private BigDecimal pcd;

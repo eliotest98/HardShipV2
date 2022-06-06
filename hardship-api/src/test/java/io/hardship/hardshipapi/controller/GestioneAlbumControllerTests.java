@@ -3,6 +3,7 @@ package io.hardship.hardshipapi.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.hardship.hardshipapi.entity.Album;
 import io.hardship.hardshipapi.entity.Richiesta;
+import io.hardship.hardshipapi.entity.request.RichiestaDTO;
 import io.hardship.hardshipapi.service.GestioneAlbumService;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.AfterEach;
@@ -51,23 +52,29 @@ public class GestioneAlbumControllerTests {
     private GestioneAlbumController gestioneAlbumController;
 
     @Mock
-    private Album RECORD_1;
+    private Album RECORD_1, RECORD_2;
     private Richiesta richiesta;
+    private ArrayList<Album> albums = new ArrayList<>();
 
     @BeforeEach
-    public void setup(){
-
-        RECORD_1 = new Album(1, "Pop", "Black", "Black",14,"02-06-2022","bho","Nuovo Album","root",1,1);
-        richiesta = new Richiesta(1,"Black","Ciccio",1);
+    public void setup() {
+        RECORD_1 = new Album(1, "Pop", "Black", "Black", 14, "02-06-2022", "bho", "Nuovo Album", "root", 1, 1);
+        RECORD_2 = new Album(2, "Pop", "White", "White", 14, "02-06-2022", "bho", "Nuovo Album", "root", 1, 1);
+        richiesta = new Richiesta(1, "Black", "Ciccio", 1);
+        albums.add(RECORD_1);
+        albums.add(RECORD_2);
         mockMvc = MockMvcBuilders.standaloneSetup(gestioneAlbumController).build();
     }
+
     @AfterEach
     void tearDown() {
-        RECORD_1 = null;
+        RECORD_1 = RECORD_2 = null;
+        richiesta = null;
+        albums = null;
     }
 
     @Test
-    public void getDetailAlbumById_success() throws Exception {
+    public void getDetailAlbum_success() throws Exception {
         when(gestioneAlbumService.getAlbumDetail(RECORD_1.getId())).thenReturn(Optional.of(RECORD_1));
 
         mockMvc.perform(MockMvcRequestBuilders
@@ -80,29 +87,40 @@ public class GestioneAlbumControllerTests {
 
 
     @Test
-    public void createAlbum_success() throws Exception{
+    public void uploadAlbum_success() throws Exception {
         when(gestioneAlbumService.createAlbum(any())).thenReturn(Optional.ofNullable(RECORD_1));
         mockMvc.perform(post("/api/v1/album").
                         contentType(MediaType.APPLICATION_JSON).
                         content(asJsonString(RECORD_1))).
                 andExpect(status().isCreated());
-        verify(gestioneAlbumService,times(1)).createAlbum(any());
+        verify(gestioneAlbumService, times(1)).createAlbum(any());
     }
 
-    /*@Test       non è implementato in GestioneAlbumServiceImpl
+    @Test
+    public void getAlbums_success() throws Exception {
+        when(gestioneAlbumService.getAllAlbum()).thenReturn(albums);
+        mockMvc.perform(MockMvcRequestBuilders
+                        .get("/api/v1/albums")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(2)))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[1].titolo", Matchers.is("White")));
+    }
+
+    @Test
     public void createRequestAlbum_success() throws Exception {
-        when(gestioneAlbumService.createRequestAlbum()).thenReturn(Optional.ofNullable(richiesta));
+        when(gestioneAlbumService.createRequestAlbum(any())).thenReturn(Optional.ofNullable(richiesta));
         mockMvc.perform(post("/api/v1/album/request").
                         contentType(MediaType.APPLICATION_JSON).
                         content(asJsonString(richiesta))).
                 andExpect(status().isCreated());
-        verify(gestioneAlbumService,times(1)).createRequestAlbum();
-    }*/
+        verify(gestioneAlbumService,times(1)).createRequestAlbum(any());
+    }
 
-    public static String asJsonString(final Object obj){
-        try{
+    public static String asJsonString(final Object obj) {
+        try {
             return new ObjectMapper().writeValueAsString(obj);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

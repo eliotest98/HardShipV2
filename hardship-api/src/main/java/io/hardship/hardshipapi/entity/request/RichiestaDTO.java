@@ -10,5 +10,5 @@ import lombok.*;
 public class RichiestaDTO {
     String artista;
     String titolo;
-    String idCliente;
+    int idCliente;
 }

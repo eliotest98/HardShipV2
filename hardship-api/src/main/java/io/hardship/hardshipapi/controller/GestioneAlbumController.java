@@ -48,7 +48,7 @@ public class GestioneAlbumController {
     }
 
 
-    @PostMapping("")
+    @PostMapping("/album/request")
     ResponseEntity<Richiesta> createRequestAlbum(@RequestBody RichiestaDTO richiestaDTO) throws ServerException {
         Optional<Richiesta> result = gestioneAlbumService.createRequestAlbum(richiestaDTO);
         if (result.isPresent()) {
