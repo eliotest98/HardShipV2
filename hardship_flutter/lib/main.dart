@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hardship_flutter/ui/constants/app_theme.dart';
+import 'package:hardship_flutter/ui/routes/routes.dart';
 import 'package:hardship_flutter/ui/screens/onboarding_screen.dart';
 
 void main() {
@@ -17,8 +19,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(),
+        navigatorKey: RoutesService.navigationKey,
+        debugShowCheckedModeBanner: false,
+        title: 'HardShip',
+        theme: AppTheme.lightTheme,
+        darkTheme: AppTheme.darkTheme,
         home: const OnboardingScreen());
   }
 }
