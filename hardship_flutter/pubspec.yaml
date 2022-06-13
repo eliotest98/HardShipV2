@@ -35,7 +35,21 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   flutter_native_splash: ^2.2.3
+
+  ## Our service locator
+  get_it: ^7.2.0
+
+  #Generates code for us by providing annotations we can use
+  injectable: ^1.5.0
+
+  #client
   dio: ^4.0.6
+
+  #state management
+  provider: ^6.0.3
+
+  #cache management
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
   flutter_test:
