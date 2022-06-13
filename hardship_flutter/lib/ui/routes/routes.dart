@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hardship_flutter/ui/routes/route_constants.dart';
+import 'package:hardship_flutter/ui/screens/home_screen.dart';
+import 'package:hardship_flutter/ui/screens/onboarding_screen.dart';
 
 class RoutesService {
   static GlobalKey<NavigatorState> navigationKey = GlobalKey<NavigatorState>();
@@ -30,6 +33,11 @@ class RoutesService {
     args as Map<String, dynamic>?;
 
     switch (settings.name) {
+      case RouteList.onboarding:
+        return MaterialPageRoute(
+            builder: (context) => const OnboardingScreen());
+      case RouteList.home:
+        return MaterialPageRoute(builder: (context) => HomeScreen());
       default:
         return null;
     }

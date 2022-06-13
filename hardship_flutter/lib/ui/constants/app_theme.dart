@@ -7,11 +7,11 @@ class AppTheme {
   AppTheme._();
 
   static final ThemeData lightTheme = ThemeData(
-    scaffoldBackgroundColor: Colors.teal,
+    scaffoldBackgroundColor: Colors.white,
     appBarTheme: const AppBarTheme(
-      color: Colors.teal,
+      color: Colors.white,
       iconTheme: IconThemeData(
-        color: Colors.white,
+        color: Colors.black,
       ),
     ),
     colorScheme: ColorSchemeLight.lightColorScheme, // add light color
@@ -19,24 +19,24 @@ class AppTheme {
       color: Colors.teal,
     ),
     iconTheme: const IconThemeData(
-      color: Colors.white54,
+      color: Colors.black,
     ),
     textTheme: const TextTheme(
       headline1: TextStyle(
-        color: Colors.white,
+        color: Colors.black,
         fontSize: 20.0,
       ),
       headline2: TextStyle(
-        color: Colors.white70,
+        color: Colors.black87,
         fontSize: 18.0,
       ),
     ),
   );
 
   static final ThemeData darkTheme = ThemeData(
-    scaffoldBackgroundColor: Colors.black,
+    scaffoldBackgroundColor: Color.fromARGB(255, 30, 30, 30),
     appBarTheme: const AppBarTheme(
-      color: Colors.black,
+      color: Color.fromARGB(255, 30, 30, 30),
       iconTheme: IconThemeData(
         color: Colors.white,
       ),
