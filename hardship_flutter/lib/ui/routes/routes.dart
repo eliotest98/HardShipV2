@@ -38,6 +38,12 @@ class RoutesService {
             builder: (context) => const OnboardingScreen());
       case RouteList.home:
         return MaterialPageRoute(builder: (context) => const HomeScreen());
+      case RouteList.login:
+        return MaterialPageRoute(builder: (context) => const HomeScreen());
+      case RouteList.register:
+        return MaterialPageRoute(builder: (context) => const HomeScreen());
+      case RouteList.albums:
+        return MaterialPageRoute(builder: (context) => const HomeScreen());
       default:
         return null;
     }

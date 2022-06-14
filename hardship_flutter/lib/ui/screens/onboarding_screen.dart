@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hardship_flutter/ui/routes/route_constants.dart';
+import 'package:hardship_flutter/ui/routes/routes.dart';
 import 'package:hardship_flutter/ui/widgets/app_large_text.dart';
 
 class OnboardingScreen extends StatelessWidget {
@@ -33,7 +35,9 @@ class OnboardingScreen extends StatelessWidget {
                   alignment: Alignment.center,
                   child: FloatingActionButton(
                       elevation: 0.0,
-                      onPressed: () {},
+                      onPressed: () {
+                        RoutesService.pushNamedAndRemoveUntil(RouteList.home);
+                      },
                       child: const Icon(Icons.arrow_forward)),
                 ),
               ],

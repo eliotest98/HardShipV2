@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
         onGenerateRoute: RoutesService.onGenerateRoute,
-        initialRoute: false ? RouteList.onboarding : RouteList.home,
+        initialRoute: true ? RouteList.onboarding : RouteList.home,
         home: const OnboardingScreen());
   }
 }

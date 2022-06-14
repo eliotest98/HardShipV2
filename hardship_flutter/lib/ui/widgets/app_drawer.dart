@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hardship_flutter/ui/routes/route_constants.dart';
+import 'package:hardship_flutter/ui/routes/routes.dart';
 import 'package:hardship_flutter/ui/widgets/app_large_text.dart';
 
 // ignore: must_be_immutable
@@ -18,7 +20,7 @@ class AppDrawer extends StatelessWidget {
             leading: const Icon(Icons.album),
             title: const Text('Album'),
             onTap: () {
-              Navigator.of(context).pushReplacementNamed('/album');
+              RoutesService.pushNamed(RouteList.albums);
             },
           ),
           const Divider(),
@@ -26,7 +28,7 @@ class AppDrawer extends StatelessWidget {
             leading: const Icon(Icons.login),
             title: const Text('Login'),
             onTap: () {
-              Navigator.of(context).pushReplacementNamed('/login');
+              RoutesService.pushNamed(RouteList.login);
             },
           ),
           const Divider(),
@@ -34,7 +36,7 @@ class AppDrawer extends StatelessWidget {
             leading: const Icon(Icons.app_registration_rounded),
             title: const Text('Registrati'),
             onTap: () {
-              Navigator.of(context).pushReplacementNamed('/');
+              RoutesService.pushNamed(RouteList.register);
             },
           ),
           const Divider(),
