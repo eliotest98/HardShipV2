@@ -21,6 +21,7 @@ class AppTheme {
     iconTheme: const IconThemeData(
       color: Colors.black,
     ),
+    fontFamily: 'Poppins',
     textTheme: const TextTheme(
       headline1: TextStyle(
         color: Colors.black,
@@ -34,7 +35,8 @@ class AppTheme {
   );
 
   static final ThemeData darkTheme = ThemeData(
-    scaffoldBackgroundColor: Color.fromARGB(255, 30, 30, 30),
+    scaffoldBackgroundColor: const Color.fromARGB(255, 30, 30, 30),
+
     appBarTheme: const AppBarTheme(
       color: Color.fromARGB(255, 30, 30, 30),
       iconTheme: IconThemeData(
@@ -48,6 +50,7 @@ class AppTheme {
     iconTheme: const IconThemeData(
       color: Colors.white54,
     ),
+    fontFamily: 'Poppins',
     textTheme: const TextTheme(
       headline1: TextStyle(
         color: Colors.white,

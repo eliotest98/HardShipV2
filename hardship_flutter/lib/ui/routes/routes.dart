@@ -37,7 +37,7 @@ class RoutesService {
         return MaterialPageRoute(
             builder: (context) => const OnboardingScreen());
       case RouteList.home:
-        return MaterialPageRoute(builder: (context) => HomeScreen());
+        return MaterialPageRoute(builder: (context) => const HomeScreen());
       default:
         return null;
     }

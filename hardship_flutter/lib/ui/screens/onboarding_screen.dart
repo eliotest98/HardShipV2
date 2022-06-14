@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:hardship_flutter/ui/widgets/app_large_text.dart';
 
 class OnboardingScreen extends StatelessWidget {

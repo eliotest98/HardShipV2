@@ -14,10 +14,9 @@ class AppLargeText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: Theme.of(context)
-          .textTheme
-          .headline1!
-          .copyWith(fontSize: size, fontWeight: FontWeight.bold),
+      style: Theme.of(context).textTheme.headline6!.copyWith(
+            fontSize: size,
+          ),
     );
   }
 }
