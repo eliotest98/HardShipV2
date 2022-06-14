@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hardship_flutter/ui/constants/app_constants.dart';
+import 'package:hardship_flutter/ui/widgets/app_drawer.dart';
 import 'package:hardship_flutter/ui/widgets/app_large_text.dart';
 import 'package:hardship_flutter/ui/widgets/card_news.dart';
 
@@ -11,26 +12,29 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        key: _scaffoldKey,
+        drawer: AppDrawer(),
         body: SafeArea(
-      child: Container(
-        padding: const EdgeInsets.only(
-            left: kDefaultPadding, right: kDefaultPadding),
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildHeader(),
-              const SizedBox(height: 8.0),
-              _buildBody()
-            ],
+          child: Container(
+            padding: const EdgeInsets.only(
+                left: kDefaultPadding, right: kDefaultPadding),
+            child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildHeader(),
+                  const SizedBox(height: 8.0),
+                  _buildBody()
+                ],
+              ),
+            ),
           ),
-        ),
-      ),
-    ));
+        ));
   }
 
   Widget _buildHeader() {
@@ -45,7 +49,9 @@ class _HomeScreenState extends State<HomeScreen> {
               Icons.menu,
               size: 32,
             ),
-            onPressed: () {},
+            onPressed: () {
+              _scaffoldKey.currentState?.openDrawer();
+            },
           ),
         ]);
   }
