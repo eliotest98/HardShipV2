@@ -9,6 +9,7 @@ class AppTheme {
   static final ThemeData lightTheme = ThemeData(
     scaffoldBackgroundColor: Colors.white,
     appBarTheme: const AppBarTheme(
+      elevation: 0,
       color: Colors.white,
       iconTheme: IconThemeData(
         color: Colors.black,

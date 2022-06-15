@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hardship_flutter/ui/routes/route_constants.dart';
+import 'package:hardship_flutter/ui/screens/albums_screen.dart';
 import 'package:hardship_flutter/ui/screens/home_screen.dart';
 import 'package:hardship_flutter/ui/screens/onboarding_screen.dart';
 
@@ -43,7 +44,7 @@ class RoutesService {
       case RouteList.register:
         return MaterialPageRoute(builder: (context) => const HomeScreen());
       case RouteList.albums:
-        return MaterialPageRoute(builder: (context) => const HomeScreen());
+        return MaterialPageRoute(builder: (context) => const AlbumsScreen());
       default:
         return null;
     }
