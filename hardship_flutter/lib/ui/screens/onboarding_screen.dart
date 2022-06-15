@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hardship_flutter/ui/routes/route_constants.dart';
 import 'package:hardship_flutter/ui/routes/routes.dart';
 import 'package:hardship_flutter/ui/widgets/app_large_text.dart';
-import 'package:hardship_flutter/ui/strings/Strings.dart';
+import 'package:hardship_flutter/ui/constants/app_strings.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
