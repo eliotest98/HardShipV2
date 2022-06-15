@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hardship_flutter/ui/routes/route_constants.dart';
 import 'package:hardship_flutter/ui/routes/routes.dart';
 import 'package:hardship_flutter/ui/widgets/app_large_text.dart';
+import 'package:hardship_flutter/ui/constants/app_strings.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
@@ -28,7 +29,7 @@ class OnboardingScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const AppLargeText(
-                  text: 'Lascia che la musica\nti porti via...',
+                  text: welcome_message,
                 ),
                 Expanded(child: Container()),
                 Container(

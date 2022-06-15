@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hardship_flutter/ui/routes/route_constants.dart';
 import 'package:hardship_flutter/ui/routes/routes.dart';
 import 'package:hardship_flutter/ui/widgets/app_large_text.dart';
+import 'package:hardship_flutter/ui/constants/app_strings.dart';
 
 // ignore: must_be_immutable
 class AppDrawer extends StatelessWidget {
@@ -12,13 +13,13 @@ class AppDrawer extends StatelessWidget {
       child: Column(
         children: <Widget>[
           AppBar(
-            title: const AppLargeText(text: 'HARDSHIP'),
+            title: const AppLargeText(text: title_appHARDSHIP),
             automaticallyImplyLeading: false,
           ),
           const Divider(),
           ListTile(
             leading: const Icon(Icons.album),
-            title: const Text('Album'),
+            title: const Text(album),
             onTap: () {
               RoutesService.pushNamed(RouteList.albums);
             },
@@ -26,7 +27,7 @@ class AppDrawer extends StatelessWidget {
           const Divider(),
           ListTile(
             leading: const Icon(Icons.login),
-            title: const Text('Login'),
+            title: const Text(login),
             onTap: () {
               RoutesService.pushNamed(RouteList.login);
             },
@@ -34,7 +35,7 @@ class AppDrawer extends StatelessWidget {
           const Divider(),
           ListTile(
             leading: const Icon(Icons.app_registration_rounded),
-            title: const Text('Registrati'),
+            title: const Text(registrati),
             onTap: () {
               RoutesService.pushNamed(RouteList.register);
             },
@@ -44,7 +45,7 @@ class AppDrawer extends StatelessWidget {
           isAuth
               ? ListTile(
                   leading: const Icon(Icons.exit_to_app),
-                  title: const Text('Logout'),
+                  title: const Text(logout),
                   onTap: () {
                     Navigator.of(context).pop();
                     Navigator.of(context).pushReplacementNamed('/');
