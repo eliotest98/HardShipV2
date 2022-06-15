@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hardship_flutter/ui/constants/app_theme.dart';
-import 'package:hardship_flutter/ui/routes/route_constants.dart';
 import 'package:hardship_flutter/ui/routes/routes.dart';
 import 'package:hardship_flutter/ui/screens/onboarding_screen.dart';
 import 'package:hardship_flutter/ui/constants/app_strings.dart';
@@ -27,7 +26,6 @@ class MyApp extends StatelessWidget {
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
         onGenerateRoute: RoutesService.onGenerateRoute,
-        initialRoute: true ? RouteList.onboarding : RouteList.home,
         home: const OnboardingScreen());
   }
 }
