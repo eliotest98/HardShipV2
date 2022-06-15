@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hardship_flutter/ui/routes/route_constants.dart';
 import 'package:hardship_flutter/ui/screens/home_screen.dart';
 import 'package:hardship_flutter/ui/screens/onboarding_screen.dart';
+import 'package:hardship_flutter/ui/screens/login_screen.dart';
+import 'package:hardship_flutter/ui/screens/registration_screen.dart';
 
 class RoutesService {
   static GlobalKey<NavigatorState> navigationKey = GlobalKey<NavigatorState>();
@@ -39,9 +41,10 @@ class RoutesService {
       case RouteList.home:
         return MaterialPageRoute(builder: (context) => const HomeScreen());
       case RouteList.login:
-        return MaterialPageRoute(builder: (context) => const HomeScreen());
+        return MaterialPageRoute(builder: (context) => const LoginScreen());
       case RouteList.register:
-        return MaterialPageRoute(builder: (context) => const HomeScreen());
+        return MaterialPageRoute(
+            builder: (context) => const RegistrationScreen());
       case RouteList.albums:
         return MaterialPageRoute(builder: (context) => const HomeScreen());
       default:
