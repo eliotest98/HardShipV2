@@ -4,6 +4,7 @@ import 'package:hardship_flutter/ui/constants/app_theme.dart';
 import 'package:hardship_flutter/ui/routes/route_constants.dart';
 import 'package:hardship_flutter/ui/routes/routes.dart';
 import 'package:hardship_flutter/ui/screens/onboarding_screen.dart';
+import 'package:hardship_flutter/ui/strings/Strings.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         navigatorKey: RoutesService.navigationKey,
         debugShowCheckedModeBanner: false,
-        title: 'HardShip',
+        title: title_app,
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
         onGenerateRoute: RoutesService.onGenerateRoute,
