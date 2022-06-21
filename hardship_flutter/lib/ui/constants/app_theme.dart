@@ -17,7 +17,7 @@ class AppTheme {
     ),
     colorScheme: ColorSchemeLight.lightColorScheme, // add light color
     cardTheme: const CardTheme(
-      color: Colors.teal,
+      color: Colors.white,
     ),
     iconTheme: const IconThemeData(
       color: Colors.black,
@@ -37,7 +37,6 @@ class AppTheme {
 
   static final ThemeData darkTheme = ThemeData(
     scaffoldBackgroundColor: const Color.fromARGB(255, 30, 30, 30),
-
     appBarTheme: const AppBarTheme(
       color: Color.fromARGB(255, 30, 30, 30),
       iconTheme: IconThemeData(
