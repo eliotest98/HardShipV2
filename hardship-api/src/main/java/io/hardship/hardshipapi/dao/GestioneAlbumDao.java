@@ -15,8 +15,17 @@ import java.util.List;
 @Repository
 public interface GestioneAlbumDao extends JpaRepository<Album, Integer> {
 
-    /*@Modifying
+    @Modifying
+    @Query(value = "SELECT * FROM Album ORDER BY ID_etichetta",nativeQuery = true)
+    List<Album> getAllAlbumsOrderByEtichetta();
+
+    @Modifying
+    @Query(value = "SELECT * FROM Album ORDER BY ID_artista",nativeQuery = true)
+    List<Album> getAllAlbumsOrderByArtista();
+
+    @Modifying
     @Query(value= "INSERT INTO album(Genere,Titolo,Copertina,numero_brani,data,Embed,Dettagli,username_admin,ID_etichetta,ID_artista) VALUES (null,:Genere,:Titolo,:Copertina,:numero_brani,:data,:Embed,:Dettagli,:username_admin,:ID_etichetta,:ID_artista)", nativeQuery = true)
     int insertAlbum(@Param("Genere") String genere,@Param("Titolo") String titolo,@Param("Copertina") String copertina,@Param("numero_brani") int numero_brani,@Param("data") String data,@Param("Embed") String embed,@Param("Dettagli") String dettagli,@Param("username_admin") String username_admin,@Param("ID_etichetta") int ID_etichetta,@Param("ID_artista") int ID_artista);
-    */
+
+
 }

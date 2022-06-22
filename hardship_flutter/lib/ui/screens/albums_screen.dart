@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hardship_flutter/ui/constants/app_constants.dart';
 import 'package:hardship_flutter/ui/widgets/app_large_text.dart';
 import 'package:hardship_flutter/ui/widgets/app_text.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class AlbumsScreen extends StatefulWidget {
   const AlbumsScreen({Key? key}) : super(key: key);
@@ -18,6 +20,8 @@ class _AlbumsScreenState extends State<AlbumsScreen>
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
+    getAlbumOrderedByEtichetta();
+    getAlbumOrderedByArtista();
   }
 
   @override
@@ -76,4 +80,29 @@ class _AlbumsScreenState extends State<AlbumsScreen>
       ),
     );
   }
+
+  Future<void> getAlbumOrderedByEtichetta() async {
+    var url = Uri.parse(
+        "http://10.0.2.2:8080/api/v1/albums/etichetta");
+    final response = await http.get(url);
+    if(response.statusCode == 200) {
+      var responseBody = jsonDecode(response.body);
+      responseBody.forEach((element) {
+        print(element);
+      });
+    }
+  }
+
+  Future<void> getAlbumOrderedByArtista() async {
+    var url = Uri.parse(
+        "http://10.0.2.2:8080/api/v1/albums/artista");
+    final response = await http.get(url);
+    if(response.statusCode == 200) {
+      var responseBody = jsonDecode(response.body);
+      responseBody.forEach((element) {
+        print(element);
+      });
+    }
+  }
+
 }

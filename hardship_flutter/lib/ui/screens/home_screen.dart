@@ -93,9 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
     var url = Uri.parse(
       "http://10.0.2.2:8080/api/v1/news/allNews");
     final response = await http.get(url);
-    print(response.statusCode);
     if(response.statusCode == 200) {
-      print(response.body);
       var responseBody = jsonDecode(response.body);
       responseBody.forEach((element) {
         print(element);

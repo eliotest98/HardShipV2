@@ -77,5 +77,14 @@ public class GestioneAlbumServiceImpl implements GestioneAlbumService {
         gestioneRichiestaDao.deleteById(pid);
     }
 
+    @Override
+    public List<Album> getAllAlbumsOrderByEtichetta() {
+        return gestioneAlbumDao.getAllAlbumsOrderByEtichetta();
+    }
+
+    @Override
+    public List<Album> getAllAlbumsOrderByArtista() {
+        return gestioneAlbumDao.getAllAlbumsOrderByArtista();
+    }
 
 }

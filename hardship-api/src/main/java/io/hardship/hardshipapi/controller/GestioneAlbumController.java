@@ -41,6 +41,26 @@ public class GestioneAlbumController {
         }
     }
 
+    @GetMapping("/albums/etichetta")
+    ResponseEntity<List<Album>> getAllAlbumsOrderByEtichetta() throws ServerException {
+        List<Album> result = gestioneAlbumService.getAllAlbumsOrderByEtichetta();
+        if (!result.isEmpty()) {
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        } else {
+            throw new ServerException("Albums not found");
+        }
+    }
+
+    @GetMapping("/albums/artista")
+    ResponseEntity<List<Album>> getAllAlbumsOrderByArtista() throws ServerException {
+        List<Album> result = gestioneAlbumService.getAllAlbumsOrderByArtista();
+        if (!result.isEmpty()) {
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        } else {
+            throw new ServerException("Albums not found");
+        }
+    }
+
     @GetMapping("/album/detail/{pid}")
     ResponseEntity<Album> getDetailAlbum(@PathVariable Integer pid) throws ServerException {
         Optional<Album> result = gestioneAlbumService.getAlbumDetail(pid);
