@@ -19,6 +19,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -58,9 +59,9 @@ public class GestioneAlbumControllerTests {
 
     @BeforeEach
     public void setup() {
-        RECORD_1 = new Album(1, "Pop", "Black", "Black", 14, "02-06-2022", "bho", "Nuovo Album", "root", 1, 1);
-        RECORD_2 = new Album(2, "Pop", "White", "White", 14, "02-06-2022", "bho", "Nuovo Album", "root", 1, 1);
-        richiesta = new Richiesta(1, "Black", "Ciccio", 1);
+        RECORD_1 = new Album(10, "Pop", "Black", "Black", 14, "02-06-2022", "bho", "Nuovo Album", "root", 0, 1);
+        RECORD_2 = new Album(20, "Pop", "White", "White", 14, "02-06-2022", "bho", "Nuovo Album", "root", 1, 0);
+        richiesta = new Richiesta(3, "Black", "Ciccio", 1);
         albums.add(RECORD_1);
         albums.add(RECORD_2);
         mockMvc = MockMvcBuilders.standaloneSetup(gestioneAlbumController).build();
@@ -74,17 +75,40 @@ public class GestioneAlbumControllerTests {
     }
 
     @Test
+    public void getAllAlbumsOrderByEtichetta() throws Exception {
+        when(gestioneAlbumService.getAllAlbumsOrderByEtichetta()).thenReturn(albums);
+        ResultActions a = mockMvc.perform(MockMvcRequestBuilders
+                        .get("/api/v1/albums/etichetta")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(2)))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].idEtichetta", Matchers.is(0)))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[1].idEtichetta", Matchers.is(1)));
+    }
+
+    @Test
+    public void getAllAlbumsOrderByArtitsta() throws Exception {
+        when(gestioneAlbumService.getAllAlbumsOrderByArtista()).thenReturn(albums);
+        ResultActions a = mockMvc.perform(MockMvcRequestBuilders
+                        .get("/api/v1/albums/artista")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(2)))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[1].idArtista", Matchers.is(0)))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].idArtista", Matchers.is(1)));
+    }
+
+    @Test
     public void getDetailAlbum_success() throws Exception {
         when(gestioneAlbumService.getAlbumDetail(RECORD_1.getId())).thenReturn(Optional.of(RECORD_1));
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .get("/api/v1/album/detail/1")
+                        .get("/api/v1/album/detail/10")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$", notNullValue()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.titolo", Matchers.is("Black")));
     }
-
 
     @Test
     public void uploadAlbum_success() throws Exception {
@@ -115,6 +139,11 @@ public class GestioneAlbumControllerTests {
                         content(asJsonString(richiesta))).
                 andExpect(status().isCreated());
         verify(gestioneAlbumService,times(1)).createRequestAlbum(any());
+    }
+
+    @Test
+    public void getAllAlbumsOrderByArtista() {
+
     }
 
     public static String asJsonString(final Object obj) {
