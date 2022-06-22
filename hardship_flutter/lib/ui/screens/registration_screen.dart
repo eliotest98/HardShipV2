@@ -171,11 +171,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   child: Container(
                     height: 70,
                     width: 70,
-                    child: FlatButton(
-                        color: Color.fromRGBO(255, 255, 255, 2),
-                        onPressed: () {},
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(40)),
+                    child: TextButton(
+                        onPressed: () {
+
+                        },
                         child: Icon(
                           Icons.arrow_forward,
                           size: 20,
@@ -204,4 +203,5 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       dateinput.text = formattedDate;
     }
   }
+
 }

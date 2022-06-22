@@ -88,11 +88,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Container(
                     height: 70,
                     width: 70,
-                    child: FlatButton(
-                        color: Color.fromRGBO(255, 255, 255, 2),
+                    child: TextButton(
                         onPressed: () {},
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(40)),
                         child: Icon(
                           Icons.arrow_forward,
                           size: 20,
