@@ -1,12 +1,14 @@
 // ignore_for_file: constant_identifier_names
 
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 
 enum Method { POST, GET, PUT, DELETE, PATCH }
 
 class ApiClient {
   late Dio _client;
-  final String baseUrl = "http://localhost:3000/api/v1";
+  final String baseUrl = "http://localhost:3000/api/v1/";
   static header() => {"Content-Type": "application/json"};
 
   ApiClient() {
@@ -27,23 +29,19 @@ class ApiClient {
       Map<String, dynamic>? params,
       Map<String, dynamic>? queryParams, //per il momento non è utilizzato
       String? token}) async {
-    try {
-      switch (method) {
-        case Method.GET:
-          return _getData(url: url, query: params, token: token);
-        case Method.POST:
-          return _postData(url: url, query: params, token: token);
-        case Method.PUT:
-          return _putData(url: url, query: params, token: token);
-        case Method.DELETE:
-          return _deleteData(url: url, query: params, token: token);
-        case Method.PATCH:
-          return _patchData(url: url, query: params, token: token);
-        default:
-          return null;
-      }
-    } catch (e) {
-      print(e);
+    switch (method) {
+      case Method.GET:
+        return _getData(url: url, query: params, token: token);
+      case Method.POST:
+        return _postData(url: url, query: params, token: token);
+      case Method.PUT:
+        return _putData(url: url, query: params, token: token);
+      case Method.DELETE:
+        return _deleteData(url: url, query: params, token: token);
+      case Method.PATCH:
+        return _patchData(url: url, query: params, token: token);
+      default:
+        return null;
     }
   }
 
@@ -116,4 +114,10 @@ class ApiClient {
     };
     return await _client.patch(url, queryParameters: query);
   }
+}
+
+extension DioErrorX on DioError {
+  bool get isNoConnectionError =>
+      type == DioErrorType.other &&
+      error is SocketException; // import 'dart:io' for SocketException
 }

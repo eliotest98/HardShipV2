@@ -4,12 +4,16 @@ import 'package:hardship_flutter/ui/constants/app_theme.dart';
 import 'package:hardship_flutter/ui/routes/routes.dart';
 import 'package:hardship_flutter/ui/screens/onboarding_screen.dart';
 import 'package:hardship_flutter/ui/constants/app_strings.dart';
+import 'package:hardship_flutter/provider/utils/get_it.dart' as getIt;
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     systemNavigationBarColor: Colors.white, // navigation bar color
     statusBarColor: Colors.white,
   ));
+
+  await getIt.init();
   runApp(const MyApp());
 }
 
