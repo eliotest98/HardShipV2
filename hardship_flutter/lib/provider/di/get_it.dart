@@ -12,4 +12,7 @@ Future init() async {
 
   getItInstance.registerLazySingleton<IAlbumUsecase>(
       () => AlbumUsecase(getItInstance()));
+
+  getItInstance.registerLazySingleton<IAlbumUsecase>(
+      () => AlbumUsecase(getItInstance()));
 }

@@ -1,23 +1,22 @@
 import 'package:hardship_flutter/core/remote/error/error_object.dart';
 import 'package:hardship_flutter/core/remote/error/failure.dart';
-import 'package:hardship_flutter/provider/models/album_model.dart';
+import 'package:hardship_flutter/core/remote/usecases/news_usecase.dart';
+import 'package:hardship_flutter/provider/models/news_model.dart';
 import 'package:hardship_flutter/provider/viewmodels/base_viewmodel.dart';
 
-import '../../core/remote/usecases/album_usecase.dart';
+class NewsProvider extends BaseViewModel {
+  final INewsUsecase usecaseNews;
 
-class AlbumViewModel extends BaseViewModel {
-  final IAlbumUsecase usecaseAlbum;
+  NewsProvider({required this.usecaseNews});
 
-  AlbumViewModel({required this.usecaseAlbum});
-
-  List<AlbumModel> _listAlbum = [];
+  List<NewsModel> _listAlbum = [];
   ErrorObject? error;
 
-  List<AlbumModel> get listAlbum => _listAlbum;
+  List<NewsModel> get listAlbum => _listAlbum;
 
-  Future<void> getListAlbum() async {
+  Future<void> getListNews() async {
     setState(ViewState.loding);
-    final result = await usecaseAlbum.getAlbums();
+    final result = await usecaseNews.getNews();
     result.fold((failure) {
       _setError(failure);
     }, (result) {
@@ -25,7 +24,7 @@ class AlbumViewModel extends BaseViewModel {
     });
   }
 
-  void _setListAlbum(List<AlbumModel> listAlbum) {
+  void _setListAlbum(List<NewsModel> listAlbum) {
     _listAlbum = listAlbum;
     setState(ViewState.loaded);
     notifyListeners();

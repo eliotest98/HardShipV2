@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hardship_flutter/core/remote/usecases/album_usecase.dart';
-import 'package:hardship_flutter/provider/utils/get_it.dart';
 import 'package:hardship_flutter/ui/constants/app_constants.dart';
 import 'package:hardship_flutter/ui/widgets/app_large_text.dart';
 import 'package:hardship_flutter/ui/widgets/card_album.dart';
@@ -21,12 +19,6 @@ class _AlbumsScreenState extends State<AlbumsScreen>
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
-
-    //SOLO PER TESTING DELLE CHIAMATE API
-    //SUCCESSIVAMENTE AGGIUNGERE IL PROVIDER
-
-    IAlbumUsecase albumUsecase = AlbumUsecase(getItInstance());
-    albumUsecase.getAlbums();
   }
 
   @override
