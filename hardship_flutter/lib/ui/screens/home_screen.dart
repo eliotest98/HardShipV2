@@ -18,9 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
-  void initState() {
-    getNews();
-  }
+  void initState() {}
 
   @override
   Widget build(BuildContext context) {
@@ -88,17 +86,5 @@ class _HomeScreenState extends State<HomeScreen> {
                 ])),
           )
         ]);
-  }
-
-  Future<void> getNews() async {
-    var url = Uri.parse(
-      "http://10.0.2.2:8080/api/v1/news/allNews");
-    final response = await http.get(url);
-    if(response.statusCode == 200) {
-      var responseBody = jsonDecode(response.body);
-      responseBody.forEach((element) {
-        print(element);
-      });
-    }
   }
 }
