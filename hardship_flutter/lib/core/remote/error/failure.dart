@@ -6,15 +6,14 @@ abstract class Failure {
       {required dynamic Function() serverFailure,
       required dynamic Function() dataParsingFailure,
       required dynamic Function() noConnectionFailure}) {
-    final _this = this;
-    if (_this is ServerException) {
+    if (this is ServerException) {
       return serverFailure();
-    } else if (_this is DataParsingException) {
+    } else if (this is DataParsingException) {
       return dataParsingFailure();
-    } else if (_this is NoConnectionException) {
+    } else if (this is NoConnectionException) {
       return noConnectionFailure();
     }
-    throw Exception('Failure $_this was not mapped');
+    throw Exception('Failure $this was not mapped');
   }
 
   factory Failure.serverFailure() => ServerException();

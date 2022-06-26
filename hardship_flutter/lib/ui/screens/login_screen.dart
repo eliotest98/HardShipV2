@@ -20,24 +20,24 @@ class _LoginScreenState extends State<LoginScreen> {
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
               color: Theme.of(context).primaryColorLight,
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                     blurRadius: 10, color: Colors.black, offset: Offset(1, 5))
               ],
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(80),
                   bottomRight: Radius.circular(20))),
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 100,
                 ),
                 Text(login,
                     style: GoogleFonts.pacifico(
                         fontSize: 30, color: Colors.white)),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Align(
@@ -52,15 +52,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 TextFormField(
-                  style: TextStyle(fontSize: 30, color: Colors.white),
-                  decoration: InputDecoration(
+                  style: const TextStyle(fontSize: 30, color: Colors.white),
+                  decoration: const InputDecoration(
                       border: OutlineInputBorder(borderSide: BorderSide.none)),
                 ),
                 Container(
                   height: 8,
-                  color: Color.fromRGBO(255, 255, 255, 0.4),
+                  color: const Color.fromRGBO(255, 255, 255, 0.4),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Align(
@@ -75,22 +75,22 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 TextFormField(
-                  style: TextStyle(fontSize: 30, color: Colors.white),
-                  decoration: InputDecoration(
+                  style: const TextStyle(fontSize: 30, color: Colors.white),
+                  decoration: const InputDecoration(
                       border: OutlineInputBorder(borderSide: BorderSide.none)),
                 ),
                 Container(
                   height: 8,
-                  color: Color.fromRGBO(255, 255, 255, 0.4),
+                  color: const Color.fromRGBO(255, 255, 255, 0.4),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(40.0),
-                  child: Container(
+                  child: SizedBox(
                     height: 70,
                     width: 70,
                     child: TextButton(
                         onPressed: () {},
-                        child: Icon(
+                        child: const Icon(
                           Icons.arrow_forward,
                           size: 20,
                         )),

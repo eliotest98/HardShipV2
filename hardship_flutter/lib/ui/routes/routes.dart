@@ -3,7 +3,6 @@ import 'package:hardship_flutter/ui/routes/route_constants.dart';
 import 'package:hardship_flutter/ui/screens/albums_screen.dart';
 import 'package:hardship_flutter/ui/screens/home_screen.dart';
 import 'package:hardship_flutter/ui/screens/onboarding_screen.dart';
-import 'package:hardship_flutter/ui/screens/registration_screen.dart';
 
 class RoutesService {
   static GlobalKey<NavigatorState> navigationKey = GlobalKey<NavigatorState>();

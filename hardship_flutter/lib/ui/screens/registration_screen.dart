@@ -29,24 +29,24 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
               color: Theme.of(context).primaryColorLight,
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                     blurRadius: 10, color: Colors.black, offset: Offset(1, 5))
               ],
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(80),
                   bottomRight: Radius.circular(20))),
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Text(registrati,
                     style: GoogleFonts.pacifico(
                         fontSize: 30, color: Colors.white)),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Align(
@@ -61,15 +61,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   ),
                 ),
                 TextFormField(
-                  style: TextStyle(fontSize: 20, color: Colors.white),
-                  decoration: InputDecoration(
+                  style: const TextStyle(fontSize: 20, color: Colors.white),
+                  decoration: const InputDecoration(
                       border: OutlineInputBorder(borderSide: BorderSide.none)),
                 ),
                 Container(
                   height: 4,
-                  color: Color.fromRGBO(255, 255, 255, 0.4),
+                  color: const Color.fromRGBO(255, 255, 255, 0.4),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Align(
@@ -84,15 +84,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   ),
                 ),
                 TextFormField(
-                  style: TextStyle(fontSize: 20, color: Colors.white),
-                  decoration: InputDecoration(
+                  style: const TextStyle(fontSize: 20, color: Colors.white),
+                  decoration: const InputDecoration(
                       border: OutlineInputBorder(borderSide: BorderSide.none)),
                 ),
                 Container(
                   height: 4,
-                  color: Color.fromRGBO(255, 255, 255, 0.4),
+                  color: const Color.fromRGBO(255, 255, 255, 0.4),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Align(
@@ -110,15 +110,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   readOnly: true, //this is important
                   onTap: _selectDate, //the method for opening data picker
                   controller: dateinput, //editing controller of this TextField
-                  style: TextStyle(fontSize: 20, color: Colors.white),
-                  decoration: InputDecoration(
+                  style: const TextStyle(fontSize: 20, color: Colors.white),
+                  decoration: const InputDecoration(
                       border: OutlineInputBorder(borderSide: BorderSide.none)),
                 ),
                 Container(
                   height: 4,
-                  color: Color.fromRGBO(255, 255, 255, 0.4),
+                  color: const Color.fromRGBO(255, 255, 255, 0.4),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Align(
@@ -133,16 +133,16 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   ),
                 ),
                 TextFormField(
-                  style: TextStyle(fontSize: 20, color: Colors.white),
-                  decoration: InputDecoration(
+                  style: const TextStyle(fontSize: 20, color: Colors.white),
+                  decoration: const InputDecoration(
                       border: OutlineInputBorder(borderSide: BorderSide.none)),
                   keyboardType: TextInputType.emailAddress,
                 ),
                 Container(
                   height: 4,
-                  color: Color.fromRGBO(255, 255, 255, 0.4),
+                  color: const Color.fromRGBO(255, 255, 255, 0.4),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Align(
@@ -157,25 +157,23 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   ),
                 ),
                 TextFormField(
-                  style: TextStyle(fontSize: 20, color: Colors.white),
-                  decoration: InputDecoration(
+                  style: const TextStyle(fontSize: 20, color: Colors.white),
+                  decoration: const InputDecoration(
                       border: OutlineInputBorder(borderSide: BorderSide.none)),
                   obscureText: true,
                 ),
                 Container(
                   height: 4,
-                  color: Color.fromRGBO(255, 255, 255, 0.4),
+                  color: const Color.fromRGBO(255, 255, 255, 0.4),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(40.0),
-                  child: Container(
+                  child: SizedBox(
                     height: 70,
                     width: 70,
                     child: TextButton(
-                        onPressed: () {
-
-                        },
-                        child: Icon(
+                        onPressed: () {},
+                        child: const Icon(
                           Icons.arrow_forward,
                           size: 20,
                         )),
@@ -203,5 +201,4 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       dateinput.text = formattedDate;
     }
   }
-
 }

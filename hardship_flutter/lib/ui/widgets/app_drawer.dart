@@ -7,13 +7,16 @@ import 'package:hardship_flutter/ui/constants/app_strings.dart';
 // ignore: must_be_immutable
 class AppDrawer extends StatelessWidget {
   bool isAuth = false;
+
+  AppDrawer({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: Column(
         children: <Widget>[
           AppBar(
-            title: const AppLargeText(text: title_appHARDSHIP),
+            title: const AppLargeText(text: titleAppHARDSHIP),
             automaticallyImplyLeading: false,
           ),
           const Divider(),

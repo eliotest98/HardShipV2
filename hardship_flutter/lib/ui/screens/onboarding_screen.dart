@@ -29,7 +29,7 @@ class OnboardingScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const AppLargeText(
-                  text: welcome_message,
+                  text: welcomeMessage,
                 ),
                 Expanded(child: Container()),
                 Container(

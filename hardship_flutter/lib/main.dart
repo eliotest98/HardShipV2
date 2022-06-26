@@ -1,10 +1,13 @@
+// ignore_for_file: library_prefixes
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'package:hardship_flutter/provider/utils/get_it.dart' as get_It;
+import 'package:hardship_flutter/ui/constants/app_strings.dart';
 import 'package:hardship_flutter/ui/constants/app_theme.dart';
 import 'package:hardship_flutter/ui/routes/routes.dart';
 import 'package:hardship_flutter/ui/screens/onboarding_screen.dart';
-import 'package:hardship_flutter/ui/constants/app_strings.dart';
-import 'package:hardship_flutter/provider/utils/get_it.dart' as getIt;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,7 +16,7 @@ Future<void> main() async {
     statusBarColor: Colors.white,
   ));
 
-  await getIt.init();
+  await get_It.init();
   runApp(const MyApp());
 }
 
@@ -26,7 +29,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         navigatorKey: RoutesService.navigationKey,
         debugShowCheckedModeBanner: false,
-        title: title_app,
+        title: titleApp,
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
         onGenerateRoute: RoutesService.onGenerateRoute,
