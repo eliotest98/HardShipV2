@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hardship_flutter/ui/routes/route_constants.dart';
+import 'package:hardship_flutter/ui/screens/albums_details_Screen.dart';
+import 'package:hardship_flutter/ui/screens/news_details_screen.dart';
 import 'package:hardship_flutter/ui/screens/albums_screen.dart';
 import 'package:hardship_flutter/ui/screens/home_screen.dart';
 import 'package:hardship_flutter/ui/screens/onboarding_screen.dart';
@@ -47,6 +49,10 @@ class RoutesService {
             */
       case RouteList.albums:
         return MaterialPageRoute(builder: (context) => const AlbumsScreen());
+      case RouteList.albums_details:
+        return MaterialPageRoute(builder: (context) => const AlbumDetails());
+      case RouteList.news:
+        return MaterialPageRoute(builder: (context) => const NewsDetails());
       default:
         return null;
     }
