@@ -4,6 +4,7 @@ import 'package:hardship_flutter/core/remote/repository/album_repository.dart';
 import 'package:hardship_flutter/core/remote/repository/news_repository.dart';
 import 'package:hardship_flutter/core/remote/usecases/album_usecase.dart';
 import 'package:hardship_flutter/core/remote/usecases/news_usecase.dart';
+import 'package:hardship_flutter/provider/viewmodels/album_viewmodel.dart';
 
 final getItInstance = GetIt.I;
 
@@ -12,6 +13,9 @@ Future init() async {
 
   getItInstance.registerLazySingleton<INewsRepository>(
       () => NewsRepository(getItInstance()));
+
+  getItInstance.registerLazySingleton<AlbumViewModel>(
+      () => AlbumViewModel(usecaseAlbum: getItInstance()));
 
   getItInstance.registerLazySingleton<IAlbumRepository>(
       () => AlbumRepository(getItInstance()));
