@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:hardship_flutter/core/remote/api_client.dart';
@@ -17,7 +19,11 @@ class AlbumRepository implements IAlbumRepository {
     try {
       final response =
           await _client.request("albums/etichetta", method: Method.GET);
-      return Right(response.body);
+      List<AlbumModel> listAlbum = [];
+      for (var album in response.data) {
+        listAlbum.add(AlbumModel.fromJson(album));
+      }
+      return Right(listAlbum);
     } on DioError catch (e) {
       return (Left(e));
     }
