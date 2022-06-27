@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:hardship_flutter/provider/di/get_it.dart';
+import 'package:hardship_flutter/provider/viewmodels/album_viewmodel.dart';
+import 'package:hardship_flutter/provider/viewmodels/base_viewmodel.dart';
 import 'package:hardship_flutter/ui/constants/app_constants.dart';
 import 'package:hardship_flutter/ui/widgets/app_large_text.dart';
 import 'package:hardship_flutter/ui/widgets/card_album.dart';
 import 'package:hardship_flutter/ui/widgets/circle_indicator.dart';
+import 'package:provider/provider.dart';
 
 class AlbumsScreen extends StatefulWidget {
   const AlbumsScreen({Key? key}) : super(key: key);
@@ -27,20 +31,39 @@ class _AlbumsScreenState extends State<AlbumsScreen>
       appBar: AppBar(
         automaticallyImplyLeading: true,
       ),
-      body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Padding(
-                padding: EdgeInsets.only(left: kDefaultPadding),
-                child: AppLargeText(text: 'Albums')),
-            _tabBar(context),
-            _tabBarView()
-          ],
+      body: ChangeNotifierProvider<AlbumViewModel>(
+        create: (BuildContext context) =>
+            AlbumViewModel(usecaseAlbum: getItInstance()),
+        child: Consumer<AlbumViewModel>(
+          builder: (BuildContext context, AlbumViewModel model, _) {
+            switch (model.state) {
+              case ViewState.initial:
+                return _buildInitial();
+              case ViewState.loding:
+                return _buildLoading();
+              case ViewState.loaded:
+                return _buildLoaded(context, model);
+              case ViewState.error:
+                return _buildError(context, model);
+            }
+          },
         ),
       ),
     );
+  }
+
+  Widget _buildLoading() {
+    return const Center(
+      child: CircularProgressIndicator(),
+    );
+  }
+
+  Widget _buildInitial() {
+    return const SizedBox();
+  }
+
+  Widget _buildLoaded() {
+    return const SizedBox();
   }
 
   Widget _tabBarView() {
