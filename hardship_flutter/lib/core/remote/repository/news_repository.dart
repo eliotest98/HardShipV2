@@ -7,10 +7,10 @@ abstract class INewsRepository {
   Future<Either<DioError, List<NewsModel>>> getNews();
 }
 
-class AlbumRepository implements INewsRepository {
+class NewsRepository implements INewsRepository {
   final ApiClient _client;
 
-  AlbumRepository(this._client);
+  NewsRepository(this._client);
 
   @override
   Future<Either<DioError, List<NewsModel>>> getNews() async {

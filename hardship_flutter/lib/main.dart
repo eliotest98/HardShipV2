@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:hardship_flutter/provider/utils/get_it.dart' as get_It;
+import 'package:hardship_flutter/provider/di/get_it.dart' as get_It;
 import 'package:hardship_flutter/ui/constants/app_strings.dart';
 import 'package:hardship_flutter/ui/constants/app_theme.dart';
 import 'package:hardship_flutter/ui/routes/routes.dart';

@@ -49,9 +49,9 @@ class RoutesService {
             */
       case RouteList.albums:
         return MaterialPageRoute(builder: (context) => const AlbumsScreen());
-      case RouteList.albums_details:
+      case RouteList.albumDetails:
         return MaterialPageRoute(builder: (context) => const AlbumDetails());
-      case RouteList.news:
+      case RouteList.newsDetails:
         return MaterialPageRoute(builder: (context) => const NewsDetails());
       default:
         return null;

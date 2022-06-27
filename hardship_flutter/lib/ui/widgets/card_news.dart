@@ -23,7 +23,6 @@ class CardNews extends StatelessWidget {
                 context,
                 MaterialPageRoute(builder: (context) => const NewsDetails()),
               );
-              print("click news");
             },
             child: ShadowImage(
               imageProvider: const AssetImage('assets/png/spiderman_album.png'),
