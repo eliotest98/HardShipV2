@@ -5,8 +5,13 @@ import 'package:hardship_flutter/ui/widgets/app_large_text.dart';
 import 'package:hardship_flutter/ui/widgets/app_text.dart';
 import 'package:hardship_flutter/ui/widgets/shadow_image.dart';
 
+import '../../provider/models/album_model.dart';
+
 class CardAlbum extends StatelessWidget {
-  const CardAlbum({Key? key, this.size = const Size(60, 60)}) : super(key: key);
+  const CardAlbum(
+      {Key? key, required this.albumModel, this.size = const Size(60, 60)})
+      : super(key: key);
+  final AlbumModel albumModel;
   final Size size;
 
   @override
@@ -14,13 +19,17 @@ class CardAlbum extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: kDefaultPaddingItemList),
       child: Card(
-        child: new InkWell(
+        margin: const EdgeInsets.only(right: kMarginCard),
+        elevation: kElevationCard,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(kRadius),
+        ),
+        child: InkWell(
           onTap: () {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const AlbumDetails()),
             );
-            print("click album");
           },
           child: Container(
             padding: const EdgeInsets.symmetric(
@@ -41,16 +50,15 @@ class CardAlbum extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children: [
                       AppLargeText(
-                        text: 'Album 1',
+                        text: albumModel.titolo,
                         size: 20,
                       ),
-                      SizedBox(height: 5),
+                      const SizedBox(height: 5),
                       AppText(
                         size: 16.0,
-                        text:
-                            'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                        text: albumModel.dettagli,
                       ),
                     ],
                   ),
@@ -58,11 +66,6 @@ class CardAlbum extends StatelessWidget {
               ],
             ),
           ),
-        ),
-        margin: const EdgeInsets.only(right: kMarginCard),
-        elevation: kElevationCard,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(kRadius),
         ),
       ),
     );

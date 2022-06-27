@@ -24,8 +24,8 @@ class _AlbumDetailsState extends State<AlbumDetails> {
                 onTap: () {
                   Navigator.pop(context);
                 },
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20.0, top: 50.0),
+                child: const Padding(
+                  padding: EdgeInsets.only(left: 20.0, top: 50.0),
                   child: Icon(
                     Icons.arrow_back_ios,
                     color: Colors.black,
@@ -35,7 +35,7 @@ class _AlbumDetailsState extends State<AlbumDetails> {
               child: Padding(
                 padding:
                     const EdgeInsets.only(top: 40.0, left: 20.0, right: 20.0),
-                child: Container(
+                child: SizedBox(
                   height: 100,
                   child: Stack(
                     children: <Widget>[
@@ -51,8 +51,8 @@ class _AlbumDetailsState extends State<AlbumDetails> {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20.0, top: 30.0),
+            const Padding(
+              padding: EdgeInsets.only(left: 20.0, top: 30.0),
               child: Text(
                 "Post Malone",
                 style: TextStyle(
@@ -61,8 +61,8 @@ class _AlbumDetailsState extends State<AlbumDetails> {
                     fontSize: 20),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20.0, top: 5.0),
+            const Padding(
+              padding: EdgeInsets.only(left: 20.0, top: 5.0),
               child: Text(
                 "Holliwood's Bleeding",
                 style: TextStyle(

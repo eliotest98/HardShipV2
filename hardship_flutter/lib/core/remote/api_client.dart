@@ -8,7 +8,7 @@ enum Method { POST, GET, PUT, DELETE, PATCH }
 
 class ApiClient {
   late Dio _client;
-  final String baseUrl = "http://localhost:3000/api/v1/";
+  final String baseUrl = "http://127.0.0.1:8080/api/v1/";
   static header() => {"Content-Type": "application/json"};
 
   ApiClient() {

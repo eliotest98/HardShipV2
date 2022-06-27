@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hardship_flutter/provider/di/get_it.dart';
+import 'package:hardship_flutter/provider/models/album_model.dart';
 import 'package:hardship_flutter/provider/viewmodels/album_viewmodel.dart';
 import 'package:hardship_flutter/provider/viewmodels/base_viewmodel.dart';
 import 'package:hardship_flutter/ui/constants/app_constants.dart';
@@ -28,28 +29,30 @@ class _AlbumsScreenState extends State<AlbumsScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: true,
-      ),
-      body: ChangeNotifierProvider<AlbumViewModel>(
-        create: (BuildContext context) =>
-            AlbumViewModel(usecaseAlbum: getItInstance()),
-        child: Consumer<AlbumViewModel>(
-          builder: (BuildContext context, AlbumViewModel model, _) {
-            switch (model.state) {
-              case ViewState.initial:
-                return _buildInitial();
-              case ViewState.loding:
-                return _buildLoading();
-              case ViewState.loaded:
-                return _buildLoaded(context, model);
-              case ViewState.error:
-                return _buildError(context, model);
-            }
-          },
+        appBar: AppBar(
+          automaticallyImplyLeading: true,
         ),
-      ),
-    );
+        body: SafeArea(
+          child: ChangeNotifierProvider<AlbumViewModel>(
+            create: (BuildContext context) =>
+                AlbumViewModel(usecaseAlbum: getItInstance())..getListAlbum(),
+            child: Consumer<AlbumViewModel>(
+              builder: (BuildContext context, AlbumViewModel model, _) {
+                switch (model.state) {
+                  case ViewState.initial:
+                    Provider.of<AlbumViewModel>(context).getListAlbum();
+                    return _buildInitial();
+                  case ViewState.loding:
+                    return _buildLoading();
+                  case ViewState.loaded:
+                    return _buildLoaded(context, model);
+                  case ViewState.error:
+                    return _buildError();
+                }
+              },
+            ),
+          ),
+        ));
   }
 
   Widget _buildLoading() {
@@ -62,48 +65,75 @@ class _AlbumsScreenState extends State<AlbumsScreen>
     return const SizedBox();
   }
 
-  Widget _buildLoaded() {
-    return const SizedBox();
+  Widget _buildLoaded(BuildContext context, AlbumViewModel model) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Padding(
+            padding: EdgeInsets.only(left: kDefaultPadding),
+            child: AppLargeText(text: 'Albums')),
+        _tabBar(context, model),
+        _tabBarView(model)
+      ],
+    );
   }
 
-  Widget _tabBarView() {
-    return Expanded(
-      child: TabBarView(
-        controller: _tabController,
-        children: [_viewArtist(), _viewLabel()],
+  Widget _buildError() {
+    return const Center(
+      child: AppLargeText(
+        text: 'Al momento non è stato possibile recuperare gli album',
       ),
     );
   }
 
-  Widget _viewArtist() {
+  Widget _tabBarView(AlbumViewModel model) {
+    return Expanded(
+      child: TabBarView(
+        controller: _tabController,
+        children: [_viewArtist(model), _viewLabel(model)],
+      ),
+    );
+  }
+
+  Widget _viewArtist(AlbumViewModel model) {
+    List<AlbumModel> listAlbum = model.getListAlbumOrderedByArtista;
     return Expanded(
         child: Container(
       padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
       child: ListView.builder(
-          itemCount: 4,
+          itemCount: listAlbum.length,
           itemBuilder: (context, index) {
-            return const CardAlbum();
+            return CardAlbum(albumModel: listAlbum[index]);
           }),
     ));
   }
 
-  Widget _viewLabel() {
+  Widget _viewLabel(AlbumViewModel model) {
+    List<AlbumModel> listAlbum = model.getListAlbumOrderedByEtichetta;
     return Expanded(
         child: Container(
       padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
       child: ListView.builder(
-          itemCount: 4,
+          itemCount: listAlbum.length,
           itemBuilder: (context, index) {
-            return const CardAlbum();
+            return CardAlbum(albumModel: listAlbum[index]);
           }),
     ));
   }
 
-  Widget _tabBar(BuildContext context) {
+  Widget _tabBar(BuildContext context, AlbumViewModel model) {
     return Container(
       height: 80,
       alignment: Alignment.centerLeft,
       child: TabBar(
+        onTap: (value) {
+          // if(value == 0){
+          //   Provider.of<AlbumViewModel>(context).orderByEtichetta();
+          // } else if(value == 1){
+          //   Provider.of<AlbumViewModel>(context).orderByArtista();
+          // }
+        },
         controller: _tabController,
         isScrollable: true,
         labelPadding: const EdgeInsets.only(

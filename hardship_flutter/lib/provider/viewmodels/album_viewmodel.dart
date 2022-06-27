@@ -15,9 +15,20 @@ class AlbumViewModel extends BaseViewModel {
 
   List<AlbumModel> get listAlbum => _listAlbum;
 
+  List<AlbumModel> get getListAlbumOrderedByEtichetta {
+    _listAlbum.sort((a, b) => a.idEtichetta.compareTo(b.idEtichetta));
+    return _listAlbum;
+  }
+
+  List<AlbumModel> get getListAlbumOrderedByArtista {
+    _listAlbum.sort((a, b) => a.idArtista.compareTo(b.idArtista));
+    return _listAlbum;
+  }
+
   Future<void> getListAlbum() async {
     setState(ViewState.loding);
     final result = await usecaseAlbum.getAlbums();
+    await Future.delayed(const Duration(seconds: 1));
     result.fold((failure) {
       _setError(failure);
     }, (result) {
@@ -28,12 +39,10 @@ class AlbumViewModel extends BaseViewModel {
   void _setListAlbum(List<AlbumModel> listAlbum) {
     _listAlbum = listAlbum;
     setState(ViewState.loaded);
-    notifyListeners();
   }
 
   void _setError(Failure f) {
     error = ErrorObject.mapFailureToErrorObject(failure: f);
     setState(ViewState.error);
-    notifyListeners();
   }
 }
