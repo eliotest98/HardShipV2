@@ -73,26 +73,23 @@ class _HomeScreenState extends State<HomeScreen> {
             text: 'News',
           ),
           const SizedBox(height: 10),
-          SizedBox(
-            width: double.infinity,
-            child: ChangeNotifierProvider<NewsProvider>(
-              create: (BuildContext context) =>
-                  NewsProvider(usecaseNews: getItInstance())..getListNews(),
-              child: Consumer<NewsProvider>(
-                builder: (BuildContext context, NewsProvider model, _) {
-                  switch (model.state) {
-                    case ViewState.initial:
-                      //Provider.of<NewsProvider>(context).getListNews();
-                      return _buildInitial();
-                    case ViewState.loding:
-                      return _buildLoading();
-                    case ViewState.loaded:
-                      return _buildLoaded(context, model);
-                    case ViewState.error:
-                      return _buildError();
-                  }
-                },
-              ),
+          ChangeNotifierProvider<NewsProvider>(
+            create: (BuildContext context) =>
+                NewsProvider(usecaseNews: getItInstance())..getListNews(),
+            child: Consumer<NewsProvider>(
+              builder: (BuildContext context, NewsProvider model, _) {
+                switch (model.state) {
+                  case ViewState.initial:
+                    //Provider.of<NewsProvider>(context).getListNews();
+                    return _buildInitial();
+                  case ViewState.loding:
+                    return _buildLoading();
+                  case ViewState.loaded:
+                    return _buildLoaded(context, model);
+                  case ViewState.error:
+                    return _buildError();
+                }
+              },
             ),
           )
         ]);
@@ -112,32 +109,25 @@ class _HomeScreenState extends State<HomeScreen> {
     List<NewsModel> listNews = model.getListNewsOrdered;
     return SizedBox(
       width: double.infinity,
-      child: ListView.builder(
-        shrinkWrap: true,
+      child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         physics: const BouncingScrollPhysics(),
-        itemCount: listNews.length,
-        itemBuilder: (BuildContext context, int index) {
-          return CardNews(
-            newsModel: listNews[index],
-          );
-        },
+        child: Row(children: _items(listNews)),
       ),
     );
   }
 
-  /*Widget _viewNews(NewsProvider model) {
-    List<NewsModel> listNews = model.getListNewsOrdered;
-    return Expanded(
-        child: Container(
-      padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-      child: ListView.builder(
-          itemCount: listNews.length,
-          itemBuilder: (context, index) {
-            return CardNews(newsModel: listNews[index]);
-          }),
-    ));
-  }*/
+  List<Widget> _items(List<NewsModel> listNews) {
+    List<Widget> items = [];
+    for (int i = 0; i < listNews.length; i++) {
+      items.add(
+        CardNews(
+          news: listNews[i],
+        ),
+      );
+    }
+    return items;
+  }
 
   Widget _buildError() {
     return const Center(
