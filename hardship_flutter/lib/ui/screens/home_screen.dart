@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:hardship_flutter/provider/models/news_model.dart';
+import 'package:hardship_flutter/provider/viewmodels/news_viewmodel.dart';
 import 'package:hardship_flutter/ui/constants/app_constants.dart';
 import 'package:hardship_flutter/ui/widgets/app_drawer.dart';
 import 'package:hardship_flutter/ui/widgets/app_large_text.dart';
 import 'package:hardship_flutter/ui/widgets/card_news.dart';
+import 'package:provider/provider.dart';
+
+import '../../provider/di/get_it.dart';
+import '../../provider/viewmodels/base_viewmodel.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -20,8 +26,8 @@ class _HomeScreenState extends State<HomeScreen> {
         key: _scaffoldKey,
         backgroundColor: Colors.white,
         drawer: AppDrawer(),
-        body: SafeArea(
-          child: Container(
+        body: SafeArea(child: _buildBody()
+            /*child: Container(
             padding: const EdgeInsets.only(
                 left: kDefaultPadding, right: kDefaultPadding),
             child: SingleChildScrollView(
@@ -29,14 +35,15 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildHeader(),
-                  const SizedBox(height: 8.0),
-                  _buildBody()
+                  //_buildHeader(),
+                  //const SizedBox(height: 8.0),
+                  //_buildBody()
                 ],
               ),
             ),
-          ),
-        ));
+          ),*/
+
+            ));
   }
 
   Widget _buildHeader() {
@@ -59,26 +66,77 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildBody() {
+    _buildHeader();
+    return ChangeNotifierProvider<NewsProvider>(
+      create: (BuildContext context) =>
+          NewsProvider(usecaseNews: getItInstance())..getListNews(),
+      child: Consumer<NewsProvider>(
+        builder: (BuildContext context, NewsProvider model, _) {
+          switch (model.state) {
+            case ViewState.initial:
+              Provider.of<NewsProvider>(context).getListNews();
+              return _buildInitial();
+            case ViewState.loding:
+              return _buildLoading();
+            case ViewState.loaded:
+              return _buildLoaded(context, model);
+            case ViewState.error:
+              return _buildError();
+          }
+        },
+      ),
+    );
+  }
+
+  Widget _buildLoading() {
+    return const Center(
+      child: CircularProgressIndicator(),
+    );
+  }
+
+  Widget _buildInitial() {
+    return const SizedBox();
+  }
+
+  Widget _buildLoaded(BuildContext context, NewsProvider model) {
     return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          const AppLargeText(
-            text: 'News',
-          ),
-          const SizedBox(height: 10),
-          SizedBox(
-            width: double.infinity,
-            child: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
-                scrollDirection: Axis.horizontal,
-                child: Row(children: const [
-                  CardNews(),
-                  CardNews(),
-                  CardNews(),
-                  CardNews()
-                ])),
-          )
-        ]);
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Padding(
+            padding: EdgeInsets.only(left: kDefaultPadding),
+            child: AppLargeText(text: 'News')),
+        _buildHeader(),
+        _viewNews(model)
+        //_tabBar(context, model),
+        //_tabBarView(model)
+      ],
+    );
+
+    /*return SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        scrollDirection: Axis.horizontal,
+        child: Row(children: [_viewNews(model)]));*/
+  }
+
+  Widget _viewNews(NewsProvider model) {
+    List<NewsModel> listNews = model.getListNewsOrdered;
+    return Expanded(
+        child: Container(
+      padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+      child: ListView.builder(
+          itemCount: listNews.length,
+          itemBuilder: (context, index) {
+            return CardNews(newsModel: listNews[index]);
+          }),
+    ));
+  }
+
+  Widget _buildError() {
+    return const Center(
+      child: AppLargeText(
+        text: 'Al momento non è stato possibile recuperare le news',
+      ),
+    );
   }
 }

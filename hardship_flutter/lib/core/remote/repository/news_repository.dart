@@ -17,7 +17,11 @@ class NewsRepository implements INewsRepository {
     try {
       final response =
           await _client.request("news/allNews", method: Method.GET);
-      return Right(response.body);
+      List<NewsModel> listNews = [];
+      for (var news in response.data) {
+        listNews.add(NewsModel.fromJson(news));
+      }
+      return Right(listNews);
     } on DioError catch (e) {
       return (Left(e));
     }

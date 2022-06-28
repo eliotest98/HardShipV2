@@ -9,23 +9,28 @@ class NewsProvider extends BaseViewModel {
 
   NewsProvider({required this.usecaseNews});
 
-  List<NewsModel> _listAlbum = [];
+  List<NewsModel> _listNews = [];
   ErrorObject? error;
 
-  List<NewsModel> get listAlbum => _listAlbum;
+  List<NewsModel> get listNews => _listNews;
+
+  List<NewsModel> get getListNewsOrdered {
+    return _listNews;
+  }
 
   Future<void> getListNews() async {
     setState(ViewState.loding);
     final result = await usecaseNews.getNews();
+    await Future.delayed(const Duration(seconds: 1));
     result.fold((failure) {
       _setError(failure);
     }, (result) {
-      _setListAlbum(result);
+      _setListNews(result);
     });
   }
 
-  void _setListAlbum(List<NewsModel> listAlbum) {
-    _listAlbum = listAlbum;
+  void _setListNews(List<NewsModel> listNews) {
+    _listNews = listNews;
     setState(ViewState.loaded);
     notifyListeners();
   }
