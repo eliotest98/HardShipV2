@@ -26,8 +26,8 @@ class _HomeScreenState extends State<HomeScreen> {
         key: _scaffoldKey,
         backgroundColor: Colors.white,
         drawer: AppDrawer(),
-        body: SafeArea(child: _buildBody()
-            /*child: Container(
+        body: SafeArea(
+          child: Container(
             padding: const EdgeInsets.only(
                 left: kDefaultPadding, right: kDefaultPadding),
             child: SingleChildScrollView(
@@ -35,15 +35,14 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  //_buildHeader(),
-                  //const SizedBox(height: 8.0),
-                  //_buildBody()
+                  _buildHeader(),
+                  const SizedBox(height: 8.0),
+                  _buildBody()
                 ],
               ),
             ),
-          ),*/
-
-            ));
+          ),
+        ));
   }
 
   Widget _buildHeader() {
@@ -66,26 +65,37 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildBody() {
-    _buildHeader();
-    return ChangeNotifierProvider<NewsProvider>(
-      create: (BuildContext context) =>
-          NewsProvider(usecaseNews: getItInstance())..getListNews(),
-      child: Consumer<NewsProvider>(
-        builder: (BuildContext context, NewsProvider model, _) {
-          switch (model.state) {
-            case ViewState.initial:
-              Provider.of<NewsProvider>(context).getListNews();
-              return _buildInitial();
-            case ViewState.loding:
-              return _buildLoading();
-            case ViewState.loaded:
-              return _buildLoaded(context, model);
-            case ViewState.error:
-              return _buildError();
-          }
-        },
-      ),
-    );
+    return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          const AppLargeText(
+            text: 'News',
+          ),
+          const SizedBox(height: 10),
+          SizedBox(
+            width: double.infinity,
+            child: ChangeNotifierProvider<NewsProvider>(
+              create: (BuildContext context) =>
+                  NewsProvider(usecaseNews: getItInstance())..getListNews(),
+              child: Consumer<NewsProvider>(
+                builder: (BuildContext context, NewsProvider model, _) {
+                  switch (model.state) {
+                    case ViewState.initial:
+                      //Provider.of<NewsProvider>(context).getListNews();
+                      return _buildInitial();
+                    case ViewState.loding:
+                      return _buildLoading();
+                    case ViewState.loaded:
+                      return _buildLoaded(context, model);
+                    case ViewState.error:
+                      return _buildError();
+                  }
+                },
+              ),
+            ),
+          )
+        ]);
   }
 
   Widget _buildLoading() {
@@ -99,27 +109,24 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildLoaded(BuildContext context, NewsProvider model) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Padding(
-            padding: EdgeInsets.only(left: kDefaultPadding),
-            child: AppLargeText(text: 'News')),
-        _buildHeader(),
-        _viewNews(model)
-        //_tabBar(context, model),
-        //_tabBarView(model)
-      ],
-    );
-
-    /*return SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
+    List<NewsModel> listNews = model.getListNewsOrdered;
+    return SizedBox(
+      width: double.infinity,
+      child: ListView.builder(
+        shrinkWrap: true,
         scrollDirection: Axis.horizontal,
-        child: Row(children: [_viewNews(model)]));*/
+        physics: const BouncingScrollPhysics(),
+        itemCount: listNews.length,
+        itemBuilder: (BuildContext context, int index) {
+          return CardNews(
+            newsModel: listNews[index],
+          );
+        },
+      ),
+    );
   }
 
-  Widget _viewNews(NewsProvider model) {
+  /*Widget _viewNews(NewsProvider model) {
     List<NewsModel> listNews = model.getListNewsOrdered;
     return Expanded(
         child: Container(
@@ -130,7 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
             return CardNews(newsModel: listNews[index]);
           }),
     ));
-  }
+  }*/
 
   Widget _buildError() {
     return const Center(
