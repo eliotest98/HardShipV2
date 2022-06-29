@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:hardship_flutter/provider/models/news_model.dart';
+
+import '../widgets/app_large_text.dart';
 
 class NewsDetails extends StatefulWidget {
-  const NewsDetails({Key? key}) : super(key: key);
+  const NewsDetails({Key? key, required this.news}) : super(key: key);
+  final NewsModel news;
 
   @override
   State<NewsDetails> createState() => _NewsDetailsState();
@@ -53,22 +57,16 @@ class _NewsDetailsState extends State<NewsDetails> {
             ),
             Padding(
               padding: const EdgeInsets.only(left: 20.0, top: 30.0),
-              child: Text(
-                "NewsCiccio",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontFamily: 'Nunito-Bold',
-                    fontSize: 20),
+              child: AppLargeText(
+                text: widget.news.titolo,
+                size: 20,
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 20.0, top: 5.0),
-              child: Text(
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                style: TextStyle(
-                    color: Colors.grey,
-                    fontFamily: 'Nunito-Regular',
-                    fontSize: 20),
+              child: AppLargeText(
+                text: widget.news.contenuto,
+                size: 20,
               ),
             ),
           ],

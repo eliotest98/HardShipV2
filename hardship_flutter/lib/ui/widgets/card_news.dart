@@ -24,7 +24,11 @@ class CardNews extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const NewsDetails()),
+                MaterialPageRoute(
+                  builder: (context) => NewsDetails(
+                    news: news,
+                  ),
+                ),
               );
             },
             child: ShadowImage(
