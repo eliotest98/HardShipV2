@@ -45,11 +45,8 @@ public class GestioneAlbumServiceImpl implements GestioneAlbumService {
 
     @Override
     public Optional<Album> createAlbum(AlbumDTO album) {
-        System.out.println("1");
         Artista artista = gestioneArtistaDao.save(new Artista(1,album.getAutore()));
-        System.out.println("2");
-        Etichetta etichetta = gestioneEtichettaDao.save(new Etichetta(1,album.getEtichetta(), 1)); //TODO il feed che è?
-        System.out.println("3");
+        Etichetta etichetta = gestioneEtichettaDao.save(new Etichetta(1,album.getEtichetta(), 1));
         Album album1 = gestioneAlbumDao.save(new Album(album.getGenere(), album.getTitolo(), album.getCopertina(), album.getNbrani(), album.getData(), album.getEmbed(), album.getDettagli(), album.getUsernameAdmin(), etichetta.getId(), artista.getId()));
         Digitale digitale = gestiononeDigitaleDao.save(new Digitale(album.getPdigitale(), album.getNbrani(), album1.getId()));
         Vinile vinile = gestioneVinileDao.save(new Vinile(album.getPvinile(), album.getNbrani(), album1.getId()));

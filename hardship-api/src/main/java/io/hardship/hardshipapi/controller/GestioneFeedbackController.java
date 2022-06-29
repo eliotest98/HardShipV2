@@ -1,5 +1,6 @@
 package io.hardship.hardshipapi.controller;
 
+import io.hardship.hardshipapi.entity.Brano;
 import io.hardship.hardshipapi.entity.Feedback;
 import io.hardship.hardshipapi.entity.request.FeedbackDTO;
 import io.hardship.hardshipapi.service.GestioneFeedbackService;
@@ -33,5 +34,15 @@ public class GestioneFeedbackController {
     ResponseEntity<List<Feedback>> getAllFeebacks( ) throws  ServerException{
         List<Feedback> result = gestioneFeedbackService.getAllFeedback();
         return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    @GetMapping("/feedbacks/cliente/{pid}")
+    ResponseEntity<List<Feedback>> getFeedbacksWithClientID(@PathVariable Integer pid) throws  ServerException{
+        List<Feedback> result = gestioneFeedbackService.getFeedbacksWithClientID(pid);
+        if (!result.isEmpty()) {
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        } else {
+            throw new ServerException("Feedbacks not found");
+        }
     }
 }

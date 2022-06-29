@@ -1,8 +1,11 @@
 package io.hardship.hardshipapi.service;
 
 import io.hardship.hardshipapi.dao.GestioneAlbumDao;
+import io.hardship.hardshipapi.dao.GestioneArtistaDao;
+import io.hardship.hardshipapi.dao.GestioneEtichettaDao;
 import io.hardship.hardshipapi.dao.GestioneRichiestaDao;
 import io.hardship.hardshipapi.entity.Album;
+import io.hardship.hardshipapi.entity.Etichetta;
 import io.hardship.hardshipapi.entity.News;
 import io.hardship.hardshipapi.entity.Richiesta;
 import io.hardship.hardshipapi.entity.request.AlbumDTO;
@@ -36,6 +39,10 @@ public class GestioneAlbumServiceTest {
     private GestioneAlbumDao gestioneAlbumDao;
     @Mock
     private GestioneRichiestaDao gestioneRichiestaDao;
+    @Mock
+    private GestioneArtistaDao gestioneArtistaDao;
+    @Mock
+    private GestioneEtichettaDao gestioneEtichettaDao;
     @Autowired
     @InjectMocks
     private GestioneAlbumServiceImpl gestioneAlbumService;
@@ -44,6 +51,7 @@ public class GestioneAlbumServiceTest {
     private Album record1;
     private Richiesta richiesta;
     private RichiestaDTO richiestaDTO;
+    private Etichetta etichetta;
 
     @BeforeEach
     public void setUp() {
@@ -51,6 +59,7 @@ public class GestioneAlbumServiceTest {
         record1 = new Album(1, "Pop", "White", "Copertina", 14, "03-06-2022", "Bho", "Nuovo Album", "root", 1, 1);
         RECORD_2 = Optional.of(new Album(2, "Rap", "White", "White", 7, "02-06-2022", "bho", "Nuovo Album", "root", 1, 1));
         richiesta = new Richiesta(1, "Black", "Ciccio", 1);
+        etichetta = new Etichetta(1, "Bho", 1);
         richiestaDTO = new RichiestaDTO("Ciccio", "Black", 1);
     }
 
@@ -60,15 +69,18 @@ public class GestioneAlbumServiceTest {
         record1 = null;
         richiesta = null;
         richiestaDTO = null;
+        etichetta = null;
     }
 
     //Test Case for Saving a Album
-    /*@Test                             // da null pointer al 1 dao nel metodo
-    void givenAlbumToAddShouldReturnAddedAlbum() throws Exception{
+    /*@Test
+    // da null pointer al 1 dao nel metodo
+    void givenAlbumToAddShouldReturnAddedAlbum() throws Exception {
         //stubbing
+        gestioneEtichettaDao.save(any());
         when(gestioneAlbumDao.save(any())).thenReturn(record1);
         gestioneAlbumService.createAlbum(RECORD_1);
-        verify(gestioneAlbumDao,times(1)).save(any());
+        verify(gestioneAlbumDao, times(1)).save(any());
     }*/
 
     //Test Case for Create Request Album

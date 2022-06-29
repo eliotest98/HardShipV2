@@ -10,5 +10,5 @@ import java.util.Optional;
 public interface GestioneFeedbackService {
     Optional<Feedback> createFeedback(FeedbackDTO feedback) throws ParseException;
     List<Feedback> getAllFeedback();
-
+    List<Feedback> getFeedbacksWithClientID(int id);
 }

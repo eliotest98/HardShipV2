@@ -141,11 +141,6 @@ public class GestioneAlbumControllerTests {
         verify(gestioneAlbumService,times(1)).createRequestAlbum(any());
     }
 
-    @Test
-    public void getAllAlbumsOrderByArtista() {
-
-    }
-
     public static String asJsonString(final Object obj) {
         try {
             return new ObjectMapper().writeValueAsString(obj);

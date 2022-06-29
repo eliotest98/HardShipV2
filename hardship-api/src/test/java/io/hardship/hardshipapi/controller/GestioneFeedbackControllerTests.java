@@ -3,6 +3,7 @@ package io.hardship.hardshipapi.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.hardship.hardshipapi.controller.GestioneFeedbackController;
+import io.hardship.hardshipapi.entity.Brano;
 import io.hardship.hardshipapi.entity.Feedback;
 import io.hardship.hardshipapi.entity.News;
 import io.hardship.hardshipapi.service.GestioneFeedbackService;
@@ -63,13 +64,13 @@ public class GestioneFeedbackControllerTests {
     @BeforeEach
     public void setup(){
         RECORD_1 = new Feedback(1, "titolo1", "testo1","15-01-2022",1,1);
-        RECORD_2 = new Feedback(2, "titolo2", "testo2","16-01-2022",2,2);
-        RECORD_3 = new Feedback(3, "titolo3", "testo3","17-01-2022",3,3);
+        RECORD_2 = new Feedback(2, "titolo2", "testo2","16-01-2022",2,1);
+        RECORD_3 = new Feedback(3, "titolo3", "testo3","17-01-2022",3,1);
         mockMvc = MockMvcBuilders.standaloneSetup(gestioneFeedbackController).build();
     }
     @AfterEach
     void tearDown() {
-        RECORD_1 = null;
+        RECORD_1 = RECORD_2 = RECORD_3 = null;
     }
 
     @Test
@@ -106,7 +107,19 @@ public class GestioneFeedbackControllerTests {
         }
     }
 
+    @Test
+    public void getFeedbackWithClientID() throws Exception {
+        List<Feedback> records = new ArrayList<>(Arrays.asList(RECORD_1, RECORD_2, RECORD_3));
 
+        when(gestioneFeedbackService.getFeedbacksWithClientID(1)).thenReturn(records);
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .get("/api/v1/feedbacks/cliente/1")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(3)))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[2].titolo", Matchers.is("titolo3")));
+    }
 
 }
 

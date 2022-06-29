@@ -15,6 +15,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -74,7 +75,18 @@ public class GestioneFeedbackServiceTest {
         verify(gestioneFeedbackDao,times(1)).findAll();
     }
 
-
+    /*         //Non da la lista dei feedback
+    @Test
+    public void getFeedbacksWithClientID() {
+        gestioneFeedbackDao.save(RECORD_1);
+        //stubbing mock to return specific data
+        List<Feedback> feedbacks = Arrays.asList(RECORD_1);
+        when(gestioneFeedbackDao.findAll()).thenReturn(feedbacks);
+        List<Feedback> feedbacksList = gestioneFeedbackDao.getFeedbacksWithClientID(RECORD_1.getIdCliente());
+        assertEquals(feedbacksList, feedbacks);
+        verify(gestioneFeedbackDao, times(1)).save(RECORD_1);
+        verify(gestioneFeedbackDao, times(1)).findAll();
+    }*/
 
 }
 
