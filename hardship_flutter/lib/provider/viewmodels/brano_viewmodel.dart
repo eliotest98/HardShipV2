@@ -1,7 +1,6 @@
 import 'package:hardship_flutter/core/remote/error/error_object.dart';
 import 'package:hardship_flutter/core/remote/error/failure.dart';
 import 'package:hardship_flutter/core/remote/usecases/brano_usecase.dart';
-import 'package:hardship_flutter/provider/models/album_model.dart';
 import 'package:hardship_flutter/provider/models/brano_model.dart';
 import 'package:hardship_flutter/provider/viewmodels/base_viewmodel.dart';
 

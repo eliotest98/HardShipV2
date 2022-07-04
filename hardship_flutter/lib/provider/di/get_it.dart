@@ -6,7 +6,6 @@ import 'package:hardship_flutter/core/remote/repository/news_repository.dart';
 import 'package:hardship_flutter/core/remote/usecases/album_usecase.dart';
 import 'package:hardship_flutter/core/remote/usecases/brano_usecase.dart';
 import 'package:hardship_flutter/core/remote/usecases/news_usecase.dart';
-import 'package:hardship_flutter/provider/models/news_model.dart';
 import 'package:hardship_flutter/provider/viewmodels/album_viewmodel.dart';
 import 'package:hardship_flutter/provider/viewmodels/news_viewmodel.dart';
 

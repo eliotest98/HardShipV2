@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hardship_flutter/ui/constants/app_constants.dart';
-import 'package:hardship_flutter/ui/screens/albums_details_Screen.dart';
+import 'package:hardship_flutter/ui/routes/route_constants.dart';
+import 'package:hardship_flutter/ui/routes/routes.dart';
 import 'package:hardship_flutter/ui/widgets/app_large_text.dart';
 import 'package:hardship_flutter/ui/widgets/app_text.dart';
 import 'package:hardship_flutter/ui/widgets/shadow_image.dart';
@@ -26,14 +27,8 @@ class CardAlbum extends StatelessWidget {
         ),
         child: InkWell(
           onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => AlbumDetails(
-                  albumModel: album,
-                ),
-              ),
-            );
+            RoutesService.pushNamed(RouteList.albumDetails,
+                arguments: album.toJson());
           },
           child: Container(
             padding: const EdgeInsets.symmetric(

@@ -40,7 +40,6 @@ class _AlbumsScreenState extends State<AlbumsScreen>
               builder: (BuildContext context, AlbumViewModel model, _) {
                 switch (model.state) {
                   case ViewState.initial:
-                    Provider.of<AlbumViewModel>(context).getListAlbum();
                     return _buildInitial();
                   case ViewState.loding:
                     return _buildLoading();
@@ -98,8 +97,7 @@ class _AlbumsScreenState extends State<AlbumsScreen>
 
   Widget _viewArtist(AlbumViewModel model) {
     List<AlbumModel> listAlbum = model.getListAlbumOrderedByArtista;
-    return Expanded(
-        child: Container(
+    return Container(
       padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
       child: ListView.builder(
           itemCount: listAlbum.length,
@@ -108,13 +106,12 @@ class _AlbumsScreenState extends State<AlbumsScreen>
               album: listAlbum[index],
             );
           }),
-    ));
+    );
   }
 
   Widget _viewLabel(AlbumViewModel model) {
     List<AlbumModel> listAlbum = model.getListAlbumOrderedByEtichetta;
-    return Expanded(
-        child: Container(
+    return Container(
       padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
       child: ListView.builder(
           itemCount: listAlbum.length,
@@ -123,7 +120,7 @@ class _AlbumsScreenState extends State<AlbumsScreen>
               album: listAlbum[index],
             );
           }),
-    ));
+    );
   }
 
   Widget _tabBar(BuildContext context, AlbumViewModel model) {

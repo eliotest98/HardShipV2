@@ -25,15 +25,15 @@ class NewsModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['contenuto'] = contenuto;
-    data['data'] = data;
-    data['autore'] = autore;
-    data['titolo'] = titolo;
-    data['copertina'] = copertina;
-    data['categoria'] = categoria;
-    data['usernameAdmin'] = usernameAdmin;
-    return data;
+    final Map<String, dynamic> map = <String, dynamic>{};
+    map['id'] = id;
+    map['contenuto'] = contenuto;
+    map['data'] = data;
+    map['autore'] = autore;
+    map['titolo'] = titolo;
+    map['copertina'] = copertina;
+    map['categoria'] = categoria;
+    map['usernameAdmin'] = usernameAdmin;
+    return map;
   }
 }

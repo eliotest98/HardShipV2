@@ -3,15 +3,15 @@ import 'package:hardship_flutter/provider/models/news_model.dart';
 
 import '../widgets/app_large_text.dart';
 
-class NewsDetails extends StatefulWidget {
-  const NewsDetails({Key? key, required this.news}) : super(key: key);
+class NewsDetailsScreen extends StatefulWidget {
+  const NewsDetailsScreen({Key? key, required this.news}) : super(key: key);
   final NewsModel news;
 
   @override
-  State<NewsDetails> createState() => _NewsDetailsState();
+  State<NewsDetailsScreen> createState() => _NewsDetailsScreenState();
 }
 
-class _NewsDetailsState extends State<NewsDetails> {
+class _NewsDetailsScreenState extends State<NewsDetailsScreen> {
   @override
   void initState() {
     super.initState();
@@ -20,26 +20,16 @@ class _NewsDetailsState extends State<NewsDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20.0, top: 50.0),
-                  child: Icon(
-                    Icons.arrow_back_ios,
-                    color: Colors.black,
-                  ),
-                )),
             Center(
               child: Padding(
                 padding:
                     const EdgeInsets.only(top: 40.0, left: 20.0, right: 20.0),
-                child: Container(
+                child: SizedBox(
                   height: 100,
                   child: Stack(
                     children: <Widget>[

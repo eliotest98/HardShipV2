@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hardship_flutter/provider/models/news_model.dart';
 import 'package:hardship_flutter/ui/constants/app_constants.dart';
-import 'package:hardship_flutter/ui/screens/news_details_screen.dart';
+import 'package:hardship_flutter/ui/routes/route_constants.dart';
+import 'package:hardship_flutter/ui/routes/routes.dart';
 import 'package:hardship_flutter/ui/widgets/app_large_text.dart';
 import 'package:hardship_flutter/ui/widgets/app_text.dart';
 import 'package:hardship_flutter/ui/widgets/shadow_image.dart';
@@ -22,14 +23,8 @@ class CardNews extends StatelessWidget {
         children: [
           InkWell(
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => NewsDetails(
-                    news: news,
-                  ),
-                ),
-              );
+              RoutesService.pushNamed(RouteList.newsDetails,
+                  arguments: news.toJson());
             },
             child: ShadowImage(
               imageProvider: const AssetImage('assets/png/spiderman_album.png'),
