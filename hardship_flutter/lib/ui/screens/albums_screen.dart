@@ -104,7 +104,9 @@ class _AlbumsScreenState extends State<AlbumsScreen>
       child: ListView.builder(
           itemCount: listAlbum.length,
           itemBuilder: (context, index) {
-            return CardAlbum(albumModel: listAlbum[index]);
+            return CardAlbum(
+              album: listAlbum[index],
+            );
           }),
     ));
   }
@@ -117,7 +119,9 @@ class _AlbumsScreenState extends State<AlbumsScreen>
       child: ListView.builder(
           itemCount: listAlbum.length,
           itemBuilder: (context, index) {
-            return CardAlbum(albumModel: listAlbum[index]);
+            return CardAlbum(
+              album: listAlbum[index],
+            );
           }),
     ));
   }
