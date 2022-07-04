@@ -1,0 +1,4 @@
+INSERT INTO `album` (`ID`, `Genere`, `Titolo`, `Copertina`, `numero_brani`, `data`, `Embed`, `Dettagli`, `username_admin`, `ID_etichetta`, `ID_artista`) VALUES
+(5, 'Pop', 'Holliwoods Bleeding', 'http://localhost:8080/files/HolliwoodsBleedings.jpg', 3, '15-02-2021', 'dettaglio dell album di post malone', 'Bho', 'root', 1, 1),
+(6, 'Pop', 'Beerbongs and Bentleys', 'http://localhost:8080/files/BeerbongsandBentleys.jpg', 3, '15-02-2021', 'dettaglio dell album di post malone', 'Bho', 'root', 1, 1),
+(7, 'Pop', 'The Dark Side Of The Moon', 'http://localhost:8080/files/darkside.jpg', 3, '15-02-2021', 'dettaglio dell album pink floyd', 'Bho', 'root', 1, 1)
