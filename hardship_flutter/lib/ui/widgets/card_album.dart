@@ -38,8 +38,7 @@ class CardAlbum extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 ShadowImage(
-                  imageProvider:
-                      const AssetImage('assets/png/spiderman_album.png'),
+                  imageProvider: NetworkImage(album.copertina),
                   size: size,
                   borderRadius: BorderRadius.circular(kRadius),
                   offset: const Offset(0, 0),
