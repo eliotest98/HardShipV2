@@ -9,9 +9,9 @@ import '../../provider/models/album_model.dart';
 
 class CardAlbum extends StatelessWidget {
   const CardAlbum(
-      {Key? key, required this.albumModel, this.size = const Size(60, 60)})
+      {Key? key, required this.album, this.size = const Size(60, 60)})
       : super(key: key);
-  final AlbumModel albumModel;
+  final AlbumModel album;
   final Size size;
 
   @override
@@ -28,7 +28,11 @@ class CardAlbum extends StatelessWidget {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const AlbumDetails()),
+              MaterialPageRoute(
+                builder: (context) => AlbumDetails(
+                  albumModel: album,
+                ),
+              ),
             );
           },
           child: Container(
@@ -52,13 +56,13 @@ class CardAlbum extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AppLargeText(
-                        text: albumModel.titolo,
+                        text: album.titolo,
                         size: 20,
                       ),
                       const SizedBox(height: 5),
                       AppText(
                         size: 16.0,
-                        text: albumModel.dettagli,
+                        text: album.dettagli,
                       ),
                     ],
                   ),
