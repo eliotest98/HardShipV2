@@ -82,10 +82,10 @@ class _AlbumDetailsScreenState extends State<AlbumDetailsScreen> {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: 300,
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.fill,
-          image: AssetImage("assets/png/spiderman_album.png"),
+          image: NetworkImage(widget.albumModel.copertina),
         ),
       ),
     );
