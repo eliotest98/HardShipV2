@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:just_audio/just_audio.dart';
+import 'package:hardship_flutter/core/utils/PlayerManager.dart';
 
 class MusicViewModel extends ChangeNotifier {
-  late AudioPlayer _audioPlayer;
+  late PLayerManager pLayerManager;
 
   MusicViewModel() {
-    _audioPlayer = AudioPlayer();
+    pLayerManager = PLayerManager();
   }
-  get audioPlayer => _audioPlayer;
 
   void play(String url) {
-    _audioPlayer.setUrl(url);
-    _audioPlayer.play();
+    pLayerManager.audioPlayer.setUrl(url);
+    pLayerManager.audioPlayer.play();
   }
 
   void dispose() {
-    _audioPlayer.stop();
+    pLayerManager.audioPlayer.stop();
     super.dispose();
   }
 }
