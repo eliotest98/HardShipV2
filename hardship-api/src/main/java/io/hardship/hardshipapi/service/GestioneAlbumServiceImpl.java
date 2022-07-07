@@ -52,7 +52,7 @@ public class GestioneAlbumServiceImpl implements GestioneAlbumService {
         Vinile vinile = gestioneVinileDao.save(new Vinile(album.getPvinile(), album.getNbrani(), album1.getId()));
         Cd cd = gestioneCDDao.save(new Cd(album.getPcd(), album.getNbrani(), album1.getId()));
         for (int i = 0; i < album.getBrani().size() - 1; i++) {
-            Brano brano = gestioneBranoDao.save(new Brano(album.getBrani().get(i), "2022", album.getDurate().get(i), album1.getId(), artista.getId()));
+            Brano brano = gestioneBranoDao.save(new Brano(album.getBrani().get(i), "2022", album.getDurate().get(i),"", album1.getId(), artista.getId()));
         }
         return Optional.of(album1);
     }

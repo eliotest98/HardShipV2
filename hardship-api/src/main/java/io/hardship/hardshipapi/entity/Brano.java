@@ -28,15 +28,19 @@ public class Brano {
     @Column(name = "Durata", nullable = false, length = 6)
     private String durata;
 
+    @Column(name = "Traccia", nullable = false, length = 256)
+    private String traccia;
+
     @Column(name = "ID_album")
     private Integer idAlbum;
 
     @Column(name = "ID_artista")
     private Integer idArtista;
 
-    public Brano(String titolo, String anno, String durata, Integer idAlbum, Integer idArtista) {
+    public Brano(String titolo, String anno, String traccia, String durata,  Integer idAlbum, Integer idArtista) {
         this.titolo = titolo;
         this.anno = anno;
+        this.traccia = traccia;
         this.durata = durata;
         this.idAlbum = idAlbum;
         this.idArtista = idArtista;
