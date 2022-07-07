@@ -58,6 +58,9 @@ dependencies:
   shared_preferences: ^2.0.15
   material: ^1.0.0+2
 
+  #player music
+  just_audio: ^0.9.27
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

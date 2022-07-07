@@ -2,8 +2,10 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:hardship_flutter/provider/models/album_model.dart';
+import 'package:hardship_flutter/provider/models/brano_model.dart';
 import 'package:hardship_flutter/provider/viewmodels/brano_viewmodel.dart';
 import 'package:hardship_flutter/ui/widgets/app_text.dart';
+import 'package:hardship_flutter/ui/widgets/card_brano.dart';
 import 'package:provider/provider.dart';
 
 import '../../provider/di/get_it.dart';
@@ -106,9 +108,7 @@ class _AlbumDetailsScreenState extends State<AlbumDetailsScreen> {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Padding(
-            padding: EdgeInsets.only(left: kDefaultPadding),
-            child: AppLargeText(text: 'Tracce')),
+        AppLargeText(text: 'Tracce'),
         artistSongs(model),
       ],
     );
@@ -122,47 +122,15 @@ class _AlbumDetailsScreenState extends State<AlbumDetailsScreen> {
     );
   }
 
-  artistSongs(BranoViewModel model) {
+  Widget artistSongs(BranoViewModel model) {
+    List<BranoModel> listBrani = model.listBrano;
     return ListView.builder(
-        itemCount: model.listBrano.length,
+        scrollDirection: Axis.vertical,
+        shrinkWrap: true,
+        itemCount: listBrani.length,
         itemBuilder: (context, index) {
-          return Row(
-            children: <Widget>[
-              ClipRRect(
-                borderRadius: BorderRadius.circular(10.0),
-                child: Image.asset(
-                  model.listBrano[index].anno,
-                  fit: BoxFit.cover,
-                  height: 50,
-                  width: 50,
-                ),
-              ),
-              const SizedBox(
-                width: 20.0,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    model.listBrano[index].titolo,
-                    style: const TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: 20,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-              Spacer(),
-              Text(
-                model.listBrano[index].durata,
-                style: TextStyle(
-                    fontFamily: 'Nunito', fontSize: 20, color: Colors.black),
-              ),
-              SizedBox(
-                width: 20.0,
-              ),
-            ],
+          return CardBrano(
+            brano: listBrani[index],
           );
         });
   }

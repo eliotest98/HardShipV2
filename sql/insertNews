@@ -1,0 +1,5 @@
+INSERT INTO `news` (`ID`, `Contenuto`, `Data`, `Autore`, `Titolo`, `Copertina`, `Categoria`, `Username_admin`) VALUES
+(1, 'Ogni giovedì, fino al 25 agosto, una serie di appuntamenti con musica dal vivo e dj set nel Villaggio dello shopping emiliano', '04-07-2022', 'RollingStoneMagazine', 'Continua il Fidenza Village Sound Festival', 'jakelafuria.jpeg', 'Pop', 'root'),
+(2, 'Un nuovo festival per l\'estate ferrarese con grandi nomi del panorama trap e pop italiano ', '05-07-2022', 'RollingStoneMagazine', 'Al via il Summer Vibez', 'BLANCO.jpeg', 'Pop', 'root'),
+(3, 'Dal 12 al 14 agosto, ad Helsinki, torna uno dei festival europei più interessanti con Gorillaz, Florence + The Machine e Nick Cave & The Bad Seeds', '06-07-2022', 'RollingStoneMagazine', 'Il Flow Festival è la fuga ideale per l’estate', 'baloonflowfestival.jpeg', 'Pop', 'root'),
+(4, '«È così da fine anni ’80 e ancora non lo avete capito, che palle. Io avrò anche la vostra età, ma godo quando vi chiamano boomer. La maggior parte di quelli che criticano i trapper sono musicisti falliti»', '07-07-2022', 'RollingStoneMagazine', 'J-Ax: e il suo sfogo', 'jax.jpeg', 'Pop', 'root')
