@@ -11,12 +11,13 @@ public class GestioneUtenteServiceImpl implements GestioneUtenteService {
     @Autowired
      GestioneUtenteDao gestioneUtenteDao;
 
-    public Cliente registraCliente(Cliente cliente) {
-        Cliente clienteRegistrato = gestioneUtenteDao.save(cliente);
-        if (clienteRegistrato == null) {
-            // throw new UsernameNotFoundException("User not found");
-        }
-        return clienteRegistrato;
+    public int registraCliente(Cliente cliente) {
+        return gestioneUtenteDao.insertCliente(cliente.getNome(),cliente.getCognome(),cliente.getDataNascita(),cliente.getUsername(),cliente.getPassword(),cliente.getCodiceFiscale(),cliente.getEmail(),cliente.getCodiceFiscale(),cliente.getDataNascita());
+    }
+
+    @Override
+    public Cliente loginCliente(String username, String password) {
+        return gestioneUtenteDao.loginCliente(username,password);
     }
 
 }

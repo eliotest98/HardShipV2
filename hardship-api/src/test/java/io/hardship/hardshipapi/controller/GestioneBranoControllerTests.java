@@ -54,9 +54,9 @@ public class GestioneBranoControllerTests {
 
     @BeforeEach
     public void setup() {
-        RECORD_1 = new Brano(1, "titolo1", "2021", "2:30", 1, 1);
-        RECORD_2 = new Brano(2, "titolo2", "2020", "2:00", 1, 2);
-        RECORD_3 = new Brano(3, "titolo3", "2019", "4:00", 1, 3);
+        RECORD_1 = new Brano(1, "titolo1", "2021", "2:30","track", 1, 1);
+        RECORD_2 = new Brano(2, "titolo2", "2020", "2:00","track", 1, 2);
+        RECORD_3 = new Brano(3, "titolo3", "2019", "4:00","track", 1, 3);
         mockMvc = MockMvcBuilders.standaloneSetup(gestioneBranoController).build();
     }
 

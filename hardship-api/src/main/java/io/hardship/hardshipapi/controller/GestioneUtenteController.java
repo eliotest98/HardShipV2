@@ -13,10 +13,13 @@ public class GestioneUtenteController {
     public GestioneUtenteService gestioneUtenteService;
 
     @PostMapping("/register")
-    private Cliente registraCliente(@RequestBody Cliente nuovoCliente) {
+    private int registraCliente(@RequestBody Cliente nuovoCliente) {
         return gestioneUtenteService.registraCliente(nuovoCliente);
     }
 
-
+    @GetMapping("/login")
+    private Cliente loginCliente(@RequestBody Cliente cliente) {
+        return gestioneUtenteService.loginCliente(cliente.getUsername(),cliente.getPassword());
+    }
 
 }

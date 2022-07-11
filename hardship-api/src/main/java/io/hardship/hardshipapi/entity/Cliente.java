@@ -3,6 +3,7 @@ package io.hardship.hardshipapi.entity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,6 +12,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString
 @Table(name = "cliente")
 public class Cliente implements Serializable {
 
@@ -29,7 +31,7 @@ public class Cliente implements Serializable {
     @Column(name = "Email", nullable = false)
     private String email;
 
-    @Column(name = "DataNascita", nullable = false, length = 20)
+    @Column(name = "DataNascita", nullable = false, length = 10)
     private String dataNascita;
 
     @Column(name = "CodiceFiscale", nullable = false, length = 16)

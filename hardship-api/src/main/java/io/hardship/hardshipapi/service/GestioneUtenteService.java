@@ -6,6 +6,7 @@ import io.hardship.hardshipapi.entity.Cliente;
 public interface GestioneUtenteService {
 
 
-     Cliente registraCliente(Cliente cliente);
+     int registraCliente(Cliente cliente);
 
+     Cliente loginCliente(String username, String password);
 }
