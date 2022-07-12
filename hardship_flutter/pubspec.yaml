@@ -60,6 +60,9 @@ dependencies:
 
   #player music
   just_audio: ^0.9.27
+  encrypt: ^5.0.1
+
+
 
 dev_dependencies:
   flutter_test:

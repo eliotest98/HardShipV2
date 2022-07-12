@@ -1,10 +1,12 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:crypto/crypto.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hardship_flutter/ui/constants/app_strings.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
+import '../../core/utils/EncryptData.dart';
 import '../../provider/models/user_model.dart';
 
 class RegistrationScreen extends StatefulWidget {
@@ -29,11 +31,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           "username": user.username,
           "password": user.password,
           "email": user.email,
-          "dataNascita": user.dataNascita,
+          "dataNascita": dateinput.text,
           "codiceFiscale": user.codiceFiscale
         }));
-    print(res.body);
-    if (res.body != null) {
+    //print(res.body);
+    String jsonString = res.body;
+    int statusCode = res.statusCode;
+    if (jsonString != "" && statusCode == 200) {
       Navigator.pop(context);
     }
   }
@@ -191,6 +195,45 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         Align(
                           alignment: Alignment.topLeft,
                           child: Text(
+                            username,
+                            style: GoogleFonts.roboto(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        TextFormField(
+                          controller:
+                              TextEditingController(text: user.username),
+                          onChanged: (val) {
+                            user.username = val;
+                          },
+                          validator: (value) {
+                            if (value?.isEmpty ?? true) {
+                              return 'Campo Username obbligatorio';
+                            }
+                            return null;
+                          },
+                          style: const TextStyle(
+                              fontSize: 20, color: Colors.white),
+                          decoration: const InputDecoration(
+                              border: OutlineInputBorder(
+                                  borderSide: BorderSide.none)),
+                          keyboardType: TextInputType.emailAddress,
+                        ),
+                        Container(
+                          height: 4,
+                          color: const Color.fromRGBO(255, 255, 255, 0.4),
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+
+                        /*
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(
                             email,
                             style: GoogleFonts.roboto(
                               fontWeight: FontWeight.bold,
@@ -228,7 +271,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         ),
                         const SizedBox(
                           height: 30,
-                        ),
+                        ),*/
+
                         Align(
                           alignment: Alignment.topLeft,
                           child: Text(
@@ -271,6 +315,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             child: TextButton(
                                 onPressed: () {
                                   if (_formKey.currentState!.validate()) {
+                                    var encryptPw =
+                                        EncryptData.encryptAES(user.password);
+                                    user.password = encryptPw;
                                     save();
                                   }
                                 },
