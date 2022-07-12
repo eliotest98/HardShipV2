@@ -130,6 +130,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       decoration: const InputDecoration(
                           border:
                               OutlineInputBorder(borderSide: BorderSide.none)),
+                      obscureText: true,
                     ),
                     Container(
                       height: 8,
