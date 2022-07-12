@@ -39,6 +39,24 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     int statusCode = res.statusCode;
     if (jsonString != "" && statusCode == 200) {
       Navigator.pop(context);
+    } else if (statusCode == 500) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Errore"),
+            content: Text("Username già utilizzata"),
+            actions: <Widget>[
+              FlatButton(
+                child: Text("Ok"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
     }
   }
 
