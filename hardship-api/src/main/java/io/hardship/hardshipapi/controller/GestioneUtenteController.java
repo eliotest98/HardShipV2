@@ -17,7 +17,7 @@ public class GestioneUtenteController {
         return gestioneUtenteService.registraCliente(nuovoCliente);
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     private Cliente loginCliente(@RequestBody Cliente cliente) {
         return gestioneUtenteService.loginCliente(cliente.getUsername(),cliente.getPassword());
     }
