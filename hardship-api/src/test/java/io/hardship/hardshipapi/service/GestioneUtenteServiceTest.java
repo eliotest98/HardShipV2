@@ -36,9 +36,15 @@ public class GestioneUtenteServiceTest {
     @Test
     void registerClientTest() throws Exception{
         //stubbing
-        when(gestioneUtenteDao.save(any())).thenReturn(cliente);
         gestioneUtenteService.registraCliente(cliente);
-        verify(gestioneUtenteDao,times(1)).save(any());
+        verify(gestioneUtenteDao,times(1)).insertCliente(cliente.getNome(),cliente.getCognome(),cliente.getDataNascita(),cliente.getUsername(),cliente.getPassword(),cliente.getCodiceFiscale(),cliente.getEmail(),cliente.getCodiceFiscale(),cliente.getDataNascita());
+    }
+
+    //Test Case for login client
+    @Test
+    void loginCliente() throws Exception {
+        gestioneUtenteService.loginCliente(cliente.getUsername(),cliente.getPassword());
+        verify(gestioneUtenteDao,times(1)).loginCliente(cliente.getUsername(), cliente.getPassword());
     }
 
 }

@@ -27,22 +27,22 @@ class AppDrawer extends StatelessWidget {
               RoutesService.pushNamed(RouteList.albums);
             },
           ),
-          // const Divider(),
-          // ListTile(
-          //   leading: const Icon(Icons.login),
-          //   title: const Text(login),
-          //   onTap: () {
-          //     RoutesService.pushNamed(RouteList.login);
-          //   },
-          // ),
-          // const Divider(),
-          // ListTile(
-          //   leading: const Icon(Icons.app_registration_rounded),
-          //   title: const Text(registrati),
-          //   onTap: () {
-          //     RoutesService.pushNamed(RouteList.register);
-          //   },
-          // ),
+          const Divider(),
+          ListTile(
+            leading: const Icon(Icons.login),
+            title: const Text(login),
+            onTap: () {
+              RoutesService.pushNamed(RouteList.login);
+            },
+          ),
+          const Divider(),
+          ListTile(
+            leading: const Icon(Icons.app_registration_rounded),
+            title: const Text(registrati),
+            onTap: () {
+              RoutesService.pushNamed(RouteList.register);
+            },
+          ),
           const Divider(),
           Expanded(child: Container()),
           isAuth

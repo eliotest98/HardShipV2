@@ -10,3 +10,4 @@ const String password = 'Password';
 const String nome = 'Nome';
 const String cognome = 'Cognome';
 const String datanascita = 'Data di nascita';
+const String username = 'Username';

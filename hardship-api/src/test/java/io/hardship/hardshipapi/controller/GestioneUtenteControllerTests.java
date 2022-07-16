@@ -57,13 +57,23 @@ public class GestioneUtenteControllerTests {
 
     @Test
     public void registraCliente_success() throws Exception {
-        when(gestioneUtenteService.registraCliente(any())).thenReturn(RECORD_1);
+        when(gestioneUtenteService.registraCliente(any())).thenReturn(1);
         mockMvc.perform(post("/api/v1/register").
                         contentType(MediaType.APPLICATION_JSON).
                         content(asJsonString(RECORD_1))).
                 andExpect(status().isOk());
         verify(gestioneUtenteService,times(1)).registraCliente(any());
     }
+
+    /*@Test
+    public void loginCLiente() throws Exception {
+        registraCliente_success();
+        mockMvc.perform(post("/api/v1/login").
+                        contentType(MediaType.APPLICATION_JSON).
+                        content(asJsonString(RECORD_1))).
+                andExpect(status().isOk());
+        verify(gestioneUtenteService,times(1)).loginCliente(RECORD_1.getUsername(),RECORD_1.getPassword());
+    }*/
 
     public static String asJsonString(final Object obj){
         try{

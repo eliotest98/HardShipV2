@@ -31,7 +31,7 @@ public class GestioneBranoServiceTest {
 
     @BeforeEach
     public void setUp() {
-        RECORD_1 = new Brano(1, "titolo1", "2021", "2:30", 1, 1);
+        RECORD_1 = new Brano(1, "titolo1", "2021", "2:30","track", 1, 1);
         album = new Album(1, "Pop", "Black", "Black", 14, "02-06-2022", "bho", "Nuovo Album", "root", 1, 1);
     }
 
