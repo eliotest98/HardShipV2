@@ -30,7 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
     String jsonString = res.body;
     int statusCode = res.statusCode;
     if (jsonString != "" && statusCode == 200) {
-      //Navigator.pop(context);
+      Navigator.pop(context);
     }
   }
 
@@ -132,7 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         if (value != null && value.length < 6) {
                           return 'Campo password troppo corta';
                         }
-                         if (value != null && value.length > 30) {
+                        if (value != null && value.length > 30) {
                           return 'Campo password troppo lunga';
                         }
                         return null;
@@ -159,11 +159,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                 var test = user.password;
                                 var decryptPw = EncryptData.encryptAES(test);
                                 user.password = decryptPw;
-                                Scaffold.of(context)
-                                    .showSnackBar(const SnackBar(
-                                  content: Text("Login Successful"),
-                                  duration: Duration(seconds: 2),
-                                ));
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      content: Text('Login Successful')),
+                                );
                                 save();
                               }
                             },

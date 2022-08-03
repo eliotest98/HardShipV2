@@ -36,7 +36,7 @@ void main() {
     await tester.enterText(password, "alcatel13");
 
     await tester.tap(loginButton);
-    await tester.pump();
+    await tester.pumpAndSettle();
 
     expect(find.text("Login Successful"), findsOneWidget);
   });
@@ -96,27 +96,8 @@ void main() {
     expect(find.text("Campo username troppo corto"), findsOneWidget);
   });
 
-
-    testWidgets('Password has a length greater than 30', (WidgetTester tester) async {
-    //ho caricato la view
-    await tester.pumpWidget(const MaterialApp(
-      home: LoginScreen(),
-    ));
-
-    final Finder username = find.byKey(const ValueKey("usernameSignUpField"));
-    final Finder password = find.byKey(const ValueKey("passwordSignUpField"));
-    final Finder loginButton = find.byKey(const ValueKey("loginButton"));
-
-    await tester.enterText(username, "lukeno13");
-    await tester.enterText(password, "alcatel12alcatel12alcatel12alcatel12");
-
-    await tester.tap(loginButton);
-    await tester.pump();
-
-    expect(find.text("Campo password troppo lunga"), findsOneWidget);
-  });
-
-   testWidgets('Password has a length minor than 6', (WidgetTester tester) async {
+  testWidgets('Password has a length minus than 6',
+      (WidgetTester tester) async {
     //ho caricato la view
     await tester.pumpWidget(const MaterialApp(
       home: LoginScreen(),
@@ -133,5 +114,26 @@ void main() {
     await tester.pump();
 
     expect(find.text("Campo password troppo corta"), findsOneWidget);
+  });
+
+  testWidgets('Password has a length greater than 30',
+      (WidgetTester tester) async {
+    //ho caricato la view
+    await tester.pumpWidget(const MaterialApp(
+      home: LoginScreen(),
+    ));
+
+    final Finder username = find.byKey(const ValueKey("usernameSignUpField"));
+    final Finder password = find.byKey(const ValueKey("passwordSignUpField"));
+    final Finder loginButton = find.byKey(const ValueKey("loginButton"));
+
+    await tester.enterText(username, "lukeno13");
+    await tester.enterText(password,
+        "alcatel12alcatel12alcatel12alcatel12alcatel12alcatel12alcatel12alcatel12alcatel12");
+
+    await tester.tap(loginButton);
+    await tester.pump();
+
+    expect(find.text("Campo password troppo lunga"), findsOneWidget);
   });
 }
