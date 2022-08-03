@@ -18,7 +18,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   UserModel user = UserModel(0, "", "", "", "", "", "", "");
   String url = "http://127.0.0.1:8080/api/v1/login";
-
+  bool successLogin = false;
   Future save() async {
     var res = await http.post(Uri.parse(url),
         headers: {'Content-Type': 'application/json'},
@@ -30,7 +30,12 @@ class _LoginScreenState extends State<LoginScreen> {
     String jsonString = res.body;
     int statusCode = res.statusCode;
     if (jsonString != "" && statusCode == 200) {
-      Navigator.pop(context);
+      setState(() {
+        successLogin = true;
+      });
+
+      Future.delayed(const Duration(seconds: 4))
+          .then((value) => Navigator.pop(context));
     }
   }
 
@@ -159,10 +164,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                 var test = user.password;
                                 var decryptPw = EncryptData.encryptAES(test);
                                 user.password = decryptPw;
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                      content: Text('Login Successful')),
-                                );
                                 save();
                               }
                             },
@@ -171,7 +172,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               size: 20,
                             )),
                       ),
-                    )
+                    ),
+                    successLogin ? Text("Login Successful") : Container(),
                   ],
                 ),
               ),
