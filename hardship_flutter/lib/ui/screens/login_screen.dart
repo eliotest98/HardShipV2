@@ -30,10 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
     String jsonString = res.body;
     int statusCode = res.statusCode;
     if (jsonString != "" && statusCode == 200) {
-      const SnackBar snackBar = SnackBar(content: Text('Login Successful'));
-
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      Navigator.pop(context);
+      //Navigator.pop(context);
     }
   }
 
@@ -153,6 +150,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                 var test = user.password;
                                 var decryptPw = EncryptData.encryptAES(test);
                                 user.password = decryptPw;
+                                Scaffold.of(context)
+                                    .showSnackBar(const SnackBar(
+                                  content: Text("Login Successful"),
+                                  duration: Duration(seconds: 2),
+                                ));
                                 save();
                               }
                             },
