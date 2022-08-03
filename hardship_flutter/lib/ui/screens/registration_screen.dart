@@ -78,7 +78,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             child: Column(
               children: [
                 Container(
-                  height: MediaQuery.of(context).size.height * 1.1,
+                  height: MediaQuery.of(context).size.height * 1,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                       color: Theme.of(context).primaryColorLight,
@@ -92,18 +92,18 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           bottomLeft: Radius.circular(80),
                           bottomRight: Radius.circular(20))),
                   child: Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.all(1.0),
                     child: Column(
                       children: [
-                        const SizedBox(
+                        /*const SizedBox(
                           height: 20,
-                        ),
+                        ),*/
                         Text(registrati,
                             style: GoogleFonts.pacifico(
                                 fontSize: 30, color: Colors.white)),
-                        const SizedBox(
+                        /*const SizedBox(
                           height: 30,
-                        ),
+                        ),*/
                         Align(
                           alignment: Alignment.topLeft,
                           child: Text(
@@ -116,6 +116,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           ),
                         ),
                         TextFormField(
+                          key: const ValueKey('nameSignUpField'),
                           controller: TextEditingController(text: user.nome),
                           onChanged: (val) {
                             user.nome = val;
@@ -123,6 +124,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           validator: (value) {
                             if (value?.isEmpty ?? true) {
                               return 'Campo nome obbligatorio';
+                            }
+                            if (value != null &&
+                                value.isNotEmpty &&
+                                value.length > 25) {
+                              return 'Campo nome troppo lungo';
                             }
                             return null;
                           },
@@ -133,12 +139,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                   borderSide: BorderSide.none)),
                         ),
                         Container(
-                          height: 4,
+                          height: 2,
                           color: const Color.fromRGBO(255, 255, 255, 0.4),
                         ),
-                        const SizedBox(
+                        /*const SizedBox(
                           height: 30,
-                        ),
+                        ),*/
                         Align(
                           alignment: Alignment.topLeft,
                           child: Text(
@@ -151,6 +157,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           ),
                         ),
                         TextFormField(
+                          key: const ValueKey('surnameSignUpField'),
                           controller: TextEditingController(text: user.cognome),
                           onChanged: (val) {
                             user.cognome = val;
@@ -158,6 +165,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           validator: (value) {
                             if (value?.isEmpty ?? true) {
                               return 'Campo cognome obbligatorio';
+                            }
+                            if (value != null &&
+                                value.isNotEmpty &&
+                                value.length > 30) {
+                              return 'Campo cognome troppo lungo';
                             }
                             return null;
                           },
@@ -168,12 +180,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                   borderSide: BorderSide.none)),
                         ),
                         Container(
-                          height: 4,
+                          height: 2,
                           color: const Color.fromRGBO(255, 255, 255, 0.4),
                         ),
-                        const SizedBox(
+                        /*const SizedBox(
                           height: 30,
-                        ),
+                        ),*/
                         Align(
                           alignment: Alignment.topLeft,
                           child: Text(
@@ -186,6 +198,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           ),
                         ),
                         TextFormField(
+                          key: const ValueKey('dateOfBirthSignUpField'),
                           validator: (value) {
                             if (value?.isEmpty ?? true) {
                               return 'Campo Data di nascita obbligatorio';
@@ -204,12 +217,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                   borderSide: BorderSide.none)),
                         ),
                         Container(
-                          height: 4,
+                          height: 2,
                           color: const Color.fromRGBO(255, 255, 255, 0.4),
                         ),
-                        const SizedBox(
+                        /*const SizedBox(
                           height: 30,
-                        ),
+                        ),*/
                         Align(
                           alignment: Alignment.topLeft,
                           child: Text(
@@ -222,6 +235,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           ),
                         ),
                         TextFormField(
+                          key: const ValueKey('usernameSignUpField'),
                           controller:
                               TextEditingController(text: user.username),
                           onChanged: (val) {
@@ -229,7 +243,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           },
                           validator: (value) {
                             if (value?.isEmpty ?? true) {
-                              return 'Campo Username obbligatorio';
+                              return 'Campo username obbligatorio';
+                            }
+                            if (value != null &&
+                                value.isNotEmpty &&
+                                value.length > 15) {
+                              return 'Campo username troppo lunga';
                             }
                             return null;
                           },
@@ -241,12 +260,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           keyboardType: TextInputType.emailAddress,
                         ),
                         Container(
-                          height: 4,
+                          height: 2,
                           color: const Color.fromRGBO(255, 255, 255, 0.4),
                         ),
-                        const SizedBox(
+                        /*const SizedBox(
                           height: 30,
-                        ),
+                        ),*/
 
                         /*
                         Align(
@@ -303,6 +322,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           ),
                         ),
                         TextFormField(
+                          key: const ValueKey('passwordSignUpField'),
                           controller:
                               TextEditingController(text: user.password),
                           onChanged: (val) {
@@ -311,6 +331,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           validator: (value) {
                             if (value?.isEmpty ?? true) {
                               return 'Campo password obbligatorio';
+                            }
+                            if (value != null && value.length < 6) {
+                              return 'Campo password troppo corta';
+                            }
+                            if (value != null && value.length > 30) {
+                              return 'Campo password troppo lunga';
                             }
                             return null;
                           },
@@ -322,15 +348,16 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           obscureText: true,
                         ),
                         Container(
-                          height: 4,
+                          height: 2,
                           color: const Color.fromRGBO(255, 255, 255, 0.4),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(40.0),
+                          padding: const EdgeInsets.all(10.0),
                           child: SizedBox(
-                            height: 70,
-                            width: 70,
+                            height: 30,
+                            width: 30,
                             child: TextButton(
+                                key: const ValueKey("registerButton"),
                                 onPressed: () {
                                   if (_formKey.currentState!.validate()) {
                                     var encryptPw =
