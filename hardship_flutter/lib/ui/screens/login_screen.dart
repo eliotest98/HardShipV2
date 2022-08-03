@@ -30,6 +30,9 @@ class _LoginScreenState extends State<LoginScreen> {
     String jsonString = res.body;
     int statusCode = res.statusCode;
     if (jsonString != "" && statusCode == 200) {
+      const SnackBar snackBar = SnackBar(content: Text('Login Successful'));
+
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
       Navigator.pop(context);
     }
   }
@@ -82,6 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     TextFormField(
+                      key: const ValueKey('usernameSignUpField'),
                       controller: TextEditingController(text: user.username),
                       onChanged: (val) {
                         user.username = val;
@@ -116,6 +120,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     TextFormField(
+                      key: const ValueKey('passwordSignUpField'),
                       controller: TextEditingController(text: user.password),
                       onChanged: (val) {
                         user.password = val;
@@ -142,6 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 70,
                         width: 70,
                         child: TextButton(
+                            key: const ValueKey("loginButton"),
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
                                 var test = user.password;
