@@ -40,4 +40,98 @@ void main() {
 
     expect(find.text("Login Successful"), findsOneWidget);
   });
+
+  testWidgets('Form required username', (WidgetTester tester) async {
+    //ho caricato la view
+    await tester.pumpWidget(const MaterialApp(
+      home: LoginScreen(),
+    ));
+
+    //ho trovato i widgets
+    final Finder password = find.byKey(const ValueKey("passwordSignUpField"));
+    final Finder loginButton = find.byKey(const ValueKey("loginButton"));
+
+    await tester.enterText(password, "passwordTest");
+
+    await tester.tap(loginButton);
+    await tester.pump();
+
+    expect(find.text("Campo username obbligatorio"), findsOneWidget);
+  });
+
+  testWidgets('Form required username', (WidgetTester tester) async {
+    //ho caricato la view
+    await tester.pumpWidget(const MaterialApp(
+      home: LoginScreen(),
+    ));
+
+    //ho trovato i widgets
+    final Finder username = find.byKey(const ValueKey("usernameSignUpField"));
+    final Finder loginButton = find.byKey(const ValueKey("loginButton"));
+
+    await tester.enterText(username, "mario");
+
+    await tester.tap(loginButton);
+    await tester.pump();
+
+    expect(find.text("Campo password obbligatorio"), findsOneWidget);
+  });
+
+  testWidgets('Username has a length greater than 15',
+      (WidgetTester tester) async {
+    //ho caricato la view
+    await tester.pumpWidget(const MaterialApp(
+      home: LoginScreen(),
+    ));
+
+    //ho trovato i widgets
+    final Finder username = find.byKey(const ValueKey("usernameSignUpField"));
+    final Finder loginButton = find.byKey(const ValueKey("loginButton"));
+
+    await tester.enterText(username, "mario");
+
+    await tester.tap(loginButton);
+    await tester.pump();
+
+    expect(find.text("Campo username troppo corto"), findsOneWidget);
+  });
+
+
+    testWidgets('Password has a length greater than 30', (WidgetTester tester) async {
+    //ho caricato la view
+    await tester.pumpWidget(const MaterialApp(
+      home: LoginScreen(),
+    ));
+
+    final Finder username = find.byKey(const ValueKey("usernameSignUpField"));
+    final Finder password = find.byKey(const ValueKey("passwordSignUpField"));
+    final Finder loginButton = find.byKey(const ValueKey("loginButton"));
+
+    await tester.enterText(username, "lukeno13");
+    await tester.enterText(password, "alcatel12alcatel12alcatel12alcatel12");
+
+    await tester.tap(loginButton);
+    await tester.pump();
+
+    expect(find.text("Campo password troppo lunga"), findsOneWidget);
+  });
+
+   testWidgets('Password has a length minor than 6', (WidgetTester tester) async {
+    //ho caricato la view
+    await tester.pumpWidget(const MaterialApp(
+      home: LoginScreen(),
+    ));
+
+    final Finder username = find.byKey(const ValueKey("usernameSignUpField"));
+    final Finder password = find.byKey(const ValueKey("passwordSignUpField"));
+    final Finder loginButton = find.byKey(const ValueKey("loginButton"));
+
+    await tester.enterText(username, "lukeno13");
+    await tester.enterText(password, "al");
+
+    await tester.tap(loginButton);
+    await tester.pump();
+
+    expect(find.text("Campo password troppo corta"), findsOneWidget);
+  });
 }

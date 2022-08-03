@@ -91,6 +91,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         if (value?.isEmpty ?? true) {
                           return 'Campo username obbligatorio';
                         }
+                        if (value != null && value.length < 15) {
+                          return 'Campo username troppo corto';
+                        }
                         return null;
                       },
                       style: const TextStyle(fontSize: 30, color: Colors.white),
@@ -125,6 +128,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       validator: (value) {
                         if (value?.isEmpty ?? true) {
                           return 'Campo password obbligatorio';
+                        }
+                        if (value != null && value.length < 6) {
+                          return 'Campo password troppo corta';
+                        }
+                         if (value != null && value.length > 30) {
+                          return 'Campo password troppo lunga';
                         }
                         return null;
                       },
