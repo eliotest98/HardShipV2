@@ -37,12 +37,14 @@ class CardAlbum extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                ShadowImage(
-                  imageProvider: NetworkImage(album.copertina),
-                  size: size,
-                  borderRadius: BorderRadius.circular(kRadius),
-                  offset: const Offset(0, 0),
-                ),
+                album.copertina != null && album.copertina.isNotEmpty
+                    ? ShadowImage(
+                        imageProvider: NetworkImage(album.copertina),
+                        size: size,
+                        borderRadius: BorderRadius.circular(kRadius),
+                        offset: const Offset(0, 0),
+                      )
+                    : Container(),
                 const SizedBox(width: 8.0),
                 Expanded(
                   child: Column(

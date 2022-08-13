@@ -29,7 +29,7 @@ class AlbumViewModel extends BaseViewModel {
     setState(ViewState.loding);
     final result = await usecaseAlbum.getAlbums();
     await Future.delayed(const Duration(seconds: 1));
-    result.fold((failure) {
+    result?.fold((failure) {
       _setError(failure);
     }, (result) {
       _setListAlbum(result);

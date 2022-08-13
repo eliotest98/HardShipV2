@@ -99,7 +99,9 @@ class _AlbumDetailsScreenState extends State<AlbumDetailsScreen> {
   }
 
   Widget _buildInitial() {
-    return const SizedBox();
+    return const SizedBox(
+      key: ValueKey('initialAlbumState'),
+    );
   }
 
   Widget _buildLoaded(BuildContext context, BranoViewModel model) {

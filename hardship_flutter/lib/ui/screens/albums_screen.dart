@@ -9,15 +9,32 @@ import 'package:hardship_flutter/ui/widgets/card_album.dart';
 import 'package:hardship_flutter/ui/widgets/circle_indicator.dart';
 import 'package:provider/provider.dart';
 
-class AlbumsScreen extends StatefulWidget {
+class AlbumsScreen extends StatelessWidget {
   const AlbumsScreen({Key? key}) : super(key: key);
 
   @override
-  State<AlbumsScreen> createState() => _AlbumsScreenState();
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: true,
+        ),
+        body: SafeArea(
+          child: ChangeNotifierProvider<AlbumViewModel>(
+              create: (BuildContext context) =>
+                  AlbumViewModel(usecaseAlbum: getItInstance())..getListAlbum(),
+              child: const BodyAlbum()),
+        ));
+  }
 }
 
-class _AlbumsScreenState extends State<AlbumsScreen>
-    with TickerProviderStateMixin {
+class BodyAlbum extends StatefulWidget {
+  const BodyAlbum({Key? key}) : super(key: key);
+
+  @override
+  State<BodyAlbum> createState() => _BodyAlbumState();
+}
+
+class _BodyAlbumState extends State<BodyAlbum> with TickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -28,40 +45,34 @@ class _AlbumsScreenState extends State<AlbumsScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: true,
-        ),
-        body: SafeArea(
-          child: ChangeNotifierProvider<AlbumViewModel>(
-            create: (BuildContext context) =>
-                AlbumViewModel(usecaseAlbum: getItInstance())..getListAlbum(),
-            child: Consumer<AlbumViewModel>(
-              builder: (BuildContext context, AlbumViewModel model, _) {
-                switch (model.state) {
-                  case ViewState.initial:
-                    return _buildInitial();
-                  case ViewState.loding:
-                    return _buildLoading();
-                  case ViewState.loaded:
-                    return _buildLoaded(context, model);
-                  case ViewState.error:
-                    return _buildError();
-                }
-              },
-            ),
-          ),
-        ));
+    return Consumer<AlbumViewModel>(
+      builder: (BuildContext context, AlbumViewModel model, _) {
+        switch (model.state) {
+          case ViewState.initial:
+            return _buildInitial();
+          case ViewState.loding:
+            return _buildLoading();
+          case ViewState.loaded:
+            return _buildLoaded(context, model);
+          case ViewState.error:
+            return _buildError();
+        }
+      },
+    );
   }
 
   Widget _buildLoading() {
     return const Center(
-      child: CircularProgressIndicator(),
+      child: CircularProgressIndicator(
+        key: Key('progress-indicator'),
+      ),
     );
   }
 
   Widget _buildInitial() {
-    return const SizedBox();
+    return const SizedBox(
+      key: Key('__initial__'),
+    );
   }
 
   Widget _buildLoaded(BuildContext context, AlbumViewModel model) {
@@ -114,6 +125,7 @@ class _AlbumsScreenState extends State<AlbumsScreen>
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
       child: ListView.builder(
+          key: const Key('__loaded__'),
           itemCount: listAlbum.length,
           itemBuilder: (context, index) {
             return CardAlbum(

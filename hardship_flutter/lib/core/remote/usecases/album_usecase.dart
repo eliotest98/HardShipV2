@@ -5,7 +5,7 @@ import 'package:hardship_flutter/core/remote/repository/album_repository.dart';
 import 'package:hardship_flutter/provider/models/album_model.dart';
 
 abstract class IAlbumUsecase {
-  Future<Either<Failure, List<AlbumModel>>> getAlbums();
+  Future<Either<Failure, List<AlbumModel>>>? getAlbums();
 }
 
 class AlbumUsecase extends IAlbumUsecase {
@@ -14,7 +14,7 @@ class AlbumUsecase extends IAlbumUsecase {
   AlbumUsecase(this.repository);
 
   @override
-  Future<Either<Failure, List<AlbumModel>>> getAlbums() async {
+  Future<Either<Failure, List<AlbumModel>>>? getAlbums() async {
     final result = await repository.getAlbums();
 
     return result.fold((l) {
