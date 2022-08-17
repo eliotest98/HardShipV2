@@ -37,7 +37,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   _buildHeader(),
                   const SizedBox(height: 8.0),
-                  _buildBody()
+                  ChangeNotifierProvider<NewsProvider>(
+                    create: (BuildContext context) =>
+                        NewsProvider(usecaseNews: getItInstance())
+                          ..getListNews(),
+                    child: const BodyNews(),
+                  )
                 ],
               ),
             ),
@@ -63,6 +68,15 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ]);
   }
+}
+
+class BodyNews extends StatelessWidget {
+  const BodyNews({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return _buildBody();
+  }
 
   Widget _buildBody() {
     return Column(
@@ -73,41 +87,41 @@ class _HomeScreenState extends State<HomeScreen> {
             text: 'News',
           ),
           const SizedBox(height: 10),
-          ChangeNotifierProvider<NewsProvider>(
-            create: (BuildContext context) =>
-                NewsProvider(usecaseNews: getItInstance())..getListNews(),
-            child: Consumer<NewsProvider>(
-              builder: (BuildContext context, NewsProvider model, _) {
-                switch (model.state) {
-                  case ViewState.initial:
-                    //Provider.of<NewsProvider>(context).getListNews();
-                    return _buildInitial();
-                  case ViewState.loding:
-                    return _buildLoading();
-                  case ViewState.loaded:
-                    return _buildLoaded(context, model);
-                  case ViewState.error:
-                    return _buildError();
-                }
-              },
-            ),
+          Consumer<NewsProvider>(
+            builder: (BuildContext context, NewsProvider model, _) {
+              switch (model.state) {
+                case ViewState.initial:
+                  return _buildInitial();
+                case ViewState.loding:
+                  return _buildLoading();
+                case ViewState.loaded:
+                  return _buildLoaded(context, model);
+                case ViewState.error:
+                  return _buildError();
+              }
+            },
           )
         ]);
   }
 
   Widget _buildLoading() {
     return const Center(
-      child: CircularProgressIndicator(),
+      child: CircularProgressIndicator(
+        key: Key('progress-indicator'),
+      ),
     );
   }
 
   Widget _buildInitial() {
-    return const SizedBox();
+    return const SizedBox(
+      key: Key('__initial__'),
+    );
   }
 
   Widget _buildLoaded(BuildContext context, NewsProvider model) {
     List<NewsModel> listNews = model.getListNewsOrdered;
     return SizedBox(
+      key: const Key('__loaded__'),
       width: double.infinity,
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,

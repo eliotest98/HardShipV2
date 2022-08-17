@@ -6,7 +6,7 @@ import 'package:hardship_flutter/provider/models/news_model.dart';
 import '../error/failure.dart';
 
 abstract class INewsUsecase {
-  Future<Either<Failure, List<NewsModel>>> getNews();
+  Future<Either<Failure, List<NewsModel>>>? getNews();
 }
 
 class NewsUsecase extends INewsUsecase {
@@ -15,7 +15,7 @@ class NewsUsecase extends INewsUsecase {
   NewsUsecase(this.repository);
 
   @override
-  Future<Either<Failure, List<NewsModel>>> getNews() async {
+  Future<Either<Failure, List<NewsModel>>>? getNews() async {
     final result = await repository.getNews();
 
     return result.fold((l) {

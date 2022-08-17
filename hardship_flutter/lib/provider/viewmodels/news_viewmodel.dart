@@ -22,7 +22,7 @@ class NewsProvider extends BaseViewModel {
     setState(ViewState.loding);
     final result = await usecaseNews.getNews();
     await Future.delayed(const Duration(seconds: 1));
-    result.fold((failure) {
+    result?.fold((failure) {
       _setError(failure);
     }, (result) {
       _setListNews(result);
