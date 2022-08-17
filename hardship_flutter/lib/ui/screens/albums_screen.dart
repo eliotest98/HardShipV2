@@ -77,6 +77,7 @@ class _BodyAlbumState extends State<BodyAlbum> with TickerProviderStateMixin {
 
   Widget _buildLoaded(BuildContext context, AlbumViewModel model) {
     return Column(
+      key: const Key('__loaded__'),
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
